@@ -1,0 +1,19 @@
+---
+// Redirect utama "/" -> "/en/" ditangani oleh Netlify (lihat netlify.toml,
+// Bagian 6 dokumen: Inggris default, tanpa deteksi bahasa browser).
+// Berkas ini adalah fallback statis, tanpa JavaScript, untuk lingkungan yang
+// tidak melalui redirect Netlify (mis. `astro preview` lokal).
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=/en/" />
+    <link rel="canonical" href="/en/" />
+    <title>Andri Hendrizal</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href="/en/">/en/</a>&hellip;</p>
+  </body>
+</html>

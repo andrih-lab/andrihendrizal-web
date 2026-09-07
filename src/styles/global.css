@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+
+/*
+ * Token desain — Bagian 9 dokumen rancang bangun: palet dari lanskap
+ * mangrove (hijau tua, cokelat lumpur, krem, aksen air payau), satu serif
+ * untuk judul, satu sans-serif untuk isi. Font memakai tumpukan sistem
+ * (bukan Google Fonts) supaya situs tetap ringan untuk koneksi Indonesia
+ * dan tidak menambah request eksternal.
+ */
+@theme {
+  --color-mangrove-50: #f4f7f2;
+  --color-mangrove-100: #e4ebdf;
+  --color-mangrove-200: #c9d7bf;
+  --color-mangrove-300: #a4bd93;
+  --color-mangrove-600: #4d6b3f;
+  --color-mangrove-700: #3d5632;
+  --color-mangrove-800: #2f4327;
+  --color-mangrove-900: #24351f;
+  --color-mangrove-950: #182417;
+
+  --color-mud-500: #8a6a4a;
+  --color-mud-700: #6b4e34;
+
+  --color-cream: #faf7f0;
+
+  --color-brackish-500: #5c8a86;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: ui-serif, Georgia, 'Times New Roman', serif;
+}

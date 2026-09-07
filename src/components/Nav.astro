@@ -1,0 +1,41 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const items = [
+  { href: `/${lang}/`, label: t.nav.home },
+  { href: `/${lang}/contact/`, label: t.nav.contact },
+  // TODO (Tahap 2/3): tambahkan Research, Publications, Books, Writing,
+  // Students, CV begitu halamannya dibangun (lihat Bagian 4 dokumen).
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav aria-label={t.nav.label}>
+  <ul class="flex gap-5 text-sm">
+    {
+      items.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            aria-current={currentPath === item.href ? 'page' : undefined}
+            class:list={[
+              'text-mangrove-800 hover:text-mangrove-950 hover:underline',
+              currentPath === item.href && 'font-semibold text-mangrove-950 underline',
+            ]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

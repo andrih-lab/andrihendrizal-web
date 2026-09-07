@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { academicProfiles } from '../../../data/profiles';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} title={`${t.contact.title} — ${t.site.name}`} description={t.site.description}>
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.contact.title}</h1>
+
+    <dl class="mt-8 space-y-6">
+      <div>
+        <dt class="text-sm font-semibold uppercase tracking-wide text-mangrove-600">{t.contact.emailLabel}</dt>
+        <dd class="mt-1">
+          <a href={`mailto:${t.contact.emailValue}`} class="text-mangrove-800 underline hover:text-mangrove-950">
+            {t.contact.emailValue}
+          </a>
+        </dd>
+      </div>
+      <div>
+        <dt class="text-sm font-semibold uppercase tracking-wide text-mangrove-600">{t.contact.affiliationLabel}</dt>
+        <dd class="mt-1 max-w-xl text-mangrove-800">{t.contact.affiliationValue}</dd>
+      </div>
+      <div>
+        <dt class="text-sm font-semibold uppercase tracking-wide text-mangrove-600">{t.contact.locationLabel}</dt>
+        <dd class="mt-1 text-mangrove-800">{t.contact.locationValue}</dd>
+      </div>
+    </dl>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.contact.profilesHeading}</h2>
+      <ul class="mt-3 flex flex-wrap gap-4 text-sm">
+        {
+          academicProfiles.map((profile) => (
+            <li>
+              <a
+                href={profile.url}
+                class="text-mangrove-800 underline hover:text-mangrove-950"
+                rel="me noopener"
+                target="_blank"
+              >
+                {profile.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,23 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Alamat akar mengalihkan ke beranda bahasa Inggris (default).
+# force = true diperlukan karena Astro juga menghasilkan dist/index.html
+# (fallback statis untuk pratinjau tanpa Netlify, lihat src/pages/index.astro);
+# tanpa force, Netlify akan menyajikan berkas statis itu alih-alih redirect ini.
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

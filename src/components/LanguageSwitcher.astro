@@ -1,0 +1,32 @@
+---
+import { LOCALES } from '../i18n/config';
+import { useTranslations, getAlternatePath } from '../i18n/utils';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const pathname = Astro.url.pathname;
+---
+
+<div class="flex items-center gap-2 text-sm" aria-label={t.languageSwitcher.label}>
+  {
+    LOCALES.map((locale, i) => (
+      <a
+        href={getAlternatePath(pathname, locale)}
+        hreflang={locale}
+        aria-current={locale === lang ? 'true' : undefined}
+        class:list={[
+          'text-mangrove-800 hover:text-mangrove-950 hover:underline',
+          locale === lang && 'font-semibold text-mangrove-950',
+          i > 0 && 'border-l border-mangrove-300 pl-2',
+        ]}
+      >
+        {locale.toUpperCase()}
+      </a>
+    ))
+  }
+</div>

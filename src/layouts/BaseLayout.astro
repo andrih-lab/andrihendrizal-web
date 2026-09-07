@@ -1,0 +1,44 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { LOCALES, DEFAULT_LOCALE } from '../i18n/config';
+import { getAlternatePath } from '../i18n/utils';
+import type { Locale } from '../i18n/config';
+import '../styles/global.css';
+
+interface Props {
+  lang: Locale;
+  title: string;
+  description: string;
+}
+
+const { lang, title, description } = Astro.props;
+const pathname = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={new URL(pathname, Astro.site)} />
+    {
+      LOCALES.map((locale) => (
+        <link rel="alternate" hreflang={locale} href={new URL(getAlternatePath(pathname, locale), Astro.site)} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={new URL(getAlternatePath(pathname, DEFAULT_LOCALE), Astro.site)} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class="flex min-h-screen flex-col bg-cream font-sans text-mangrove-950">
+    <Header lang={lang} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>
