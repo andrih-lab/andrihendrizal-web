@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Portrait placeholder">
-  <!-- TODO: ganti dengan foto potret profesional pemilik situs (Bagian 12) -->
-  <rect width="160" height="160" fill="#e4ebdf" />
-  <circle cx="80" cy="62" r="30" fill="#a4bd93" />
-  <path d="M20 150c0-33 27-56 60-56s60 23 60 56" fill="#a4bd93" />
-</svg>

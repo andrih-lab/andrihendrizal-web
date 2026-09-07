@@ -11,7 +11,7 @@ const publications = await getPublications();
 const recentPublications = publications.slice(0, 3);
 
 // JSON-LD Person (Bagian 8: data terstruktur di beranda, memuat ORCID dan
-// afiliasi). TODO: tambahkan "image" begitu foto potret nyata tersedia.
+// afiliasi).
 const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -19,17 +19,22 @@ const personJsonLd = {
   jobTitle: t.home.heroPosition,
   affiliation: { '@type': 'CollegeOrUniversity', name: 'Universitas Riau' },
   url: new URL(`/${lang}/`, Astro.site).toString(),
+  image: new URL('/images/portrait.webp', Astro.site).toString(),
   sameAs: academicProfiles.filter((p) => p.url !== '#').map((p) => p.url),
 };
 ---
 
-<BaseLayout lang={lang} title={t.site.title} description={t.site.description}>
+<BaseLayout
+  lang={lang}
+  title={t.site.title}
+  description={t.site.description}
+  image="/images/portrait.webp"
+>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
   <section class="mx-auto max-w-4xl px-4 py-12">
     <div class="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-      <!-- TODO: ganti dengan foto potret profesional (lihat Bagian 12) -->
       <img
-        src="/images/placeholder-portrait.svg"
+        src="/images/portrait.webp"
         alt={t.site.name}
         width="160"
         height="160"

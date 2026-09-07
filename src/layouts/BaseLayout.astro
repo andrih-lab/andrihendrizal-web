@@ -10,9 +10,9 @@ interface Props {
   lang: Locale;
   title: string;
   description: string;
-  /** Path/URL gambar OG (mis. "/images/portrait.jpg"). Opsional — belum
-   * ada foto nyata di repo (lihat TODO di public/images/), jadi meta
-   * og:image/twitter:image sengaja diabaikan bila tidak diisi. */
+  /** Path/URL gambar OG (mis. "/images/portrait.webp"). Opsional — meta
+   * og:image/twitter:image diabaikan bila tidak diisi (mis. halaman tanpa
+   * gambar yang representatif). */
   image?: string;
   /** "article" untuk halaman tulisan, default "website". */
   type?: 'website' | 'article';
@@ -40,7 +40,9 @@ const imageUrl = image ? new URL(image, Astro.site) : undefined;
     }
     <link rel="alternate" hreflang="x-default" href={new URL(getAlternatePath(pathname, DEFAULT_LOCALE), Astro.site)} />
 
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-512.png" sizes="512x512" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Open Graph & Twitter Card (Bagian 8: pratinjau saat dibagikan di
     WhatsApp dan media sosial) -->
