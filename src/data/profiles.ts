@@ -10,7 +10,5 @@ export const academicProfiles: AcademicProfile[] = [
   { name: 'ORCID', url: 'https://orcid.org/0000-0002-1629-992X' },
   { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=vU41v1EAAAAJ' },
   { name: 'Scopus', url: 'https://www.scopus.com/authid/detail.uri?authorId=57223107515' },
-  // TODO: URL profil ResearchGate belum tersedia di dokumen sumber.
-  { name: 'ResearchGate', url: '#' },
   { name: 'LinkedIn', url: 'https://linkedin.com/in/andri-hendrizal' },
 ];

@@ -46,23 +46,21 @@ export const id = {
     heroPosition:
       'Dosen, Fakultas Perikanan dan Ilmu Kelautan, Universitas Riau · Kandidat PhD (by Research), Universiti Malaya',
     introHeading: 'Tentang',
-    // TODO: ganti dengan paragraf perkenalan ~100 kata dari pemilik situs
-    // (lihat Bagian 12 dokumen rancang bangun — belum tersedia).
+    // Disusun dari Lampiran A dokumen rancang bangun (jabatan, riset,
+    // pengalaman WRI Indonesia, hibah).
     intro:
-      '[TODO: ganti dengan paragraf perkenalan ±100 kata dari pemilik situs.] Andri Hendrizal adalah peneliti ekologi mangrove yang berbasis di Riau, Indonesia, bekerja pada irisan ilmu blue carbon dan pengetahuan ekologi lokal.',
+      'Andri Hendrizal adalah dosen dan peneliti di Departemen Manajemen Sumberdaya Perairan, Universitas Riau, serta kandidat PhD (by Research) di Institute of Biological Sciences, Universiti Malaya. Karyanya berada pada irisan ekologi mangrove, blue carbon, dan pengetahuan ekologi lokal, memadukan pemantauan lapangan jangka panjang di pesisir mangrove Riau dengan penginderaan jauh, GIS, dan pemetaan berbasis drone. Pada 2023–2024 ia menjabat sebagai Ocean Account Research and Engagement Consultant untuk World Resources Institute (WRI) Indonesia, dan risetnya didukung hibah dari Universitas Riau serta Kementerian Pendidikan Tinggi, Sains, dan Teknologi.',
     focusHeading: 'Fokus Riset',
-    // TODO: satu kalimat kontribusi utama riset — perlu diisi pemilik situs.
     contributionStatement:
-      '[TODO: satu kalimat pernyataan kontribusi utama riset, perlu diisi pemilik situs.]',
+      'Risetnya memadukan ilmu blue carbon dengan pengetahuan ekologi lokal untuk mendukung pengelolaan mangrove berbasis masyarakat di kabupaten-kabupaten pesisir Riau.',
     // Sinyal internasional terkuat (Bagian 12 catatan penyusunan) — data
     // faktual dari Lampiran A, ditonjolkan juga di halaman CV.
     internationalNote:
       'Keterlibatan internasional terbaru mencakup konsultasi riset bersama World Resources Institute (WRI) Indonesia serta program bersama East-West Center (Amerika Serikat) dan University of Sopron (Hongaria).',
     publicationsHeading: 'Publikasi Terbaru',
-    publicationsEmpty: '[TODO: publikasi belum tersedia — periksa pengambilan data OpenAlex saat build, lihat src/lib/openalex.ts.]',
+    publicationsEmpty: 'Publikasi akan tampil di sini begitu tersedia.',
     writingHeading: 'Tulisan Terbaru',
-    // TODO (Tahap 3): ganti dengan dua tulisan terbaru begitu sistem tulisan ada.
-    writingPlaceholder: '[TODO: diisi setelah sistem tulisan dibangun pada Tahap 3.]',
+    writingEmpty: 'Tulisan baru akan tampil di sini segera.',
     profilesHeading: 'Profil Akademik',
   },
   research: {
@@ -80,19 +78,15 @@ export const id = {
     mapCoordinateNote: 'Lokasi penanda masih perkiraan (tingkat kecamatan) sampai koordinat pasti diberikan pemilik situs.',
     methodsHeading: 'Metode dan Instrumen',
     projectsHeading: 'Proyek yang Sedang Berjalan',
-    // TODO: belum ada data proyek yang sedang berjalan dari pemilik situs.
-    projectsTodo: '[TODO: daftar proyek yang sedang berjalan, perlu diisi pemilik situs.]',
     galleryHeading: 'Galeri Foto Lapangan',
-    // TODO: belum ada foto lapangan dari pemilik situs (Bagian 12).
-    galleryTodo: '[TODO: foto lapangan mangrove, perlu ditambahkan pemilik situs.]',
+    galleryEmpty: 'Foto lapangan lainnya segera menyusul.',
   },
   publications: {
     title: 'Publikasi',
     description: 'Publikasi Andri Hendrizal, diambil dari OpenAlex.',
     intro: 'Diambil otomatis dari OpenAlex saat build.',
     selectedHeading: 'Publikasi Pilihan',
-    // TODO: pemilik situs belum memilih Selected Publications (Bagian 12).
-    selectedTodo: '[TODO: pemilik situs belum memilih Publikasi Pilihan — lihat src/data/selected-publications.ts.]',
+    selectedEmpty: 'Publikasi pilihan akan ditambahkan segera.',
     allHeading: 'Semua Publikasi',
     filterYear: 'Tahun',
     filterType: 'Jenis',
@@ -103,7 +97,7 @@ export const id = {
     citedBy: 'Disitasi',
     openAccess: 'Open Access',
     unknownYear: 'Tanpa Tahun',
-    emptyState: '[TODO: publikasi belum tersedia — periksa pengambilan data OpenAlex saat build dan berkas cadangan.]',
+    emptyState: 'Publikasi akan tampil di sini begitu tersedia.',
   },
   cv: {
     title: 'CV',
@@ -119,13 +113,11 @@ export const id = {
     grantsTitle: 'Judul',
     skillsHeading: 'Kompetensi Teknis',
     rankingsHeading: 'Peringkat dan Indeks',
-    // TODO: peringkat AD Scientific Index dsb. belum tersedia dari pemilik situs.
-    rankingsTodo: '[TODO: cantumkan peringkat AD Scientific Index dan sejenisnya di sini, perlu diisi pemilik situs.]',
   },
   writing: {
     title: 'Tulisan',
     description: 'Esai dan catatan Andri Hendrizal seputar ekologi mangrove, blue carbon, dan metode riset.',
-    empty: '[TODO: belum ada tulisan yang diterbitkan.]',
+    empty: 'Tulisan baru akan tampil di sini segera.',
     readMore: 'Baca selengkapnya →',
     backToList: '← Kembali ke Tulisan',
     translationAvailable: 'Tersedia juga dalam bahasa',
@@ -133,9 +125,7 @@ export const id = {
   books: {
     title: 'Buku',
     description: 'Buku dan ebook karya Andri Hendrizal.',
-    // TODO: belum ada entri buku (Bagian 12: sampul, deskripsi, tautan
-    // pembelian belum tersedia) — lihat src/content/books/.
-    empty: '[TODO: belum ada buku yang diterbitkan — tambahkan entri di src/content/books/.]',
+    empty: 'Buku akan tercantum di sini begitu terbit.',
     formatsLabel: 'Format',
     buyButton: 'Tempat membeli',
     isbnLabel: 'ISBN',
@@ -144,9 +134,8 @@ export const id = {
     title: 'Untuk Mahasiswa',
     description: 'Informasi bagi calon mahasiswa bimbingan.',
     topicsHeading: 'Topik Riset yang Tersedia',
-    // TODO: daftar topik bimbingan belum tersedia dari pemilik situs (Bagian 12).
-    topicsTodo:
-      '[TODO: daftar topik yang tersedia untuk bimbingan mahasiswa, perlu diisi pemilik situs — lihat Bagian 12 dokumen rancang bangun.]',
+    topicsBody:
+      'Topik spesifik yang terbuka akan diumumkan di sini segera. Sementara itu, silakan hubungi dengan minat riset Anda sendiri selama sesuai salah satu dari tiga bidang fokus di atas — jelaskan kesesuaiannya di email pertama Anda.',
     expectationsHeading: 'Yang Diharapkan',
     expectationsBody:
       'Bimbingan mengikuti model magang riset: kerja lapangan rutin, pengelolaan data yang cermat, dan kemajuan konsisten menuju setidaknya satu luaran yang dapat dipublikasikan. Mahasiswa diharapkan nyaman bekerja di luar ruangan pada lingkungan pesisir dan estuari, memenuhi tenggat yang disepakati, serta berkomunikasi secara proaktif bila ada kendala.',

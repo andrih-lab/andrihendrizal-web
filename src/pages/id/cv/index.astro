@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { useTranslations } from '../../../i18n/utils';
 import { education, experience, training, grants, technicalSkills } from '../../../data/cv';
+import { rankings } from '../../../data/rankings';
 
 const lang = 'id';
 const t = useTranslations(lang);
@@ -11,7 +12,6 @@ const t = useTranslations(lang);
   <section class="mx-auto max-w-4xl px-4 py-12">
     <div class="flex flex-wrap items-center justify-between gap-4">
       <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.cv.title}</h1>
-      <!-- TODO: unggah berkas ke public/cv-andri-hendrizal.pdf agar tombol ini aktif -->
       <a
         href="/cv-andri-hendrizal.pdf"
         class="rounded border border-mangrove-700 px-4 py-2 text-sm font-semibold text-mangrove-800 hover:bg-mangrove-700 hover:text-cream"
@@ -129,10 +129,26 @@ const t = useTranslations(lang);
       </ul>
     </div>
 
-    <div class="mt-10">
-      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.cv.rankingsHeading}</h2>
-      <!-- TODO: peringkat AD Scientific Index dsb. belum tersedia dari pemilik situs -->
-      <p class="mt-3 text-sm italic text-mangrove-600">{t.cv.rankingsTodo}</p>
-    </div>
+    {
+      rankings.length > 0 && (
+        <div class="mt-10">
+          <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.cv.rankingsHeading}</h2>
+          <ul class="mt-3 space-y-1 text-mangrove-800">
+            {rankings.map((ranking) => (
+              <li>
+                {ranking.url ? (
+                  <a href={ranking.url} target="_blank" rel="noopener" class="hover:underline">
+                    {ranking.name}
+                  </a>
+                ) : (
+                  ranking.name
+                )}
+                : {ranking.value}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
   </section>
 </BaseLayout>

@@ -47,23 +47,21 @@ export const en = {
     heroPosition:
       'Lecturer, Faculty of Fisheries and Marine Science, Universitas Riau · PhD Candidate (by Research), Universiti Malaya',
     introHeading: 'About',
-    // TODO: ganti dengan paragraf perkenalan ~100 kata dari pemilik situs
-    // (lihat Bagian 12 dokumen rancang bangun — belum tersedia).
+    // Disusun dari Lampiran A dokumen rancang bangun (jabatan, riset,
+    // pengalaman WRI Indonesia, hibah).
     intro:
-      '[TODO: replace with the site owner’s ~100-word introduction.] Andri Hendrizal is a mangrove ecology researcher based in Riau, Indonesia, working at the intersection of blue carbon science and local ecological knowledge.',
+      'Andri Hendrizal is a lecturer and researcher at the Department of Aquatic Resources Management, Universitas Riau, and a PhD candidate (by Research) at the Institute of Biological Sciences, Universiti Malaya. His work sits at the intersection of mangrove ecology, blue carbon, and local ecological knowledge, combining long-term field monitoring in Riau’s coastal mangroves with remote sensing, GIS, and drone-based mapping. Between 2023 and 2024 he served as an Ocean Account Research and Engagement Consultant for World Resources Institute (WRI) Indonesia, and his research has been supported by grants from Universitas Riau and Indonesia’s Ministry of Higher Education, Science and Technology.',
     focusHeading: 'Research Focus',
-    // TODO: satu kalimat kontribusi utama riset — perlu diisi pemilik situs.
     contributionStatement:
-      '[TODO: one-sentence statement of the primary research contribution, to be provided by the site owner.]',
+      'His research combines blue carbon science with local ecological knowledge to inform community-grounded mangrove management across Riau’s coastal districts.',
     // Sinyal internasional terkuat (Bagian 12 catatan penyusunan) — data
     // faktual dari Lampiran A, ditonjolkan juga di halaman CV.
     internationalNote:
       'Recent international engagement includes a research consultancy with World Resources Institute (WRI) Indonesia and fellowships with the East-West Center (USA) and University of Sopron (Hungary).',
     publicationsHeading: 'Recent Publications',
-    publicationsEmpty: '[TODO: no publications available — check the OpenAlex build-time fetch, see src/lib/openalex.ts.]',
+    publicationsEmpty: 'Publications will appear here once available.',
     writingHeading: 'Recent Writing',
-    // TODO (Tahap 3): ganti dengan dua tulisan terbaru begitu sistem tulisan ada.
-    writingPlaceholder: '[TODO: populated once the writing system is built in Stage 3.]',
+    writingEmpty: 'New posts will appear here soon.',
     profilesHeading: 'Academic Profiles',
   },
   research: {
@@ -81,19 +79,15 @@ export const en = {
     mapCoordinateNote: 'Marker locations are approximate (sub-district level) pending precise coordinates from the site owner.',
     methodsHeading: 'Methods & Instruments',
     projectsHeading: 'Ongoing Projects',
-    // TODO: belum ada data proyek yang sedang berjalan dari pemilik situs.
-    projectsTodo: '[TODO: list of ongoing projects, to be provided by the site owner.]',
     galleryHeading: 'Field Photo Gallery',
-    // TODO: belum ada foto lapangan dari pemilik situs (Bagian 12).
-    galleryTodo: '[TODO: field photographs of mangrove sites, to be added by the site owner.]',
+    galleryEmpty: 'More field photos coming soon.',
   },
   publications: {
     title: 'Publications',
     description: 'Publications by Andri Hendrizal, retrieved from OpenAlex.',
     intro: 'Automatically retrieved from OpenAlex at build time.',
     selectedHeading: 'Selected Publications',
-    // TODO: pemilik situs belum memilih Selected Publications (Bagian 12).
-    selectedTodo: '[TODO: the site owner has not yet chosen the Selected Publications — see src/data/selected-publications.ts.]',
+    selectedEmpty: 'Selected publications will be added soon.',
     allHeading: 'All Publications',
     filterYear: 'Year',
     filterType: 'Type',
@@ -104,7 +98,7 @@ export const en = {
     citedBy: 'Cited by',
     openAccess: 'Open Access',
     unknownYear: 'Undated',
-    emptyState: '[TODO: no publications available — check the OpenAlex build-time fetch and the fallback snapshot.]',
+    emptyState: 'Publications will appear here once available.',
   },
   cv: {
     title: 'CV',
@@ -120,13 +114,11 @@ export const en = {
     grantsTitle: 'Title',
     skillsHeading: 'Technical Skills',
     rankingsHeading: 'Rankings & Indices',
-    // TODO: peringkat AD Scientific Index dsb. belum tersedia dari pemilik situs.
-    rankingsTodo: '[TODO: add AD Scientific Index ranking and similar indices here, to be provided by the site owner.]',
   },
   writing: {
     title: 'Writing',
     description: 'Essays and notes by Andri Hendrizal on mangrove ecology, blue carbon, and research methods.',
-    empty: '[TODO: no posts published yet.]',
+    empty: 'New posts will appear here soon.',
     readMore: 'Read more →',
     backToList: '← Back to Writing',
     translationAvailable: 'Also available in',
@@ -134,9 +126,7 @@ export const en = {
   books: {
     title: 'Books',
     description: 'Books and ebooks by Andri Hendrizal.',
-    // TODO: belum ada entri buku (Bagian 12: sampul, deskripsi, tautan
-    // pembelian belum tersedia) — lihat src/content/books/.
-    empty: '[TODO: no books published yet — add entries in src/content/books/.]',
+    empty: 'Books will be listed here once published.',
     formatsLabel: 'Formats',
     buyButton: 'Where to buy',
     isbnLabel: 'ISBN',
@@ -145,9 +135,8 @@ export const en = {
     title: 'For Students',
     description: 'Information for students interested in research supervision.',
     topicsHeading: 'Available Research Topics',
-    // TODO: daftar topik bimbingan belum tersedia dari pemilik situs (Bagian 12).
-    topicsTodo:
-      '[TODO: list of topics available for student supervision, to be provided by the site owner — see Section 12 of the design document.]',
+    topicsBody:
+      'Specific open topics will be posted here soon. In the meantime, you are welcome to reach out with your own research interest within one of the three focus areas above — explain the fit in your first email.',
     expectationsHeading: 'What’s Expected',
     expectationsBody:
       'Supervision follows a research-apprenticeship model: regular fieldwork, careful data management, and consistent progress toward at least one publishable output. Students are expected to be comfortable working outdoors in coastal and estuarine environments, to meet agreed deadlines, and to communicate proactively when problems arise.',
