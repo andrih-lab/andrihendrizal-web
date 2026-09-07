@@ -1,0 +1,79 @@
+# Konfigurasi Sveltia/Decap CMS (Bagian 7 dokumen rancang bangun).
+# TODO: bila nama branch produksi berubah (mis. setelah dirapikan ke
+# "main"), perbarui nilai `branch` di bawah supaya CMS menyimpan ke
+# branch yang benar-benar di-deploy Netlify.
+backend:
+  name: github
+  repo: andrih-lab/andrihendrizal-web
+  branch: claude/portfolio-website-stage-1-ei9128
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "writing_en"
+    label: "Writing (English)"
+    folder: "src/content/writing/en"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "description", label: "Description (used in list + RSS)", widget: "text" }
+      - { name: "date", label: "Date", widget: "datetime" }
+      - { name: "lang", label: "Language", widget: "hidden", default: "en" }
+      - { name: "tags", label: "Tags", widget: "list", default: [] }
+      - { name: "cover", label: "Cover Image", widget: "image", required: false }
+      - name: "translationOf"
+        label: "Translation of (Indonesian post's filename, no extension)"
+        widget: "string"
+        required: false
+        hint: "Only fill in if this post has a published Indonesian counterpart."
+      - name: "draft"
+        label: "Draft (unpublished until unchecked)"
+        widget: "boolean"
+        default: true
+      - { name: "body", label: "Body", widget: "markdown" }
+
+  - name: "writing_id"
+    label: "Tulisan (Indonesia)"
+    folder: "src/content/writing/id"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Judul", widget: "string" }
+      - { name: "description", label: "Deskripsi (dipakai di daftar + RSS)", widget: "text" }
+      - { name: "date", label: "Tanggal", widget: "datetime" }
+      - { name: "lang", label: "Bahasa", widget: "hidden", default: "id" }
+      - { name: "tags", label: "Tag", widget: "list", default: [] }
+      - { name: "cover", label: "Gambar Sampul", widget: "image", required: false }
+      - name: "translationOf"
+        label: "Terjemahan dari (nama berkas versi Inggris, tanpa ekstensi)"
+        widget: "string"
+        required: false
+        hint: "Isi hanya bila tulisan ini punya padanan bahasa Inggris yang sudah terbit."
+      - name: "draft"
+        label: "Draf (belum tayang selagi dicentang)"
+        widget: "boolean"
+        default: true
+      - { name: "body", label: "Isi", widget: "markdown" }
+
+  - name: "books"
+    label: "Books"
+    folder: "src/content/books"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "description", label: "Description", widget: "text" }
+      - { name: "year", label: "Year", widget: "number", value_type: "int" }
+      - { name: "isbn", label: "ISBN", widget: "string", required: false }
+      - { name: "cover", label: "Cover Image", widget: "image", required: false }
+      - name: "formats"
+        label: "Formats"
+        widget: "select"
+        multiple: true
+        options: ["print", "pdf", "epub"]
+        default: []
+      - { name: "purchaseUrl", label: "Purchase URL (external)", widget: "string", required: false }
+      - { name: "quote", label: "Reader Quote", widget: "text", required: false }
+      - { name: "body", label: "Notes (not shown on site)", widget: "markdown", required: false }

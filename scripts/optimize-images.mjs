@@ -27,6 +27,7 @@ async function toWebp(sourceFile, outFile, { width, quality = 82 }) {
 await toWebp('portrait-original.png', 'public/images/portrait.webp', { width: 640 });
 await toWebp('portrait-casual-original.jpg', 'public/images/portrait-casual.webp', { width: 640 });
 await toWebp('logo-mangrove-original.jpg', 'public/logo-mangrove.webp', { width: 512, quality: 85 });
+await toWebp('field-mangrove-1-original.jpeg', 'public/images/field-mangrove-1.webp', { width: 960 });
 
 // Favicon: crop persegi di tengah (logo aslinya lanskap dengan pohon
 // di tengah kanvas), lalu turunkan ke beberapa ukuran ikon standar.
