@@ -20,9 +20,9 @@ const pathname = Astro.url.pathname;
         hreflang={locale}
         aria-current={locale === lang ? 'true' : undefined}
         class:list={[
-          'text-mangrove-800 hover:text-mangrove-950 hover:underline',
-          locale === lang && 'font-semibold text-mangrove-950',
-          i > 0 && 'border-l border-mangrove-300 pl-2',
+          'text-mangrove-800 transition-colors hover:text-mangrove-600',
+          locale === lang && 'font-semibold text-mangrove-700',
+          i > 0 && 'border-l border-mangrove-200 pl-2',
         ]}
       >
         {locale.toUpperCase()}

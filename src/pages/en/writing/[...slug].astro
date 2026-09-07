@@ -37,13 +37,13 @@ const translation = post.data.translationOf ? await getEntry('writing', `id/${po
       </a>
     </p>
     <h1 class="mt-4 font-serif text-3xl font-semibold text-mangrove-950">{post.data.title}</h1>
-    <p class="mt-2 text-sm text-mangrove-600">
+    <p class="mt-2 text-sm text-slate-500">
       {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
       {post.data.tags.length > 0 && ` · ${post.data.tags.join(', ')}`}
     </p>
     {
       translation && (
-        <p class="mt-2 text-sm text-mangrove-700">
+        <p class="mt-2 text-sm text-slate-600">
           {t.writing.translationAvailable} {LANGUAGES.id}:{' '}
           <a href={`/id/writing/${post.data.translationOf}/`} class="underline hover:text-mangrove-950">
             {translation.data.title}

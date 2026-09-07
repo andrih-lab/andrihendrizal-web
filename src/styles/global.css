@@ -2,29 +2,29 @@
 @plugin '@tailwindcss/typography';
 
 /*
- * Token desain — Bagian 9 dokumen rancang bangun: palet dari lanskap
- * mangrove (hijau tua, cokelat lumpur, krem, aksen air payau), satu serif
- * untuk judul, satu sans-serif untuk isi. Font memakai tumpukan sistem
- * (bukan Google Fonts) supaya situs tetap ringan untuk koneksi Indonesia
- * dan tidak menambah request eksternal.
+ * Token desain — palet hijau modern-minimalis (evolusi dari palet mangrove
+ * Bagian 9 dokumen rancang bangun): hijau sebagai warna identitas utama,
+ * aksen teal "air payau" sebagai warna sekunder, latar nyaris putih supaya
+ * ruang kosong terasa lapang. Satu serif untuk judul, satu sans-serif
+ * untuk isi. Font memakai tumpukan sistem (bukan Google Fonts) supaya
+ * situs tetap ringan untuk koneksi Indonesia dan tidak menambah request
+ * eksternal.
  */
 @theme {
-  --color-mangrove-50: #f4f7f2;
-  --color-mangrove-100: #e4ebdf;
-  --color-mangrove-200: #c9d7bf;
-  --color-mangrove-300: #a4bd93;
-  --color-mangrove-600: #4d6b3f;
-  --color-mangrove-700: #3d5632;
-  --color-mangrove-800: #2f4327;
-  --color-mangrove-900: #24351f;
-  --color-mangrove-950: #182417;
+  --color-mangrove-50: #f1faf4;
+  --color-mangrove-100: #dcf2e4;
+  --color-mangrove-200: #b8e5c9;
+  --color-mangrove-300: #86cfa4;
+  --color-mangrove-600: #1a8a4f;
+  --color-mangrove-700: #147a44;
+  --color-mangrove-800: #105c34;
+  --color-mangrove-900: #0d4429;
+  --color-mangrove-950: #082e1b;
 
-  --color-mud-500: #8a6a4a;
-  --color-mud-700: #6b4e34;
+  --color-cream: #f8faf8;
 
-  --color-cream: #faf7f0;
-
-  --color-brackish-500: #5c8a86;
+  --color-brackish-500: #3f8f89;
+  --color-brackish-600: #2f716c;
 
   --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-serif: ui-serif, Georgia, 'Times New Roman', serif;

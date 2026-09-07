@@ -12,23 +12,23 @@ const t = useTranslations(lang);
 
     <div class="mt-8">
       <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.students.topicsHeading}</h2>
-      <p class="mt-3 text-sm italic text-mangrove-600">{t.students.topicsBody}</p>
+      <p class="mt-3 text-sm italic text-slate-500">{t.students.topicsBody}</p>
     </div>
 
     <div class="mt-10">
       <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.students.expectationsHeading}</h2>
-      <p class="mt-3 max-w-2xl text-mangrove-800">{t.students.expectationsBody}</p>
+      <p class="mt-3 max-w-2xl text-slate-700">{t.students.expectationsBody}</p>
     </div>
 
     <div class="mt-10">
       <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.students.benefitsHeading}</h2>
-      <p class="mt-3 max-w-2xl text-mangrove-800">{t.students.benefitsBody}</p>
+      <p class="mt-3 max-w-2xl text-slate-700">{t.students.benefitsBody}</p>
     </div>
 
     <div class="mt-10">
       <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.students.contactHeading}</h2>
-      <p class="mt-3 max-w-2xl text-mangrove-800">{t.students.contactIntro}</p>
-      <ul class="mt-3 list-disc space-y-1 pl-5 text-mangrove-800">
+      <p class="mt-3 max-w-2xl text-slate-700">{t.students.contactIntro}</p>
+      <ul class="mt-3 list-disc space-y-1 pl-5 text-slate-700">
         {t.students.contactList.map((item) => <li>{item}</li>)}
       </ul>
     </div>
@@ -40,7 +40,7 @@ const t = useTranslations(lang);
           t.students.faq.map((item) => (
             <div>
               <dt class="font-medium text-mangrove-900">{item.question}</dt>
-              <dd class="mt-1 text-mangrove-700">{item.answer}</dd>
+              <dd class="mt-1 text-slate-600">{item.answer}</dd>
             </div>
           ))
         }

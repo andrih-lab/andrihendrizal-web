@@ -37,7 +37,7 @@ function authorsKeywords(pub: Publication): string {
 <BaseLayout lang={lang} title={`${t.publications.title} — ${t.site.name}`} description={t.publications.description}>
   <section class="mx-auto max-w-4xl px-4 py-12">
     <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.publications.title}</h1>
-    <p class="mt-2 text-sm text-mangrove-600">{t.publications.intro}</p>
+    <p class="mt-2 text-sm text-slate-500">{t.publications.intro}</p>
 
     {
       selected.length > 0 ? (
@@ -55,7 +55,7 @@ function authorsKeywords(pub: Publication): string {
                     pub.title
                   )}
                 </p>
-                <p class="text-sm text-mangrove-700">
+                <p class="text-sm text-slate-600">
                   {pub.authors.map((name, i) => (
                     <>
                       <span class:list={[isSiteOwner(name) && 'font-semibold text-mangrove-950']}>{name}</span>
@@ -63,11 +63,11 @@ function authorsKeywords(pub: Publication): string {
                     </>
                   ))}
                 </p>
-                <p class="text-sm text-mangrove-600">
+                <p class="text-sm text-slate-500">
                   {pub.venue && `${pub.venue} · `}
                   {pub.year} · {t.publications.citedBy} {pub.citedByCount}
                   {pub.isOA && (
-                    <span class="ml-2 rounded bg-mangrove-100 px-1.5 py-0.5 text-xs text-mangrove-800">
+                    <span class="ml-2 rounded bg-mangrove-100 px-1.5 py-0.5 text-xs text-slate-700">
                       {t.publications.openAccess}
                     </span>
                   )}
@@ -77,7 +77,7 @@ function authorsKeywords(pub: Publication): string {
           </ul>
         </div>
       ) : (
-        <p class="mt-6 text-sm italic text-mangrove-600">{t.publications.selectedEmpty}</p>
+        <p class="mt-6 text-sm italic text-slate-500">{t.publications.selectedEmpty}</p>
       )
     }
 
@@ -86,12 +86,12 @@ function authorsKeywords(pub: Publication): string {
 
       {
         publications.length === 0 ? (
-          <p class="mt-3 text-sm italic text-mangrove-600">{t.publications.emptyState}</p>
+          <p class="mt-3 text-sm italic text-slate-500">{t.publications.emptyState}</p>
         ) : (
           <>
             <form id="pub-filters" class="mt-6 flex flex-wrap items-end gap-4 text-sm">
               <div>
-                <label for="filter-year" class="block text-mangrove-700">
+                <label for="filter-year" class="block text-slate-600">
                   {t.publications.filterYear}
                 </label>
                 <select id="filter-year" class="mt-1 rounded border border-mangrove-300 bg-white px-2 py-1">
@@ -102,7 +102,7 @@ function authorsKeywords(pub: Publication): string {
                 </select>
               </div>
               <div>
-                <label for="filter-type" class="block text-mangrove-700">
+                <label for="filter-type" class="block text-slate-600">
                   {t.publications.filterType}
                 </label>
                 <select id="filter-type" class="mt-1 rounded border border-mangrove-300 bg-white px-2 py-1">
@@ -113,7 +113,7 @@ function authorsKeywords(pub: Publication): string {
                 </select>
               </div>
               <div class="min-w-[12rem] flex-1">
-                <label for="filter-q" class="block text-mangrove-700">
+                <label for="filter-q" class="block text-slate-600">
                   {t.publications.filterKeyword}
                 </label>
                 <input
@@ -123,7 +123,7 @@ function authorsKeywords(pub: Publication): string {
                   class="mt-1 w-full rounded border border-mangrove-300 bg-white px-2 py-1"
                 />
               </div>
-              <p id="filter-empty-note" hidden class="w-full text-mangrove-600">
+              <p id="filter-empty-note" hidden class="w-full text-slate-500">
                 {t.publications.filterNoResults}
               </p>
             </form>
@@ -144,7 +144,7 @@ function authorsKeywords(pub: Publication): string {
                             pub.title
                           )}
                         </p>
-                        <p class="text-sm text-mangrove-700">
+                        <p class="text-sm text-slate-600">
                           {pub.authors.map((name, i) => (
                             <>
                               <span class:list={[isSiteOwner(name) && 'font-semibold text-mangrove-950']}>{name}</span>
@@ -152,11 +152,11 @@ function authorsKeywords(pub: Publication): string {
                             </>
                           ))}
                         </p>
-                        <p class="text-sm text-mangrove-600">
+                        <p class="text-sm text-slate-500">
                           {pub.venue && `${pub.venue} · `}
                           {t.publications.citedBy} {pub.citedByCount}
                           {pub.isOA && (
-                            <span class="ml-2 rounded bg-mangrove-100 px-1.5 py-0.5 text-xs text-mangrove-800">
+                            <span class="ml-2 rounded bg-mangrove-100 px-1.5 py-0.5 text-xs text-slate-700">
                               {t.publications.openAccess}
                             </span>
                           )}
