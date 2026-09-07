@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { getCollection, getEntry, render } from 'astro:content';
+import { LANGUAGES } from '../../../i18n/config';
+import type { CollectionEntry } from 'astro:content';
+
+const lang = 'id';
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+  const posts = await getCollection('writing', (entry) => entry.data.lang === 'id' && !entry.data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id.split('/').slice(1).join('/') },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'writing'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+// Tautan silang ke terjemahan (Bagian 5 Writing: "Bila tersedia
+// terjemahannya, tampilkan tautan silang"). translationOf menunjuk ke
+// nama berkas padanan di src/content/writing/en/.
+const translation = post.data.translationOf ? await getEntry('writing', `en/${post.data.translationOf}`) : undefined;
+---
+
+<BaseLayout lang={lang} title={`${post.data.title} — ${t.site.name}`} description={post.data.description}>
+  <article class="mx-auto max-w-3xl px-4 py-12">
+    <p class="text-sm">
+      <a href={`/${lang}/writing/`} class="text-mangrove-700 hover:underline">
+        {t.writing.backToList}
+      </a>
+    </p>
+    <h1 class="mt-4 font-serif text-3xl font-semibold text-mangrove-950">{post.data.title}</h1>
+    <p class="mt-2 text-sm text-mangrove-600">
+      {post.data.date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+      {post.data.tags.length > 0 && ` · ${post.data.tags.join(', ')}`}
+    </p>
+    {
+      translation && (
+        <p class="mt-2 text-sm text-mangrove-700">
+          {t.writing.translationAvailable} {LANGUAGES.en}:{' '}
+          <a href={`/en/writing/${post.data.translationOf}/`} class="underline hover:text-mangrove-950">
+            {translation.data.title}
+          </a>
+        </p>
+      )
+    }
+    <div class="prose prose-neutral mt-8 max-w-none">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { getCollection } from 'astro:content';
+
+const lang = 'id';
+const t = useTranslations(lang);
+
+// Slug tulisan adalah nama berkas (Bagian 5: "permanen, tidak boleh
+// berubah setelah terbit") — buang prefix folder bahasa dari entry.id.
+function slugOf(id: string): string {
+  return id.split('/').slice(1).join('/');
+}
+
+const posts = (await getCollection('writing', (entry) => entry.data.lang === lang && !entry.data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout lang={lang} title={`${t.writing.title} — ${t.site.name}`} description={t.writing.description}>
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.writing.title}</h1>
+
+    {
+      posts.length === 0 ? (
+        <p class="mt-6 text-sm italic text-mangrove-600">{t.writing.empty}</p>
+      ) : (
+        <ul class="mt-8 space-y-8">
+          {posts.map((post) => (
+            <li>
+              <h2 class="font-serif text-xl font-semibold text-mangrove-900">
+                <a href={`/${lang}/writing/${slugOf(post.id)}/`} class="hover:underline">
+                  {post.data.title}
+                </a>
+              </h2>
+              <p class="mt-1 text-sm text-mangrove-600">
+                {post.data.date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+                {post.data.tags.length > 0 && ` · ${post.data.tags.join(', ')}`}
+              </p>
+              <p class="mt-2 text-mangrove-800">{post.data.description}</p>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </section>
+</BaseLayout>

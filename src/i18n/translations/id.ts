@@ -14,10 +14,11 @@ export const id = {
     home: 'Beranda',
     research: 'Riset',
     publications: 'Publikasi',
+    writing: 'Tulisan',
+    books: 'Buku',
+    students: 'Untuk Mahasiswa',
     cv: 'CV',
     contact: 'Kontak',
-    // TODO (Tahap 3/4): tambahkan Books, Writing, Students begitu
-    // halamannya dibangun.
   },
   languageSwitcher: {
     label: 'Bahasa',
@@ -120,6 +121,59 @@ export const id = {
     rankingsHeading: 'Peringkat dan Indeks',
     // TODO: peringkat AD Scientific Index dsb. belum tersedia dari pemilik situs.
     rankingsTodo: '[TODO: cantumkan peringkat AD Scientific Index dan sejenisnya di sini, perlu diisi pemilik situs.]',
+  },
+  writing: {
+    title: 'Tulisan',
+    description: 'Esai dan catatan Andri Hendrizal seputar ekologi mangrove, blue carbon, dan metode riset.',
+    empty: '[TODO: belum ada tulisan yang diterbitkan.]',
+    readMore: 'Baca selengkapnya →',
+    backToList: '← Kembali ke Tulisan',
+    translationAvailable: 'Tersedia juga dalam bahasa',
+  },
+  books: {
+    title: 'Buku',
+    description: 'Buku dan ebook karya Andri Hendrizal.',
+    // TODO: belum ada entri buku (Bagian 12: sampul, deskripsi, tautan
+    // pembelian belum tersedia) — lihat src/content/books/.
+    empty: '[TODO: belum ada buku yang diterbitkan — tambahkan entri di src/content/books/.]',
+    formatsLabel: 'Format',
+    buyButton: 'Tempat membeli',
+    isbnLabel: 'ISBN',
+  },
+  students: {
+    title: 'Untuk Mahasiswa',
+    description: 'Informasi bagi calon mahasiswa bimbingan.',
+    topicsHeading: 'Topik Riset yang Tersedia',
+    // TODO: daftar topik bimbingan belum tersedia dari pemilik situs (Bagian 12).
+    topicsTodo:
+      '[TODO: daftar topik yang tersedia untuk bimbingan mahasiswa, perlu diisi pemilik situs — lihat Bagian 12 dokumen rancang bangun.]',
+    expectationsHeading: 'Yang Diharapkan',
+    expectationsBody:
+      'Bimbingan mengikuti model magang riset: kerja lapangan rutin, pengelolaan data yang cermat, dan kemajuan konsisten menuju setidaknya satu luaran yang dapat dipublikasikan. Mahasiswa diharapkan nyaman bekerja di luar ruangan pada lingkungan pesisir dan estuari, memenuhi tenggat yang disepakati, serta berkomunikasi secara proaktif bila ada kendala.',
+    benefitsHeading: 'Yang Anda Dapatkan',
+    benefitsBody:
+      'Akses ke situs pemantauan jangka panjang di Bengkalis dan Dumai (lihat halaman Riset), pelatihan langsung metode lapangan, GIS, dan pemetaan berbasis drone, serta peluang menjadi co-author publikasi dari hasil skripsi/tesis Anda.',
+    contactHeading: 'Cara Menghubungi',
+    contactIntro: 'Kirim email singkat ke alamat di halaman Kontak. Agar cepat mendapat balasan yang berguna, sertakan:',
+    contactList: [
+      'Latar belakang akademik dan program studi Anda saat ini',
+      'Bidang fokus riset mana yang Anda minati dan alasannya',
+      'CV atau transkrip nilai Anda',
+      'Ketersediaan waktu Anda untuk kerja lapangan',
+    ],
+    faqHeading: 'Pertanyaan yang Sering Diajukan',
+    faq: [
+      {
+        question: 'Apakah saya harus sudah menguasai GIS atau R sebelum menghubungi?',
+        answer:
+          'Tidak — itu semua akan dipelajari selama bimbingan. Minat untuk belajar lebih penting daripada keahlian yang sudah dimiliki.',
+      },
+      {
+        question: 'Bolehkah saya mengusulkan topik sendiri, bukan dari daftar di atas?',
+        answer:
+          'Boleh, selama sesuai dengan salah satu dari tiga bidang fokus riset di halaman Riset. Jelaskan kesesuaiannya di email pertama Anda.',
+      },
+    ],
   },
   contact: {
     title: 'Kontak',

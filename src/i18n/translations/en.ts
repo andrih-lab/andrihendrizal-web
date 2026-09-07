@@ -15,10 +15,11 @@ export const en = {
     home: 'Home',
     research: 'Research',
     publications: 'Publications',
+    writing: 'Writing',
+    books: 'Books',
+    students: 'For Students',
     cv: 'CV',
     contact: 'Contact',
-    // TODO (Tahap 3/4): tambahkan Books, Writing, Students begitu
-    // halamannya dibangun.
   },
   languageSwitcher: {
     label: 'Language',
@@ -121,6 +122,59 @@ export const en = {
     rankingsHeading: 'Rankings & Indices',
     // TODO: peringkat AD Scientific Index dsb. belum tersedia dari pemilik situs.
     rankingsTodo: '[TODO: add AD Scientific Index ranking and similar indices here, to be provided by the site owner.]',
+  },
+  writing: {
+    title: 'Writing',
+    description: 'Essays and notes by Andri Hendrizal on mangrove ecology, blue carbon, and research methods.',
+    empty: '[TODO: no posts published yet.]',
+    readMore: 'Read more →',
+    backToList: '← Back to Writing',
+    translationAvailable: 'Also available in',
+  },
+  books: {
+    title: 'Books',
+    description: 'Books and ebooks by Andri Hendrizal.',
+    // TODO: belum ada entri buku (Bagian 12: sampul, deskripsi, tautan
+    // pembelian belum tersedia) — lihat src/content/books/.
+    empty: '[TODO: no books published yet — add entries in src/content/books/.]',
+    formatsLabel: 'Formats',
+    buyButton: 'Where to buy',
+    isbnLabel: 'ISBN',
+  },
+  students: {
+    title: 'For Students',
+    description: 'Information for students interested in research supervision.',
+    topicsHeading: 'Available Research Topics',
+    // TODO: daftar topik bimbingan belum tersedia dari pemilik situs (Bagian 12).
+    topicsTodo:
+      '[TODO: list of topics available for student supervision, to be provided by the site owner — see Section 12 of the design document.]',
+    expectationsHeading: 'What’s Expected',
+    expectationsBody:
+      'Supervision follows a research-apprenticeship model: regular fieldwork, careful data management, and consistent progress toward at least one publishable output. Students are expected to be comfortable working outdoors in coastal and estuarine environments, to meet agreed deadlines, and to communicate proactively when problems arise.',
+    benefitsHeading: 'What You Will Get',
+    benefitsBody:
+      'Access to long-term monitoring sites in Bengkalis and Dumai (see the Research page), hands-on training in field methods, GIS, and drone-based mapping, and the opportunity to co-author publications arising from your thesis work.',
+    contactHeading: 'How to Contact',
+    contactIntro: 'Send a short email to the address on the Contact page. To get a useful reply quickly, include:',
+    contactList: [
+      'Your academic background and current program',
+      'Which research focus area interests you and why',
+      'Your CV or transcript',
+      'Your availability for fieldwork',
+    ],
+    faqHeading: 'Frequently Asked Questions',
+    faq: [
+      {
+        question: 'Do I need to already know GIS or R before contacting you?',
+        answer:
+          'No — these are things you will learn during supervision. An interest in learning them matters more than existing expertise.',
+      },
+      {
+        question: 'Can I propose my own topic instead of choosing from the list above?',
+        answer:
+          'Yes, as long as it fits within the three research focus areas on the Research page. Explain the fit in your first email.',
+      },
+    ],
   },
   contact: {
     title: 'Contact',

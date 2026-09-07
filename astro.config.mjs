@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 // Domain akhir situs (lihat Bagian 1 dokumen rancang bangun). Tahap 1 di-deploy
 // ke subdomain Netlify sementara; nilai `site` tetap domain akhir agar tag
@@ -8,6 +9,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://andrihendrizal.com',
   trailingSlash: 'always',
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },

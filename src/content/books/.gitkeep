@@ -1,0 +1,18 @@
+# Belum ada entri buku (Bagian 12 dokumen: "Sampul dan deskripsi buku,
+# beserta tautan tempat pembelian" belum tersedia).
+#
+# Tambahkan satu berkas .md per buku di sini, dengan frontmatter sesuai
+# skema di src/content/config.ts, contoh:
+#
+# ---
+# title: 'Judul Buku'
+# description: 'Deskripsi singkat.'
+# year: 2024
+# isbn: '978-0-000-00000-0'
+# cover: '/images/books/judul-buku.jpg'
+# formats: ['print', 'pdf']
+# purchaseUrl: 'https://contoh-toko-buku.com/judul-buku'
+# quote: 'Kutipan pembaca, opsional.'
+# ---
+#
+# Isi (badan Markdown) buku ini akan diabaikan di halaman daftar buku.

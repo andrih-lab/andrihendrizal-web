@@ -10,10 +10,18 @@ interface Props {
   lang: Locale;
   title: string;
   description: string;
+  /** Path/URL gambar OG (mis. "/images/portrait.jpg"). Opsional — belum
+   * ada foto nyata di repo (lihat TODO di public/images/), jadi meta
+   * og:image/twitter:image sengaja diabaikan bila tidak diisi. */
+  image?: string;
+  /** "article" untuk halaman tulisan, default "website". */
+  type?: 'website' | 'article';
 }
 
-const { lang, title, description } = Astro.props;
+const { lang, title, description, image, type = 'website' } = Astro.props;
 const pathname = Astro.url.pathname;
+const canonicalUrl = new URL(pathname, Astro.site);
+const imageUrl = image ? new URL(image, Astro.site) : undefined;
 ---
 
 <!doctype html>
@@ -24,7 +32,7 @@ const pathname = Astro.url.pathname;
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <link rel="canonical" href={new URL(pathname, Astro.site)} />
+    <link rel="canonical" href={canonicalUrl} />
     {
       LOCALES.map((locale) => (
         <link rel="alternate" hreflang={locale} href={new URL(getAlternatePath(pathname, locale), Astro.site)} />
@@ -33,6 +41,22 @@ const pathname = Astro.url.pathname;
     <link rel="alternate" hreflang="x-default" href={new URL(getAlternatePath(pathname, DEFAULT_LOCALE), Astro.site)} />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Open Graph & Twitter Card (Bagian 8: pratinjau saat dibagikan di
+    WhatsApp dan media sosial) -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Andri Hendrizal" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={lang === 'id' ? 'id_ID' : 'en_US'} />
+    <meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
+    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+
+    <slot name="head" />
   </head>
   <body class="flex min-h-screen flex-col bg-cream font-sans text-mangrove-950">
     <Header lang={lang} />

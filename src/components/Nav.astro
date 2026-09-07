@@ -13,17 +13,18 @@ const items = [
   { href: `/${lang}/`, label: t.nav.home },
   { href: `/${lang}/research/`, label: t.nav.research },
   { href: `/${lang}/publications/`, label: t.nav.publications },
+  { href: `/${lang}/writing/`, label: t.nav.writing },
+  { href: `/${lang}/books/`, label: t.nav.books },
+  { href: `/${lang}/students/`, label: t.nav.students },
   { href: `/${lang}/cv/`, label: t.nav.cv },
   { href: `/${lang}/contact/`, label: t.nav.contact },
-  // TODO (Tahap 3/4): tambahkan Books, Writing, Students begitu
-  // halamannya dibangun (lihat Bagian 4 dokumen).
 ];
 
 const currentPath = Astro.url.pathname;
 ---
 
 <nav aria-label={t.nav.label}>
-  <ul class="flex gap-5 text-sm">
+  <ul class="flex flex-wrap gap-x-5 gap-y-1 text-sm">
     {
       items.map((item) => (
         <li>
