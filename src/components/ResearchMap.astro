@@ -1,0 +1,102 @@
+---
+// Satu-satunya bagian situs yang boleh bergantung pada JavaScript (Bagian 8:
+// "Situs harus tetap terbaca tanpa JavaScript aktif, kecuali peta"). Konten
+// yang sama tetap disediakan sebagai daftar teks di dalam <noscript> supaya
+// pengunjung tanpa JS tetap mendapatkan informasinya.
+import { researchSites } from '../data/research-sites';
+import { useTranslations } from '../i18n/utils';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const sites = researchSites.map((site) => ({
+  id: site.id,
+  name: site.name[lang],
+  lat: site.lat,
+  lng: site.lng,
+  type: site.type,
+  theme: site.theme[lang],
+}));
+---
+
+<div class="mt-6">
+  <div id="research-map" class="h-96 w-full rounded-lg border border-mangrove-200" aria-label={t.research.mapLabel}>
+  </div>
+  <script type="application/json" id="research-map-data" set:html={JSON.stringify(sites)} />
+
+  <div class="mt-3 flex flex-wrap gap-4 text-xs text-mangrove-700">
+    <span class="flex items-center gap-1.5">
+      <span class="inline-block h-3 w-3 rounded-full bg-mangrove-700"></span>
+      {t.research.permanentSite}
+    </span>
+    <span class="flex items-center gap-1.5">
+      <span class="inline-block h-3 w-3 rounded-full bg-mud-500"></span>
+      {t.research.pastSite}
+    </span>
+  </div>
+
+  <noscript>
+    <ul class="mt-4 space-y-2 text-sm">
+      {
+        sites.map((site) => (
+          <li>
+            <strong class="text-mangrove-900">{site.name}</strong>{' '}
+            <span class="text-mangrove-600">
+              ({site.type === 'permanent' ? t.research.permanentSite : t.research.pastSite})
+            </span>{' '}
+            — {site.theme}
+          </li>
+        ))
+      }
+    </ul>
+  </noscript>
+</div>
+
+<script>
+  import L from 'leaflet';
+  import 'leaflet/dist/leaflet.css';
+
+  interface MapSite {
+    id: string;
+    name: string;
+    lat: number;
+    lng: number;
+    type: 'permanent' | 'past';
+    theme: string;
+  }
+
+  const dataEl = document.getElementById('research-map-data');
+  const mapEl = document.getElementById('research-map');
+
+  if (dataEl?.textContent && mapEl) {
+    const sites: MapSite[] = JSON.parse(dataEl.textContent);
+
+    const map = L.map(mapEl).setView([0.5, 102], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+    }).addTo(map);
+
+    const markers = sites.map((site) => {
+      const marker = L.circleMarker([site.lat, site.lng], {
+        radius: 8,
+        weight: 2,
+        color: '#faf7f0',
+        fillColor: site.type === 'permanent' ? '#3d5632' : '#8a6a4a',
+        fillOpacity: 0.9,
+      }).addTo(map);
+      marker.bindPopup(`<strong>${site.name}</strong><br>${site.theme}`);
+      return marker;
+    });
+
+    if (markers.length > 0) {
+      const bounds = L.featureGroup(markers).getBounds();
+      map.fitBounds(bounds.pad(0.25));
+    }
+  }
+</script>

@@ -11,9 +11,12 @@ const t = useTranslations(lang);
 
 const items = [
   { href: `/${lang}/`, label: t.nav.home },
+  { href: `/${lang}/research/`, label: t.nav.research },
+  { href: `/${lang}/publications/`, label: t.nav.publications },
+  { href: `/${lang}/cv/`, label: t.nav.cv },
   { href: `/${lang}/contact/`, label: t.nav.contact },
-  // TODO (Tahap 2/3): tambahkan Research, Publications, Books, Writing,
-  // Students, CV begitu halamannya dibangun (lihat Bagian 4 dokumen).
+  // TODO (Tahap 3/4): tambahkan Books, Writing, Students begitu
+  // halamannya dibangun (lihat Bagian 4 dokumen).
 ];
 
 const currentPath = Astro.url.pathname;

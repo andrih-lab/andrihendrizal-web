@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ResearchMap from '../../../components/ResearchMap.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { technicalSkills } from '../../../data/cv';
+
+const lang = 'id';
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} title={`${t.research.title} — ${t.site.name}`} description={t.research.description}>
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.research.title}</h1>
+
+    <div class="mt-8">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.research.focusHeading}</h2>
+      <ul class="mt-4 grid gap-6 sm:grid-cols-3">
+        {
+          t.focusAreas.map((area) => (
+            <li class="rounded-lg border border-mangrove-200 bg-white/50 p-4">
+              <h3 class="font-semibold text-mangrove-900">{area.title}</h3>
+              <p class="mt-1 text-sm text-mangrove-700">{area.description}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.research.mapHeading}</h2>
+      <p class="mt-2 max-w-2xl text-sm text-mangrove-700">{t.research.mapIntro}</p>
+      <ResearchMap lang={lang} />
+      <!-- TODO: koordinat sementara tingkat kecamatan, lihat src/data/research-sites.ts -->
+      <p class="mt-2 text-xs italic text-mangrove-500">{t.research.mapCoordinateNote}</p>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.research.methodsHeading}</h2>
+      <ul class="mt-4 grid gap-6 sm:grid-cols-3">
+        {
+          technicalSkills.map((skill) => (
+            <li class="rounded-lg border border-mangrove-200 bg-white/50 p-4">
+              <h3 class="font-semibold text-mangrove-900">{skill.title[lang]}</h3>
+              <p class="mt-1 text-sm text-mangrove-700">{skill.description[lang]}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.research.projectsHeading}</h2>
+      <!-- TODO: belum ada data proyek berjalan dari pemilik situs -->
+      <p class="mt-3 text-sm italic text-mangrove-600">{t.research.projectsTodo}</p>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.research.galleryHeading}</h2>
+      <!-- TODO: belum ada foto lapangan dari pemilik situs (Bagian 12) -->
+      <p class="mt-3 text-sm italic text-mangrove-600">{t.research.galleryTodo}</p>
+    </div>
+  </section>
+</BaseLayout>

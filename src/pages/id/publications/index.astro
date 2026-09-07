@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { getPublications, isSiteOwner, type Publication } from '../../../lib/openalex';
+import { selectedPublicationIds } from '../../../data/selected-publications';
+
+const lang = 'id';
+const t = useTranslations(lang);
+
+const publications = await getPublications();
+
+const selected = selectedPublicationIds
+  .map((id) => publications.find((p) => p.id === id))
+  .filter((p): p is Publication => Boolean(p));
+
+const byYear = new Map<string, Publication[]>();
+for (const pub of publications) {
+  const key = pub.year ? String(pub.year) : t.publications.unknownYear;
+  if (!byYear.has(key)) byYear.set(key, []);
+  byYear.get(key)!.push(pub);
+}
+const years = [...byYear.keys()].sort((a, b) => {
+  const na = Number(a);
+  const nb = Number(b);
+  if (Number.isNaN(na)) return 1;
+  if (Number.isNaN(nb)) return -1;
+  return nb - na;
+});
+
+const workTypes = [...new Set(publications.map((p) => p.workType))].sort();
+
+function authorsKeywords(pub: Publication): string {
+  return [pub.title, pub.venue ?? '', ...pub.authors].join(' ').toLowerCase();
+}
+---
+
+<BaseLayout lang={lang} title={`${t.publications.title} — ${t.site.name}`} description={t.publications.description}>
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.publications.title}</h1>
+    <p class="mt-2 text-sm text-mangrove-600">{t.publications.intro}</p>
+
+    {
+      selected.length > 0 ? (
+        <div class="mt-10">
+          <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.publications.selectedHeading}</h2>
+          <ul class="mt-4 space-y-4">
+            {selected.map((pub) => (
+              <li>
+                <p class="font-medium text-mangrove-900">
+                  {pub.doi ? (
+                    <a href={pub.doi} target="_blank" rel="noopener" class="hover:underline">
+                      {pub.title}
+                    </a>
+                  ) : (
+                    pub.title
+                  )}
+                </p>
+                <p class="text-sm text-mangrove-700">
+                  {pub.authors.map((name, i) => (
+                    <>
+                      <span class:list={[isSiteOwner(name) && 'font-semibold text-mangrove-950']}>{name}</span>
+                      {i < pub.authors.length - 1 && ', '}
+                    </>
+                  ))}
+                </p>
+                <p class="text-sm text-mangrove-600">
+                  {pub.venue && `${pub.venue} · `}
+                  {pub.year} · {t.publications.citedBy} {pub.citedByCount}
+                  {pub.isOA && (
+                    <span class="ml-2 rounded bg-mangrove-100 px-1.5 py-0.5 text-xs text-mangrove-800">
+                      {t.publications.openAccess}
+                    </span>
+                  )}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <p class="mt-6 text-sm italic text-mangrove-600">{t.publications.selectedTodo}</p>
+      )
+    }
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.publications.allHeading}</h2>
+
+      {
+        publications.length === 0 ? (
+          <p class="mt-3 text-sm italic text-mangrove-600">{t.publications.emptyState}</p>
+        ) : (
+          <>
+            <form id="pub-filters" class="mt-6 flex flex-wrap items-end gap-4 text-sm">
+              <div>
+                <label for="filter-year" class="block text-mangrove-700">
+                  {t.publications.filterYear}
+                </label>
+                <select id="filter-year" class="mt-1 rounded border border-mangrove-300 bg-white px-2 py-1">
+                  <option value="">{t.publications.filterAll}</option>
+                  {years.map((y) => (
+                    <option value={y}>{y}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label for="filter-type" class="block text-mangrove-700">
+                  {t.publications.filterType}
+                </label>
+                <select id="filter-type" class="mt-1 rounded border border-mangrove-300 bg-white px-2 py-1">
+                  <option value="">{t.publications.filterAll}</option>
+                  {workTypes.map((type) => (
+                    <option value={type}>{type}</option>
+                  ))}
+                </select>
+              </div>
+              <div class="min-w-[12rem] flex-1">
+                <label for="filter-q" class="block text-mangrove-700">
+                  {t.publications.filterKeyword}
+                </label>
+                <input
+                  id="filter-q"
+                  type="text"
+                  placeholder={t.publications.filterKeywordPlaceholder}
+                  class="mt-1 w-full rounded border border-mangrove-300 bg-white px-2 py-1"
+                />
+              </div>
+              <p id="filter-empty-note" hidden class="w-full text-mangrove-600">
+                {t.publications.filterNoResults}
+              </p>
+            </form>
+
+            <div id="pub-list" class="mt-6">
+              {years.map((year) => (
+                <div data-year-group>
+                  <h3 class="mt-8 font-serif text-lg font-semibold text-mangrove-900">{year}</h3>
+                  <ul class="mt-3 space-y-4">
+                    {byYear.get(year)!.map((pub) => (
+                      <li data-pub data-year={year} data-type={pub.workType} data-kw={authorsKeywords(pub)}>
+                        <p class="font-medium text-mangrove-900">
+                          {pub.doi ? (
+                            <a href={pub.doi} target="_blank" rel="noopener" class="hover:underline">
+                              {pub.title}
+                            </a>
+                          ) : (
+                            pub.title
+                          )}
+                        </p>
+                        <p class="text-sm text-mangrove-700">
+                          {pub.authors.map((name, i) => (
+                            <>
+                              <span class:list={[isSiteOwner(name) && 'font-semibold text-mangrove-950']}>{name}</span>
+                              {i < pub.authors.length - 1 && ', '}
+                            </>
+                          ))}
+                        </p>
+                        <p class="text-sm text-mangrove-600">
+                          {pub.venue && `${pub.venue} · `}
+                          {t.publications.citedBy} {pub.citedByCount}
+                          {pub.isOA && (
+                            <span class="ml-2 rounded bg-mangrove-100 px-1.5 py-0.5 text-xs text-mangrove-800">
+                              {t.publications.openAccess}
+                            </span>
+                          )}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Penyaring progresif (Bagian 5: "Penyaring: tahun, jenis dokumen, kata
+  // kunci"). Tanpa JS, seluruh daftar publikasi tetap tampil dan terbaca
+  // penuh (Bagian 8) — skrip ini hanya lapisan kenyamanan opsional.
+  const yearSelect = document.getElementById('filter-year') as HTMLSelectElement | null;
+  const typeSelect = document.getElementById('filter-type') as HTMLSelectElement | null;
+  const keywordInput = document.getElementById('filter-q') as HTMLInputElement | null;
+  const emptyNote = document.getElementById('filter-empty-note');
+  const items = Array.from(document.querySelectorAll<HTMLElement>('#pub-list [data-pub]'));
+  const yearGroups = Array.from(document.querySelectorAll<HTMLElement>('#pub-list [data-year-group]'));
+
+  function applyFilters() {
+    const year = yearSelect?.value ?? '';
+    const type = typeSelect?.value ?? '';
+    const q = (keywordInput?.value ?? '').trim().toLowerCase();
+
+    let visibleCount = 0;
+    for (const item of items) {
+      const visible =
+        (!year || item.dataset.year === year) &&
+        (!type || item.dataset.type === type) &&
+        (!q || (item.dataset.kw ?? '').includes(q));
+      item.hidden = !visible;
+      if (visible) visibleCount++;
+    }
+
+    for (const group of yearGroups) {
+      const anyVisible = group.querySelectorAll('[data-pub]:not([hidden])').length > 0;
+      group.hidden = !anyVisible;
+    }
+
+    if (emptyNote) emptyNote.hidden = visibleCount !== 0;
+  }
+
+  yearSelect?.addEventListener('change', applyFilters);
+  typeSelect?.addEventListener('change', applyFilters);
+  keywordInput?.addEventListener('input', applyFilters);
+</script>
