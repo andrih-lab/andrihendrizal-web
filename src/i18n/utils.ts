@@ -17,12 +17,12 @@ export function useTranslations(lang: Locale) {
 /**
  * Tahap 1: setiap halaman tetap (beranda, kontak) tersedia di kedua bahasa
  * dengan struktur path yang sama persis, jadi mengganti segmen locale sudah
- * cukup. TODO (Tahap 3): tulisan tidak wajib dua bahasa (lihat Bagian 6 dan
- * 5.Writing dokumen rancang bangun) — begitu ada halaman tanpa padanan,
- * fungsi ini perlu menerima daftar path yang tersedia dan jatuh ke beranda
- * bahasa tujuan bila padanannya tidak ada.
+ * cukup. `hasAlternate=false` menutupi kasus halaman yang sengaja hanya
+ * satu bahasa (mis. Santai Sejenak): daripada menebak URL yang tidak ada,
+ * fungsi ini jatuh ke beranda bahasa tujuan.
  */
-export function getAlternatePath(pathname: string, targetLang: Locale): string {
+export function getAlternatePath(pathname: string, targetLang: Locale, hasAlternate: boolean = true): string {
+  if (!hasAlternate) return `/${targetLang}/`;
   const segments = pathname.split('/').filter(Boolean);
   if (LOCALES.includes(segments[0] as Locale)) {
     segments[0] = targetLang;

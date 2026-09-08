@@ -20,6 +20,8 @@ export const en = {
     courses: 'Courses',
     books: 'Books',
     grants: 'Grants',
+    // Sengaja tidak diterjemahkan — bagian ini memang Indonesia-only.
+    santaiSejenak: 'Santai Sejenak',
     cv: 'CV',
     contact: 'Contact',
   },

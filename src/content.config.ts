@@ -69,4 +69,20 @@ const courses = defineCollection({
   }),
 });
 
-export const collections = { writing, books, courses };
+// "Santai Sejenak" — tulisan iseng bergaya serius, murni untuk hiburan.
+// Sengaja satu bahasa saja (Indonesia): nadanya bertumpu pada gaya bahasa
+// dan konteks yang tidak diniatkan diterjemahkan — lihat hasAlternate={false}
+// di src/pages/santai-sejenak/, yang membuat BaseLayout & language switcher
+// tidak menawarkan padanan bahasa Inggris yang memang tidak ada.
+const santai = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/santai' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.coerce.date(),
+    tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { writing, books, courses, santai };

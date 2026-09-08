@@ -119,6 +119,22 @@ collections:
         widget: "markdown"
         hint: "Untuk kursus gratis, Anda bisa menyematkan video YouTube dengan <iframe> — lihat contoh di _template-gratis.md. Untuk kursus berbayar, jangan pernah tempel materi asli di sini — akan terlihat oleh siapa saja."
 
+  - name: "santai"
+    label: "Santai Sejenak"
+    folder: "src/content/santai"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Judul", widget: "string" }
+      - { name: "description", label: "Deskripsi (dipakai di daftar)", widget: "text" }
+      - { name: "date", label: "Tanggal", widget: "datetime" }
+      - { name: "tags", label: "Tag", widget: "list", default: [] }
+      - name: "draft"
+        label: "Draf (belum tayang selagi dicentang)"
+        widget: "boolean"
+        default: false
+      - { name: "body", label: "Isi", widget: "markdown" }
+
   - name: "books"
     label: "Books"
     folder: "src/content/books"

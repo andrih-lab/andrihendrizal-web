@@ -19,6 +19,7 @@ export const id = {
     courses: 'Kursus',
     books: 'Buku',
     grants: 'Hibah',
+    santaiSejenak: 'Santai Sejenak',
     cv: 'CV',
     contact: 'Kontak',
   },

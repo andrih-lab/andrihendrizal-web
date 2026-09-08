@@ -16,9 +16,13 @@ interface Props {
   image?: string;
   /** "article" untuk halaman tulisan, default "website". */
   type?: 'website' | 'article';
+  /** false untuk halaman yang sengaja hanya satu bahasa (mis. Santai
+   * Sejenak) — melewati tag hreflang & pilihan bahasa lain di header
+   * karena padanannya memang tidak ada. */
+  hasAlternate?: boolean;
 }
 
-const { lang, title, description, image, type = 'website' } = Astro.props;
+const { lang, title, description, image, type = 'website', hasAlternate = true } = Astro.props;
 const pathname = Astro.url.pathname;
 const canonicalUrl = new URL(pathname, Astro.site);
 const imageUrl = image ? new URL(image, Astro.site) : undefined;
@@ -34,11 +38,16 @@ const imageUrl = image ? new URL(image, Astro.site) : undefined;
 
     <link rel="canonical" href={canonicalUrl} />
     {
-      LOCALES.map((locale) => (
-        <link rel="alternate" hreflang={locale} href={new URL(getAlternatePath(pathname, locale), Astro.site)} />
-      ))
+      hasAlternate &&
+        LOCALES.map((locale) => (
+          <link rel="alternate" hreflang={locale} href={new URL(getAlternatePath(pathname, locale), Astro.site)} />
+        ))
     }
-    <link rel="alternate" hreflang="x-default" href={new URL(getAlternatePath(pathname, DEFAULT_LOCALE), Astro.site)} />
+    {
+      hasAlternate && (
+        <link rel="alternate" hreflang="x-default" href={new URL(getAlternatePath(pathname, DEFAULT_LOCALE), Astro.site)} />
+      )
+    }
 
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/favicon-512.png" sizes="512x512" type="image/png" />
@@ -61,7 +70,7 @@ const imageUrl = image ? new URL(image, Astro.site) : undefined;
     <slot name="head" />
   </head>
   <body class="flex min-h-screen flex-col bg-cream font-sans text-mangrove-950">
-    <Header lang={lang} />
+    <Header lang={lang} hasAlternate={hasAlternate} />
     <main class="flex-1">
       <slot />
     </main>

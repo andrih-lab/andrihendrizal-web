@@ -5,9 +5,11 @@ import type { Locale } from '../i18n/config';
 
 interface Props {
   lang: Locale;
+  /** false untuk halaman satu-bahasa (lihat getAlternatePath). */
+  hasAlternate?: boolean;
 }
 
-const { lang } = Astro.props;
+const { lang, hasAlternate = true } = Astro.props;
 const t = useTranslations(lang);
 const pathname = Astro.url.pathname;
 ---
@@ -16,7 +18,7 @@ const pathname = Astro.url.pathname;
   {
     LOCALES.map((locale, i) => (
       <a
-        href={getAlternatePath(pathname, locale)}
+        href={locale === lang ? pathname : getAlternatePath(pathname, locale, hasAlternate)}
         hreflang={locale}
         aria-current={locale === lang ? 'true' : undefined}
         class:list={[

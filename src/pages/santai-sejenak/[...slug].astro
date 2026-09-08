@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const lang = 'id';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('santai', (entry) => !entry.data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'santai'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${post.data.title} — Santai Sejenak — Andri Hendrizal`}
+  description={post.data.description}
+  type="article"
+  hasAlternate={false}
+>
+  <article class="mx-auto max-w-3xl px-4 py-12">
+    <p class="text-sm">
+      <a href="/santai-sejenak/" class="text-mangrove-700 hover:underline">
+        ← Kembali ke Santai Sejenak
+      </a>
+    </p>
+    <h1 class="mt-4 font-serif text-3xl font-semibold text-mangrove-950">{post.data.title}</h1>
+    <p class="mt-2 text-sm text-slate-500">
+      {post.data.date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+      {post.data.tags.length > 0 && ` · ${post.data.tags.join(', ')}`}
+    </p>
+    <div class="prose prose-neutral mt-8 max-w-none">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
