@@ -68,6 +68,14 @@ const imageUrl = image ? new URL(image, Astro.site) : undefined;
     {imageUrl && <meta name="twitter:image" content={imageUrl} />}
 
     <slot name="head" />
+
+    <!-- Cloudflare Web Analytics: tanpa cookie, hanya untuk melihat jumlah
+    pengunjung dan negara asal (dashboard Cloudflare pemilik situs). -->
+    <script
+      type="module"
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "98b41ebf50584797bd5853cbf7b732af"}'
+    ></script>
   </head>
   <body class="flex min-h-screen flex-col bg-white font-sans text-mangrove-950">
     <Header lang={lang} hasAlternate={hasAlternate} />
