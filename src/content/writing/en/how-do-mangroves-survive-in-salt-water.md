@@ -21,12 +21,10 @@ If agricultural land usually requires loosening with the aim of increasing the o
 This ability to survive is what allows mangroves to occupy areas that cannot be occupied by other plants. This is also proof that mangroves are extraordinary plants. It is even more extraordinary that Indonesia is one of the countries with the largest mangrove area in the world. There are many benefits that coastal communities get from the existence of mangroves. Not only as a harsh dam of sea waves, but also as a place for the development of several species of fish and storing carbon reserves that affect the climate on Earth. Research related to the physiology of mangroves has not been widely done in Indonesia. Various mangrove adaptation mechanisms still need further research, for example related to aeration mechanisms and the physiological role of lenticells.
 
 This plant is able to adapt to various conditions and natural limitations. However, this plant certainly does not have a way to adapt to human pressure. So the next time we see a mangrove forest, realize that the ecosystem is not without value. The mangrove land is not empty land, but an ecosystem that provides many benefits.
- 
+
 **Resources and further reading**
 
 For the mechanism of mangroves to cope with salt, save water, and their leaf structure:
-
-
 
 Naskar, S. & Palit, P.K. (2015). _Anatomical and physiological adaptations of mangroves_. Wetlands Ecology and Management, 23, 357–370.
 
@@ -35,8 +33,6 @@ For mangrove root forms, aerenchym, lenticell, and how mangroves breathe in soil
 Srikanth, S., Lum, S.K.Y. & Chen, Z. (2016). _Mangrove root: adaptations and ecological importance_. Trees, 30, 451–465.
 
 For the anatomy of leaves and salt glands in different types of tropical mangroves:
-
-
 
 Vinoth, R., Kumaravel, S. & Ranganathan, R. (2019). _Anatomical and physiological adaptation of mangrove wetlands in east coast of Tamil Nadu_. World Scientific News, 129, 161–179.
 
