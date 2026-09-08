@@ -47,12 +47,12 @@ export const id = {
   ],
   home: {
     heroPosition:
-      'Dosen, Fakultas Perikanan dan Ilmu Kelautan, Universitas Riau · Kandidat PhD (by Research), Universiti Malaya',
+      'Dosen, Fakultas Perikanan dan Ilmu Kelautan, Universitas Riau · Mahasiswa PhD (by Research), Universiti Malaya',
     introHeading: 'Tentang',
     // Disusun dari Lampiran A dokumen rancang bangun (jabatan, riset,
     // pengalaman WRI Indonesia, hibah).
     intro:
-      'Andri Hendrizal adalah dosen dan peneliti di Departemen Manajemen Sumberdaya Perairan, Universitas Riau, serta kandidat PhD (by Research) di Institute of Biological Sciences, Universiti Malaya. Karyanya berada pada irisan ekologi mangrove, blue carbon, dan pengetahuan ekologi lokal, memadukan pemantauan lapangan jangka panjang di pesisir mangrove Riau dengan penginderaan jauh, GIS, dan pemetaan berbasis drone. Pada 2023–2024 ia menjabat sebagai Ocean Account Research and Engagement Consultant untuk World Resources Institute (WRI) Indonesia, dan risetnya didukung hibah dari Universitas Riau serta Kementerian Pendidikan Tinggi, Sains, dan Teknologi.',
+      'Andri Hendrizal adalah dosen dan peneliti di Departemen Manajemen Sumberdaya Perairan, Universitas Riau, serta mahasiswa PhD (by Research) di Institute of Biological Sciences, Universiti Malaya. Karyanya berada pada irisan ekologi mangrove, blue carbon, dan pengetahuan ekologi lokal, memadukan pemantauan lapangan jangka panjang di pesisir mangrove Riau dengan penginderaan jauh, GIS, dan pemetaan berbasis drone. Pada 2023–2024 ia menjabat sebagai Ocean Account Research and Engagement Consultant untuk World Resources Institute (WRI) Indonesia, dan risetnya didukung hibah dari Universitas Riau serta Kementerian Pendidikan Tinggi, Sains, dan Teknologi.',
     focusHeading: 'Fokus Riset',
     contributionStatement:
       'Risetnya memadukan ilmu blue carbon dengan pengetahuan ekologi lokal untuk mendukung pengelolaan mangrove berbasis masyarakat di kabupaten-kabupaten pesisir Riau.',
@@ -78,7 +78,7 @@ export const id = {
     pastSite: 'Lokasi penelitian lampau',
     // TODO: koordinat masih perkiraan tingkat kecamatan (lihat src/data/research-sites.ts);
     // ganti dengan koordinat pasti begitu tersedia dari pemilik situs (Bagian 12).
-    mapCoordinateNote: 'Lokasi penanda masih perkiraan (tingkat kecamatan) sampai koordinat pasti diberikan pemilik situs.',
+    mapCoordinateNote: 'Lokasi penanda merupakan perkiraan pada tingkat kecamatan.',
     methodsHeading: 'Metode dan Instrumen',
     toolHeading: 'Alat Identifikasi Lapangan',
     toolIntro:
@@ -160,7 +160,7 @@ export const id = {
     emailValue: 'andri.h@lecturer.unri.ac.id',
     affiliationLabel: 'Afiliasi',
     affiliationValue:
-      'Dosen, Fakultas Perikanan dan Ilmu Kelautan, Universitas Riau; Kandidat PhD, Institute of Biological Sciences, Universiti Malaya',
+      'Dosen, Fakultas Perikanan dan Ilmu Kelautan, Universitas Riau; Mahasiswa PhD, Institute of Biological Sciences, Universiti Malaya',
     locationLabel: 'Lokasi',
     locationValue: 'Provinsi Riau, Indonesia',
     profilesHeading: 'Profil Akademik',

@@ -49,12 +49,12 @@ export const en = {
   ],
   home: {
     heroPosition:
-      'Lecturer, Faculty of Fisheries and Marine Science, Universitas Riau · PhD Candidate (by Research), Universiti Malaya',
+      'Lecturer, Faculty of Fisheries and Marine Science, Universitas Riau · PhD Student (by Research), Universiti Malaya',
     introHeading: 'About',
     // Disusun dari Lampiran A dokumen rancang bangun (jabatan, riset,
     // pengalaman WRI Indonesia, hibah).
     intro:
-      'Andri Hendrizal is a lecturer and researcher at the Department of Aquatic Resources Management, Universitas Riau, and a PhD candidate (by Research) at the Institute of Biological Sciences, Universiti Malaya. His work sits at the intersection of mangrove ecology, blue carbon, and local ecological knowledge, combining long-term field monitoring in Riau’s coastal mangroves with remote sensing, GIS, and drone-based mapping. Between 2023 and 2024 he served as an Ocean Account Research and Engagement Consultant for World Resources Institute (WRI) Indonesia, and his research has been supported by grants from Universitas Riau and Indonesia’s Ministry of Higher Education, Science and Technology.',
+      'Andri Hendrizal is a lecturer and researcher at the Department of Aquatic Resources Management, Universitas Riau, and a PhD student (by Research) at the Institute of Biological Sciences, Universiti Malaya. His work sits at the intersection of mangrove ecology, blue carbon, and local ecological knowledge, combining long-term field monitoring in Riau’s coastal mangroves with remote sensing, GIS, and drone-based mapping. Between 2023 and 2024 he served as an Ocean Account Research and Engagement Consultant for World Resources Institute (WRI) Indonesia, and his research has been supported by grants from Universitas Riau and Indonesia’s Ministry of Higher Education, Science and Technology.',
     focusHeading: 'Research Focus',
     contributionStatement:
       'His research combines blue carbon science with local ecological knowledge to inform community-grounded mangrove management across Riau’s coastal districts.',
@@ -80,7 +80,7 @@ export const en = {
     pastSite: 'Past research site',
     // TODO: koordinat masih perkiraan tingkat kecamatan (lihat src/data/research-sites.ts);
     // ganti dengan koordinat pasti begitu tersedia dari pemilik situs (Bagian 12).
-    mapCoordinateNote: 'Marker locations are approximate (sub-district level) pending precise coordinates from the site owner.',
+    mapCoordinateNote: 'Marker locations are approximate, at the sub-district level.',
     methodsHeading: 'Methods & Instruments',
     toolHeading: 'Field Identification Tool',
     toolIntro:
@@ -163,7 +163,7 @@ export const en = {
     emailValue: 'andri.h@lecturer.unri.ac.id',
     affiliationLabel: 'Affiliation',
     affiliationValue:
-      'Lecturer, Faculty of Fisheries and Marine Science, Universitas Riau; PhD Candidate, Institute of Biological Sciences, Universiti Malaya',
+      'Lecturer, Faculty of Fisheries and Marine Science, Universitas Riau; PhD Student, Institute of Biological Sciences, Universiti Malaya',
     locationLabel: 'Location',
     locationValue: 'Riau Province, Indonesia',
     profilesHeading: 'Academic Profiles',
