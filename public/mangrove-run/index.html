@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="color-scheme" content="light" />
 <title>Lompat Mangrove — Andri Hendrizal</title>
 <meta name="description" content="Game sederhana: lompati akar napas mangrove, tunduk di bawah dahan, dan kumpulkan propagul." />
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
@@ -21,6 +22,7 @@
     --brackish-500: #3f8f89;
   }
   * { box-sizing: border-box; }
+  html { background: #ffffff; }
   body {
     margin: 0;
     background: #ffffff;
@@ -76,17 +78,26 @@
     width: 100%;
     height: 100%;
   }
+  /* Kartu Mulai/Game Over BUKAN lagi absolute-inset di dalam .stage —
+     .stage rasionya pendek (800:300) untuk keperluan render game, dan
+     kalau teks kartu ini dipaksa muat di situ, di layar HP yang sempit
+     jadi terpotong (overflow:hidden pada .stage memotong tombol Mulai).
+     Sebagai gantinya kartu ini elemen normal dengan tinggi mengikuti isi,
+     dan .stage disembunyikan selagi kartu ini tampil. */
   .overlay {
-    position: absolute;
-    inset: 0;
+    width: 100%;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
     text-align: center;
-    padding: 20px;
-    background: rgba(248, 250, 248, 0.94);
+    padding: 28px 20px;
+    background: var(--mangrove-50);
+    border: 1px solid var(--mangrove-200);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(8, 46, 27, 0.08);
   }
   .overlay[hidden] { display: none; }
   .overlay h2 {
@@ -188,38 +199,38 @@
   <a href="/santai-sejenak/">Santai Sejenak</a>.
 </noscript>
 
-<div class="stage" id="stage">
-  <canvas id="game" width="800" height="300" aria-label="Area permainan Lompat Mangrove"></canvas>
-
-  <div class="overlay" id="startScreen">
-    <h2>Lompat Mangrove</h2>
-    <p>
-      Jadi peneliti mangrove yang berlari menyusuri hutan bakau. Lompati akar napas, tunduk di bawah dahan,
-      dan kumpulkan propagul sebanyak-banyaknya.
-    </p>
-    <div class="legend">
-      <span><i class="ic-spike"></i> Akar napas — LOMPAT</span>
-      <span><i class="ic-branch"></i> Dahan — TUNDUK</span>
-      <span><i class="ic-seed"></i> Propagul — poin</span>
-    </div>
-    <button class="primary" id="startBtn">Mulai</button>
+<div class="overlay" id="startScreen">
+  <h2>Lompat Mangrove</h2>
+  <p>
+    Jadi peneliti mangrove yang berlari menyusuri hutan bakau. Lompati akar napas, tunduk di bawah dahan,
+    dan kumpulkan propagul sebanyak-banyaknya.
+  </p>
+  <div class="legend">
+    <span><i class="ic-spike"></i> Akar napas — LOMPAT</span>
+    <span><i class="ic-branch"></i> Dahan — TUNDUK</span>
+    <span><i class="ic-seed"></i> Propagul — poin</span>
   </div>
-
-  <div class="overlay" id="overScreen" hidden>
-    <h2>Game Over</h2>
-    <div class="score-row">
-      <span>Skor: <b id="finalScore">0</b></span>
-      <span>Terbaik: <b id="bestScore">0</b></span>
-    </div>
-    <button class="primary" id="retryBtn">Main Lagi</button>
-  </div>
+  <button class="primary" id="startBtn">Mulai</button>
 </div>
 
-<div class="controls">
+<div class="overlay" id="overScreen" hidden>
+  <h2>Game Over</h2>
+  <div class="score-row">
+    <span>Skor: <b id="finalScore">0</b></span>
+    <span>Terbaik: <b id="bestScore">0</b></span>
+  </div>
+  <button class="primary" id="retryBtn">Main Lagi</button>
+</div>
+
+<div class="stage" id="stage" hidden>
+  <canvas id="game" width="800" height="300" aria-label="Area permainan Lompat Mangrove"></canvas>
+</div>
+
+<div class="controls" id="controlsBar" hidden>
   <button id="jumpBtn" type="button">⬆ Lompat</button>
   <button id="duckBtn" type="button">⬇ Tunduk</button>
 </div>
-<p class="hint">Keyboard: panah atas / spasi untuk lompat, panah bawah untuk tunduk. Di ponsel, pakai tombol di atas.</p>
+<p class="hint" id="hintText" hidden>Keyboard: panah atas / spasi untuk lompat, panah bawah untuk tunduk. Di ponsel, pakai tombol di atas.</p>
 
 <script>
 (function () {
@@ -228,6 +239,7 @@
   var W = canvas.width, H = canvas.height;
   var groundY = 240;
 
+  var stage = document.getElementById('stage');
   var startScreen = document.getElementById('startScreen');
   var overScreen = document.getElementById('overScreen');
   var startBtn = document.getElementById('startBtn');
@@ -236,6 +248,8 @@
   var duckBtn = document.getElementById('duckBtn');
   var finalScoreEl = document.getElementById('finalScore');
   var bestScoreEl = document.getElementById('bestScore');
+  var controlsBar = document.getElementById('controlsBar');
+  var hintText = document.getElementById('hintText');
 
   var BEST_KEY = 'mangrove-run-best';
   function getBest() {
@@ -420,6 +434,9 @@
     state = 'playing';
     startScreen.hidden = true;
     overScreen.hidden = true;
+    stage.hidden = false;
+    controlsBar.hidden = false;
+    hintText.hidden = false;
     last = 0;
     requestAnimationFrame(loop);
   }
@@ -431,8 +448,10 @@
     if (s > best) { best = s; setBest(best); }
     finalScoreEl.textContent = String(s);
     bestScoreEl.textContent = String(best);
+    stage.hidden = true;
+    controlsBar.hidden = true;
+    hintText.hidden = true;
     overScreen.hidden = false;
-    draw();
   }
 
   function doJump() {

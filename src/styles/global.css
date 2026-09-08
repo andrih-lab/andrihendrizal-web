@@ -1,6 +1,16 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+/* Situs ini sengaja satu tema (terang) saja — tanpa ini, browser/WebView
+ * Android tertentu (mis. mode gelap paksa Samsung Internet) membalik warna
+ * halaman jadi gelap meski tak ada dark mode yang dirancang untuknya. */
+:root {
+  color-scheme: light;
+}
+html {
+  background: #ffffff;
+}
+
 /*
  * Token desain — palet hijau modern-minimalis (evolusi dari palet mangrove
  * Bagian 9 dokumen rancang bangun): hijau sebagai warna identitas utama,
