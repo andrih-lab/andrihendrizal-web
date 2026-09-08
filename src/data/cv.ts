@@ -123,52 +123,82 @@ export interface CvGrant {
   title: Bilingual;
   funder: Bilingual;
   year: string;
+  /** Deskripsi singkat penelitian, dipakai di halaman Grants (bukan tabel CV). */
+  description: Bilingual;
+  /** Nominal hibah dalam Rupiah. Sumber: CV pemilik situs (2026 ISC Biotrop). */
+  amountIDR: number;
 }
 
-// Nominal hibah sengaja tidak ditampilkan (Bagian 12 catatan penyusunan:
-// "tanpa perlu menyebut nominal jika dirasa kurang relevan untuk audiens
-// internasional" — kolaborator internasional adalah audiens prioritas
-// pertama, Bagian 1).
+// Judul resmi, deskripsi, dan nominal ditranskripsi dari CV pemilik situs
+// (CV_Andri_Hendrizal_2026ISC_Biotrop.pdf), lebih lengkap daripada Lampiran A.
 export const grants: CvGrant[] = [
   {
     year: '2025',
-    funder: { en: 'DPPM, Ministry of Higher Education, Science and Technology', id: 'DPPM Kemendiktisaintek' },
-    title: {
-      en: 'Exploration and inventory of Traditional Ecological Knowledge in mangrove management, Riau',
-      id: 'Eksplorasi dan inventarisasi TEK dalam pengelolaan mangrove, Riau',
+    funder: {
+      en: 'DPPM, Ministry of Higher Education, Science and Technology',
+      id: 'Direktorat Penelitian dan Pengabdian kepada Masyarakat (DPPM), Kementerian Pendidikan Tinggi, Sains dan Teknologi',
     },
+    title: {
+      en: 'Exploration and Inventory of Traditional Ecological Knowledge in Mangrove Management as an Effort for Coastal Environmental Conservation in Riau Province',
+      id: 'Eksplorasi dan Inventarisasi Pengetahuan Ekologi Tradisional dalam Pengelolaan Mangrove sebagai Upaya Konservasi Lingkungan Pesisir di Provinsi Riau',
+    },
+    description: {
+      en: 'Documents and analyzes the traditional ecological knowledge (TEK) of coastal communities in mangrove management practices, aiming to identify local ecological practices that can support more contextual, community-based, and sustainable conservation strategies for coastal ecosystems.',
+      id: 'Mendokumentasikan dan menganalisis pengetahuan ekologi tradisional (TEK) masyarakat pesisir dalam praktik pengelolaan mangrove, untuk mengidentifikasi praktik ekologi lokal yang dapat mendukung strategi konservasi pesisir yang lebih kontekstual, berbasis masyarakat, dan berkelanjutan.',
+    },
+    amountIDR: 102_150_000,
   },
   {
     year: '2025',
     funder: { en: 'Universitas Riau', id: 'Universitas Riau' },
     title: {
-      en: 'Behavioral response of giant freshwater prawn to trap gear',
-      id: 'Respons perilaku udang galah terhadap alat tangkap perangkap',
+      en: 'Behavioral Response Characterization of Giant Freshwater Prawn (Macrobrachium rosenbergii) toward Trap Fishing Gear',
+      id: 'Karakterisasi Respons Perilaku Udang Galah (Macrobrachium rosenbergii) terhadap Alat Tangkap Perangkap',
     },
+    description: {
+      en: 'Investigates the behavioral responses of giant freshwater prawns to trap-based fishing gear, integrating behavioral biology and fisheries technology to improve fishing efficiency while supporting sustainable resource management practices.',
+      id: 'Meneliti respons perilaku udang galah terhadap alat tangkap jenis perangkap, memadukan biologi perilaku dan teknologi perikanan untuk meningkatkan efisiensi penangkapan sekaligus mendukung pengelolaan sumber daya yang berkelanjutan.',
+    },
+    amountIDR: 15_000_000,
   },
   {
     year: '2022',
     funder: { en: 'Universitas Riau', id: 'Universitas Riau' },
     title: {
-      en: 'Development of the Danau Putus fisheries production sanctuary, Lubuk Siam',
-      id: 'Pengembangan suaka produksi perikanan Danau Putus, Lubuk Siam',
+      en: 'Development of a Limited Fisheries Production Sanctuary in the Seasonal Lake of Putus, Lubuk Siam Village, Riau, Indonesia',
+      id: 'Pengembangan Suaka Produksi Perikanan Terbatas di Danau Musiman Putus, Desa Lubuk Siam, Riau',
     },
+    description: {
+      en: 'Examines the development of fisheries sanctuary areas as a conservation-based resource management strategy, focused on balancing fisheries utilization and ecosystem protection within inland aquatic environments.',
+      id: 'Mengkaji pengembangan kawasan suaka perikanan sebagai strategi pengelolaan sumber daya berbasis konservasi, dengan fokus menyeimbangkan pemanfaatan perikanan dan perlindungan ekosistem di perairan darat.',
+    },
+    amountIDR: 30_000_000,
   },
   {
     year: '2021',
     funder: { en: 'Universitas Riau', id: 'Universitas Riau' },
     title: {
-      en: 'Morphological and genetic characteristics of giant freshwater prawn, Riau',
-      id: 'Karakteristik morfologi dan genetik udang galah, Riau',
+      en: 'Analysis of Marine Debris Accumulation for Mangrove Forest Conservation Efforts in Purnama Village, Dumai City, Riau Province',
+      id: 'Analisis Akumulasi Sampah Laut untuk Upaya Konservasi Hutan Mangrove di Desa Purnama, Kota Dumai, Provinsi Riau',
     },
+    description: {
+      en: 'Identifies and analyzes marine debris accumulation within mangrove ecosystems and assesses its ecological impacts, contributing to coastal pollution mitigation and mangrove conservation strategies.',
+      id: 'Mengidentifikasi dan menganalisis akumulasi sampah laut di ekosistem mangrove serta menilai dampak ekologisnya, sebagai kontribusi bagi strategi mitigasi pencemaran pesisir dan konservasi mangrove.',
+    },
+    amountIDR: 25_000_000,
   },
   {
     year: '2021',
     funder: { en: 'Universitas Riau', id: 'Universitas Riau' },
     title: {
-      en: 'Marine debris accumulation analysis for mangrove conservation, Purnama, Dumai',
-      id: 'Analisis akumulasi sampah laut untuk konservasi mangrove, Purnama, Dumai',
+      en: 'Morphological and Genetic Characteristics (Mitochondrial DNA) as a Basis for Determining Sustainable Management Strategies of Giant Freshwater Prawn (Macrobrachium rosenbergii) Resources in Riau Province',
+      id: 'Karakteristik Morfologi dan Genetik (DNA Mitokondria) sebagai Dasar Penentuan Strategi Pengelolaan Berkelanjutan Sumber Daya Udang Galah (Macrobrachium rosenbergii) di Provinsi Riau',
     },
+    description: {
+      en: 'Integrates morphological and genetic analyses to understand the population structure of giant freshwater prawns, providing scientific baseline data for sustainable fisheries resource management and conservation planning.',
+      id: 'Memadukan analisis morfologi dan genetik untuk memahami struktur populasi udang galah, sebagai data dasar ilmiah bagi pengelolaan sumber daya perikanan yang berkelanjutan dan perencanaan konservasi.',
+    },
+    amountIDR: 30_000_000,
   },
 ];
 

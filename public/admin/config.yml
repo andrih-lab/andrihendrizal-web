@@ -74,6 +74,13 @@ collections:
         multiple: true
         options: ["print", "pdf", "epub"]
         default: []
-      - { name: "purchaseUrl", label: "Purchase URL (external)", widget: "string", required: false }
+      - name: "purchaseLinks"
+        label: "Where to Buy"
+        widget: "list"
+        default: []
+        hint: "Add one entry per store/format — e.g. one for the print edition, one for the ebook."
+        fields:
+          - { name: "label", label: "Label (e.g. \"Print — Gramedia\" or \"Ebook — Google Play\")", widget: "string" }
+          - { name: "url", label: "URL", widget: "string" }
       - { name: "quote", label: "Reader Quote", widget: "text", required: false }
       - { name: "body", label: "Notes (not shown on site)", widget: "markdown", required: false }

@@ -17,7 +17,7 @@ export const en = {
     publications: 'Publications',
     writing: 'Writing',
     books: 'Books',
-    students: 'For Students',
+    grants: 'Grants',
     cv: 'CV',
     contact: 'Contact',
   },
@@ -78,7 +78,6 @@ export const en = {
     // ganti dengan koordinat pasti begitu tersedia dari pemilik situs (Bagian 12).
     mapCoordinateNote: 'Marker locations are approximate (sub-district level) pending precise coordinates from the site owner.',
     methodsHeading: 'Methods & Instruments',
-    projectsHeading: 'Ongoing Projects',
     galleryHeading: 'Field Photo Gallery',
     galleryEmpty: 'More field photos coming soon.',
   },
@@ -112,6 +111,7 @@ export const en = {
     grantsYear: 'Year',
     grantsFunder: 'Funder',
     grantsTitle: 'Title',
+    grantsSeeAll: 'See full grant details →',
     skillsHeading: 'Technical Skills',
     rankingsHeading: 'Rankings & Indices',
   },
@@ -131,39 +131,10 @@ export const en = {
     buyButton: 'Where to buy',
     isbnLabel: 'ISBN',
   },
-  students: {
-    title: 'For Students',
-    description: 'Information for students interested in research supervision.',
-    topicsHeading: 'Available Research Topics',
-    topicsBody:
-      'Specific open topics will be posted here soon. In the meantime, you are welcome to reach out with your own research interest within one of the three focus areas above — explain the fit in your first email.',
-    expectationsHeading: 'What’s Expected',
-    expectationsBody:
-      'Supervision follows a research-apprenticeship model: regular fieldwork, careful data management, and consistent progress toward at least one publishable output. Students are expected to be comfortable working outdoors in coastal and estuarine environments, to meet agreed deadlines, and to communicate proactively when problems arise.',
-    benefitsHeading: 'What You Will Get',
-    benefitsBody:
-      'Access to long-term monitoring sites in Bengkalis and Dumai (see the Research page), hands-on training in field methods, GIS, and drone-based mapping, and the opportunity to co-author publications arising from your thesis work.',
-    contactHeading: 'How to Contact',
-    contactIntro: 'Send a short email to the address on the Contact page. To get a useful reply quickly, include:',
-    contactList: [
-      'Your academic background and current program',
-      'Which research focus area interests you and why',
-      'Your CV or transcript',
-      'Your availability for fieldwork',
-    ],
-    faqHeading: 'Frequently Asked Questions',
-    faq: [
-      {
-        question: 'Do I need to already know GIS or R before contacting you?',
-        answer:
-          'No — these are things you will learn during supervision. An interest in learning them matters more than existing expertise.',
-      },
-      {
-        question: 'Can I propose my own topic instead of choosing from the list above?',
-        answer:
-          'Yes, as long as it fits within the three research focus areas on the Research page. Explain the fit in your first email.',
-      },
-    ],
+  grants: {
+    title: 'Grants',
+    description: 'Research grants awarded to Andri Hendrizal.',
+    amountLabel: 'Amount',
   },
   contact: {
     title: 'Contact',

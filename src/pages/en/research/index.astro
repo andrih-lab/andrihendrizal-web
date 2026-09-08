@@ -2,16 +2,11 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ResearchMap from '../../../components/ResearchMap.astro';
 import { useTranslations } from '../../../i18n/utils';
-import { technicalSkills, grants } from '../../../data/cv';
+import { technicalSkills } from '../../../data/cv';
 import { galleryPhotos } from '../../../data/gallery';
 
 const lang = 'en';
 const t = useTranslations(lang);
-
-// "Ongoing projects" = hibah dari tahun terbaru di CV (Lampiran A) — bukan
-// daftar terpisah, supaya tidak ada dua sumber data yang bisa tidak sinkron.
-const mostRecentGrantYear = Math.max(...grants.map((g) => Number(g.year)));
-const ongoingProjects = grants.filter((g) => Number(g.year) === mostRecentGrantYear);
 ---
 
 <BaseLayout lang={lang} title={`${t.research.title} — ${t.site.name}`} description={t.research.description}>
@@ -47,22 +42,6 @@ const ongoingProjects = grants.filter((g) => Number(g.year) === mostRecentGrantY
             <li class="border-l-2 border-mangrove-300 pl-4 py-1">
               <h3 class="font-semibold text-mangrove-900">{skill.title[lang]}</h3>
               <p class="mt-1 text-sm text-slate-600">{skill.description[lang]}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-
-    <div class="mt-10">
-      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.research.projectsHeading}</h2>
-      <ul class="mt-4 space-y-3">
-        {
-          ongoingProjects.map((project) => (
-            <li>
-              <p class="font-medium text-mangrove-900">{project.title[lang]}</p>
-              <p class="text-sm text-slate-500">
-                {project.funder[lang]} · {project.year}
-              </p>
             </li>
           ))
         }

@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { grants } from '../../../data/cv';
+
+const lang = 'id';
+const t = useTranslations(lang);
+
+const sortedGrants = [...grants].sort((a, b) => Number(b.year) - Number(a.year));
+
+function formatIDR(amount: number): string {
+  return `Rp${amount.toLocaleString('id-ID')}`;
+}
+---
+
+<BaseLayout lang={lang} title={`${t.grants.title} — ${t.site.name}`} description={t.grants.description}>
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.grants.title}</h1>
+
+    <ul class="mt-8 space-y-10">
+      {
+        sortedGrants.map((grant) => (
+          <li class="border-l-2 border-mangrove-300 pl-4">
+            <h2 class="font-serif text-lg font-semibold text-mangrove-900">{grant.title[lang]}</h2>
+            <p class="mt-1 text-sm text-slate-500">
+              {grant.funder[lang]} · {grant.year}
+            </p>
+            <p class="mt-2 max-w-2xl text-slate-700">{grant.description[lang]}</p>
+            <p class="mt-2 text-sm text-slate-500">
+              {t.grants.amountLabel}: {formatIDR(grant.amountIDR)}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

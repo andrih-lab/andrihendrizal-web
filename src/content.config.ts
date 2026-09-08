@@ -20,9 +20,11 @@ const writing = defineCollection({
   }),
 });
 
-// Frontmatter buku (Bagian 5 dokumen rancang bangun, "Books"). Belum ada
-// entri — lihat src/pages/*/books/index.astro untuk status TODO-nya, dan
-// src/content/books/.gitkeep untuk contoh bentuk frontmatter.
+// Frontmatter buku (Bagian 5 dokumen rancang bangun, "Books"). Dikelola
+// lewat /admin persis seperti tulisan — lihat src/content/books/.gitkeep
+// untuk contoh bentuk frontmatter. `purchaseLinks` berupa daftar supaya
+// pemilik situs bisa menambah beberapa tautan pembelian (cetak, ebook,
+// toko berbeda-beda) tanpa dibatasi satu link.
 const books = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/books' }),
   schema: z.object({
@@ -32,7 +34,14 @@ const books = defineCollection({
     isbn: z.string().optional(),
     cover: z.string().optional(),
     formats: z.array(z.enum(['print', 'pdf', 'epub'])).default([]),
-    purchaseUrl: z.string().url().optional(),
+    purchaseLinks: z
+      .array(
+        z.object({
+          label: z.string(),
+          url: z.string().url(),
+        }),
+      )
+      .default([]),
     quote: z.string().optional(),
   }),
 });
