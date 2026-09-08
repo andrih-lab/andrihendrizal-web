@@ -52,7 +52,7 @@ export const id = {
     // Disusun dari Lampiran A dokumen rancang bangun (jabatan, riset,
     // pengalaman WRI Indonesia, hibah).
     intro:
-      'Andri Hendrizal adalah dosen dan peneliti di Departemen Manajemen Sumberdaya Perairan, Universitas Riau, serta mahasiswa PhD (by Research) di Institute of Biological Sciences, Universiti Malaya. Karyanya berada pada irisan ekologi mangrove, blue carbon, dan pengetahuan ekologi lokal, memadukan pemantauan lapangan jangka panjang di pesisir mangrove Riau dengan penginderaan jauh, GIS, dan pemetaan berbasis drone. Pada 2023–2024 ia menjabat sebagai Ocean Account Research and Engagement Consultant untuk World Resources Institute (WRI) Indonesia, dan risetnya didukung hibah dari Universitas Riau serta Kementerian Pendidikan Tinggi, Sains, dan Teknologi.',
+      'Andri Hendrizal adalah dosen dan peneliti di Departemen Manajemen Sumberdaya Perairan, Universitas Riau, serta mahasiswa PhD (by Research) di Institute of Biological Sciences, Universiti Malaya. Fokus risetnya adalah ekologi mangrove, dengan minat tambahan pada blue carbon dan pengetahuan ekologi lokal, bertumpu pada pemantauan lapangan jangka panjang di pesisir mangrove Riau dan sesekali didukung penginderaan jauh, GIS, serta pemetaan berbasis drone. Pada 2023–2024 ia menjabat sebagai Ocean Account Research and Engagement Consultant untuk World Resources Institute (WRI) Indonesia, dan risetnya didukung hibah dari Universitas Riau serta Kementerian Pendidikan Tinggi, Sains, dan Teknologi.',
     focusHeading: 'Fokus Riset',
     contributionStatement:
       'Risetnya memadukan ilmu blue carbon dengan pengetahuan ekologi lokal untuk mendukung pengelolaan mangrove berbasis masyarakat di kabupaten-kabupaten pesisir Riau.',
