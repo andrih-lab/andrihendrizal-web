@@ -69,7 +69,7 @@ const imageUrl = image ? new URL(image, Astro.site) : undefined;
 
     <slot name="head" />
   </head>
-  <body class="flex min-h-screen flex-col bg-cream font-sans text-mangrove-950">
+  <body class="flex min-h-screen flex-col bg-white font-sans text-mangrove-950">
     <Header lang={lang} hasAlternate={hasAlternate} />
     <main class="flex-1">
       <slot />
