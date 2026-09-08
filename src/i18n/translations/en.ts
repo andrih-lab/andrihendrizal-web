@@ -17,6 +17,7 @@ export const en = {
     mangroveGuide: 'Mangrove ID Guide',
     publications: 'Publications',
     writing: 'Writing',
+    courses: 'Courses',
     books: 'Books',
     grants: 'Grants',
     cv: 'CV',
@@ -140,6 +141,19 @@ export const en = {
     title: 'Grants',
     description: 'Research grants awarded to Andri Hendrizal.',
     amountLabel: 'Amount',
+  },
+  courses: {
+    title: 'Courses',
+    description: 'Free and paid mini-courses by Andri Hendrizal on mangrove ecology and field methods.',
+    empty: 'Courses will appear here soon.',
+    freeLabel: 'Free',
+    paidLabel: 'Paid',
+    priceLabel: 'Price',
+    buyButton: 'Buy this course →',
+    // Ditampilkan di bawah tombol beli — jujur ke pengunjung soal alur pembelian.
+    buyNote: 'You’ll complete payment and get access on our course partner’s site.',
+    readMore: 'View course →',
+    backToList: '← Back to Courses',
   },
   contact: {
     title: 'Contact',

@@ -57,6 +57,68 @@ collections:
         default: true
       - { name: "body", label: "Isi", widget: "markdown" }
 
+  - name: "courses_en"
+    label: "Courses (English)"
+    folder: "src/content/courses/en"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "description", label: "Description (used in list)", widget: "text" }
+      - { name: "lang", label: "Language", widget: "hidden", default: "en" }
+      - name: "access"
+        label: "Access"
+        widget: "select"
+        options: [{ label: "Free — full content lives on this site", value: "free" }, { label: "Paid — teaser only, real content is on an external platform", value: "paid" }]
+        default: "free"
+      - { name: "price", label: "Price (paid courses only, e.g. \"Rp150,000\")", widget: "string", required: false }
+      - name: "purchaseUrl"
+        label: "Purchase URL (paid courses only — Gumroad, Payhip, Teachable, etc.)"
+        widget: "string"
+        required: false
+        hint: "Required for paid courses. This site cannot process payment or protect content itself — see the template files for details."
+      - { name: "cover", label: "Cover Image", widget: "image", required: false }
+      - { name: "tags", label: "Tags", widget: "list", default: [] }
+      - name: "draft"
+        label: "Draft (unpublished until unchecked)"
+        widget: "boolean"
+        default: true
+      - name: "body"
+        label: "Body (full lesson content for FREE courses; public teaser/syllabus only for PAID courses)"
+        widget: "markdown"
+        hint: "For a free course, you may embed a YouTube video with an <iframe> — see the _template-free.md example file. For a paid course, never paste the real paid content here — it is publicly visible."
+
+  - name: "courses_id"
+    label: "Kursus (Indonesia)"
+    folder: "src/content/courses/id"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Judul", widget: "string" }
+      - { name: "description", label: "Deskripsi (dipakai di daftar)", widget: "text" }
+      - { name: "lang", label: "Bahasa", widget: "hidden", default: "id" }
+      - name: "access"
+        label: "Akses"
+        widget: "select"
+        options: [{ label: "Gratis — isi penuh tampil di situs ini", value: "free" }, { label: "Berbayar — hanya teaser, materi asli di platform luar", value: "paid" }]
+        default: "free"
+      - { name: "price", label: "Harga (khusus kursus berbayar, mis. \"Rp150.000\")", widget: "string", required: false }
+      - name: "purchaseUrl"
+        label: "URL Pembelian (khusus kursus berbayar — Gumroad, Payhip, Teachable, dsb.)"
+        widget: "string"
+        required: false
+        hint: "Wajib diisi untuk kursus berbayar. Situs ini tidak bisa memproses pembayaran atau melindungi konten sendiri — lihat berkas templat untuk detail."
+      - { name: "cover", label: "Gambar Sampul", widget: "image", required: false }
+      - { name: "tags", label: "Tag", widget: "list", default: [] }
+      - name: "draft"
+        label: "Draf (belum tayang selagi dicentang)"
+        widget: "boolean"
+        default: true
+      - name: "body"
+        label: "Isi (materi pelajaran penuh untuk kursus GRATIS; hanya teaser/silabus publik untuk kursus BERBAYAR)"
+        widget: "markdown"
+        hint: "Untuk kursus gratis, Anda bisa menyematkan video YouTube dengan <iframe> — lihat contoh di _template-gratis.md. Untuk kursus berbayar, jangan pernah tempel materi asli di sini — akan terlihat oleh siapa saja."
+
   - name: "books"
     label: "Books"
     folder: "src/content/books"

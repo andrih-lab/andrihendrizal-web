@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { getCollection } from 'astro:content';
+
+const lang = 'id';
+const t = useTranslations(lang);
+
+function slugOf(id: string): string {
+  return id.split('/').slice(1).join('/');
+}
+
+const courses = await getCollection('courses', (entry) => entry.data.lang === lang && !entry.data.draft);
+---
+
+<BaseLayout lang={lang} title={`${t.courses.title} — ${t.site.name}`} description={t.courses.description}>
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.courses.title}</h1>
+    <p class="mt-2 max-w-2xl text-slate-600">{t.courses.description}</p>
+
+    {
+      courses.length === 0 ? (
+        <p class="mt-6 text-sm italic text-slate-500">{t.courses.empty}</p>
+      ) : (
+        <ul class="mt-8 space-y-8">
+          {courses.map((course) => (
+            <li>
+              <span
+                class:list={[
+                  'inline-block rounded-full px-2 py-0.5 text-xs font-medium',
+                  course.data.access === 'free' ? 'bg-mangrove-100 text-mangrove-800' : 'bg-amber-100 text-amber-800',
+                ]}
+              >
+                {course.data.access === 'free' ? t.courses.freeLabel : t.courses.paidLabel}
+              </span>
+              <h2 class="mt-2 font-serif text-xl font-semibold text-mangrove-900">
+                <a href={`/${lang}/courses/${slugOf(course.id)}/`} class="hover:underline">
+                  {course.data.title}
+                </a>
+              </h2>
+              <p class="mt-2 text-slate-700">{course.data.description}</p>
+              {course.data.access === 'paid' && course.data.price && (
+                <p class="mt-1 text-sm font-medium text-mangrove-900">
+                  {t.courses.priceLabel}: {course.data.price}
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </section>
+</BaseLayout>

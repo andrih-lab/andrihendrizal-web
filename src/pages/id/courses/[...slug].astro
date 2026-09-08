@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const lang = 'id';
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+  const courses = await getCollection('courses', (entry) => entry.data.lang === 'id' && !entry.data.draft);
+  return courses.map((course) => ({
+    params: { slug: course.id.split('/').slice(1).join('/') },
+    props: { course },
+  }));
+}
+
+interface Props {
+  course: CollectionEntry<'courses'>;
+}
+
+const { course } = Astro.props;
+const { Content } = await render(course);
+---
+
+<BaseLayout lang={lang} title={`${course.data.title} — ${t.site.name}`} description={course.data.description}>
+  <article class="mx-auto max-w-3xl px-4 py-12">
+    <p class="text-sm">
+      <a href={`/${lang}/courses/`} class="text-mangrove-700 hover:underline">
+        {t.courses.backToList}
+      </a>
+    </p>
+    <span
+      class:list={[
+        'mt-4 inline-block rounded-full px-2 py-0.5 text-xs font-medium',
+        course.data.access === 'free' ? 'bg-mangrove-100 text-mangrove-800' : 'bg-amber-100 text-amber-800',
+      ]}
+    >
+      {course.data.access === 'free' ? t.courses.freeLabel : t.courses.paidLabel}
+    </span>
+    <h1 class="mt-2 font-serif text-3xl font-semibold text-mangrove-950">{course.data.title}</h1>
+    <p class="mt-3 text-slate-700">{course.data.description}</p>
+
+    {
+      course.data.access === 'paid' && (
+        <div class="mt-6 rounded-lg border border-amber-200 bg-amber-50 p-4">
+          {course.data.price && (
+            <p class="font-medium text-mangrove-950">
+              {t.courses.priceLabel}: {course.data.price}
+            </p>
+          )}
+          {course.data.purchaseUrl && (
+            <a
+              href={course.data.purchaseUrl}
+              target="_blank"
+              rel="noopener"
+              class="mt-3 inline-block rounded-md bg-mangrove-700 px-4 py-2 text-sm font-medium text-white hover:bg-mangrove-800"
+            >
+              {t.courses.buyButton}
+            </a>
+          )}
+          <p class="mt-2 text-xs text-slate-600">{t.courses.buyNote}</p>
+        </div>
+      )
+    }
+
+    <div class="prose prose-neutral mt-8 max-w-none">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

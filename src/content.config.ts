@@ -46,4 +46,27 @@ const books = defineCollection({
   }),
 });
 
-export const collections = { writing, books };
+// Kursus/mini e-course. Situs ini statis tanpa backend (Prinsip #1), jadi
+// tidak ada proteksi akses yang sungguhan aman di sini — bedanya dua jenis:
+// - access: 'free'  → isi (body Markdown, boleh sematkan <iframe> YouTube)
+//   TAMPIL PENUH di situs ini, dikelola lewat /admin persis seperti tulisan.
+// - access: 'paid'  → body di sini HANYA teaser/silabus publik. Materi
+//   sungguhan (video, file) TIDAK BOLEH ditaruh di repo/CMS ini — harus
+//   di-host di platform pihak ketiga yang menangani pembayaran + proteksi
+//   (Gumroad, Payhip, Teachable, dsb). `purchaseUrl` menunjuk ke sana.
+const courses = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/courses' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    lang: z.enum(['en', 'id']),
+    access: z.enum(['free', 'paid']),
+    price: z.string().optional(),
+    purchaseUrl: z.string().url().optional(),
+    cover: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(true),
+  }),
+});
+
+export const collections = { writing, books, courses };
