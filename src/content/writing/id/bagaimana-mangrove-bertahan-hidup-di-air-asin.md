@@ -7,7 +7,7 @@ tags:
   - Mangrove
 cover: ''
 translationOf: ''
-draft: true
+draft: false
 ---
 
 Jika kita melihat pesisir timur sumatera, terdapat sebuah hamparan hutan yang berbatasan langsung dengan laut. Daerah perbatasan darat dan laut seperti ini, umumnya tidak bisa ditinggali oleh tumbuhan. Lalu bagaimana bisa tumbuhan satu ini hidup di wilayah yang tergenang air laut dengan kandungan garam yang tinggi?
@@ -21,12 +21,10 @@ Jika tanah pertanian biasanya memerlukan penggemburan dengan tujuan menambah kan
 Kemampuan bertahan inilah yang membuat mangrove bisa menempati daerah yang tidak bisa ditempati tumbuhan lain. Ini juga adalah bukti bahwa mangrove adalah tumbuhan yang luar biasa. Lebih luar biasa lagi bahwa Indonesia adalah salah satu negara dengan luas mangrove terbesar di dunia. Banyak manfaat yang didapatkan oleh masyarakat pesisir dari keberadaan mangrove. Bukan hanya sebagai peredam kerasnya ombak laut, namun juga menjadi tempat berkembangnya beberapa spesies ikan dan menyimpan cadangan karbon yang mempengaruhi iklim di Bumi. Penelitian terkait fisiologi mangrove belum banyak dilakukan di Indonesia. Berbagai mekanisme adaptasi mangrove masih perlu penelitian lebih lanjut, misalnya terkait mekanisme aerasi dan peran fisiologis lentisel.
 
 Tumbuhan ini mampu beradaptasi pada berbagai kondisi dan keterbatasan alam. Namun demikian, tumbuhan ini tentu tidak memiliki cara untuk beradaptasi terhadap tekanan manusia. Jadi lain kali kita melihat sebuah hutan mangrove, sadari bahwa ekosistem tersebut bukannya tidak memiliki nilai. Lahan mangrove tersebut bukan lahan kosong, namun ekosistem yang memberikan banyak manfaat.
- 
+
 **Sumber dan bacaan lanjutan**
 
 Untuk mekanisme mangrove mengatasi garam, menghemat air, dan struktur daunnya:
-
-
 
 Naskar, S. & Palit, P.K. (2015). _Anatomical and physiological adaptations of mangroves_. Wetlands Ecology and Management, 23, 357–370.
 
@@ -35,8 +33,6 @@ Untuk bentuk-bentuk akar mangrove, aerenkim, lentisel, dan cara mangrove bernapa
 Srikanth, S., Lum, S.K.Y. & Chen, Z. (2016). _Mangrove root: adaptations and ecological importance_. Trees, 30, 451–465.
 
 Untuk anatomi daun dan kelenjar garam pada berbagai jenis mangrove tropis:
-
-
 
 Vinoth, R., Kumaravel, S. & Ranganathan, R. (2019). _Anatomical and physiological adaptation of mangrove wetlands in east coast of Tamil Nadu_. World Scientific News, 129, 161–179.
 
