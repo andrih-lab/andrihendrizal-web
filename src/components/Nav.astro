@@ -12,6 +12,9 @@ const t = useTranslations(lang);
 const items = [
   { href: `/${lang}/`, label: t.nav.home },
   { href: `/${lang}/research/`, label: t.nav.research },
+  // Alat mandiri berbahasa Indonesia (public/mangrove-guide/), bukan
+  // halaman Astro — path-nya sama untuk kedua bahasa situs.
+  { href: `/mangrove-guide/`, label: t.nav.mangroveGuide },
   { href: `/${lang}/publications/`, label: t.nav.publications },
   { href: `/${lang}/writing/`, label: t.nav.writing },
   { href: `/${lang}/books/`, label: t.nav.books },

@@ -14,6 +14,7 @@ export const en = {
     label: 'Primary navigation',
     home: 'Home',
     research: 'Research',
+    mangroveGuide: 'Mangrove ID Guide',
     publications: 'Publications',
     writing: 'Writing',
     books: 'Books',
@@ -78,6 +79,10 @@ export const en = {
     // ganti dengan koordinat pasti begitu tersedia dari pemilik situs (Bagian 12).
     mapCoordinateNote: 'Marker locations are approximate (sub-district level) pending precise coordinates from the site owner.',
     methodsHeading: 'Methods & Instruments',
+    toolHeading: 'Field Identification Tool',
+    toolIntro:
+      'An interactive guide to 46 Indonesian mangrove species, with root/stem/leaf/flower/fruit identification notes, a quick-compare tool, and a self-test quiz. In Indonesian.',
+    toolCta: 'Open the Mangrove ID Guide →',
     galleryHeading: 'Field Photo Gallery',
     galleryEmpty: 'More field photos coming soon.',
   },

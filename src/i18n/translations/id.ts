@@ -13,6 +13,7 @@ export const id = {
     label: 'Navigasi utama',
     home: 'Beranda',
     research: 'Riset',
+    mangroveGuide: 'Panduan Mangrove',
     publications: 'Publikasi',
     writing: 'Tulisan',
     books: 'Buku',
@@ -77,6 +78,10 @@ export const id = {
     // ganti dengan koordinat pasti begitu tersedia dari pemilik situs (Bagian 12).
     mapCoordinateNote: 'Lokasi penanda masih perkiraan (tingkat kecamatan) sampai koordinat pasti diberikan pemilik situs.',
     methodsHeading: 'Metode dan Instrumen',
+    toolHeading: 'Alat Identifikasi Lapangan',
+    toolIntro:
+      'Panduan interaktif 46 spesies mangrove Indonesia, lengkap dengan ciri akar/batang/daun/bunga/buah, alat banding cepat, dan tes mandiri.',
+    toolCta: 'Buka Panduan Identifikasi Mangrove →',
     galleryHeading: 'Galeri Foto Lapangan',
     galleryEmpty: 'Foto lapangan lainnya segera menyusul.',
   },
