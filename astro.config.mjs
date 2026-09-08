@@ -11,9 +11,10 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [
     sitemap({
-      // /mangrove-guide/ adalah berkas statis di public/ (di luar routing
-      // Astro), jadi tidak otomatis terdeteksi — daftarkan manual di sini.
-      customPages: ['https://andrihendrizal.com/mangrove-guide/'],
+      // /mangrove-guide/ dan /mangrove-run/ adalah berkas statis di public/
+      // (di luar routing Astro), jadi tidak otomatis terdeteksi — daftarkan
+      // manual di sini.
+      customPages: ['https://andrihendrizal.com/mangrove-guide/', 'https://andrihendrizal.com/mangrove-run/'],
     }),
   ],
   vite: {

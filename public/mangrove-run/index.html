@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Lompat Mangrove — Andri Hendrizal</title>
+<meta name="description" content="Game sederhana: lompati akar napas mangrove, tunduk di bawah dahan, dan kumpulkan propagul." />
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+<style>
+  :root {
+    color-scheme: light;
+    --mangrove-950: #082e1b;
+    --mangrove-900: #0d4429;
+    --mangrove-800: #105c34;
+    --mangrove-700: #147a44;
+    --mangrove-600: #1a8a4f;
+    --mangrove-200: #b8e5c9;
+    --mangrove-100: #dcf2e4;
+    --mangrove-50: #f1faf4;
+    --brackish-500: #3f8f89;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #ffffff;
+    color: var(--mangrove-950);
+    font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+  }
+  header {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  header a {
+    font-size: 0.85rem;
+    color: var(--mangrove-700);
+    text-decoration: none;
+  }
+  header a:hover { text-decoration: underline; }
+  h1 {
+    font-size: 1.3rem;
+    margin: 0;
+    color: var(--mangrove-950);
+  }
+  .stage {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 800 / 300;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--mangrove-200);
+    box-shadow: 0 1px 3px rgba(8, 46, 27, 0.08);
+  }
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    padding: 20px;
+    background: rgba(248, 250, 248, 0.94);
+  }
+  .overlay[hidden] { display: none; }
+  .overlay h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--mangrove-950);
+  }
+  .overlay p {
+    margin: 0;
+    max-width: 32rem;
+    font-size: 0.92rem;
+    color: #475569;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    margin: 4px 0;
+    font-size: 0.82rem;
+    color: #334155;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  .ic-spike { background: var(--mangrove-800); }
+  .ic-branch { background: var(--brackish-500); }
+  .ic-seed { background: #c98a3b; border-radius: 50%; }
+  button.primary {
+    margin-top: 4px;
+    border: none;
+    border-radius: 8px;
+    background: var(--mangrove-700);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 22px;
+    cursor: pointer;
+  }
+  button.primary:hover { background: var(--mangrove-800); }
+  .score-row {
+    display: flex;
+    gap: 18px;
+    font-size: 0.95rem;
+    color: var(--mangrove-900);
+  }
+  .score-row b { font-size: 1.1rem; }
+  .controls {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .controls button {
+    flex: 1;
+    padding: 14px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1px solid var(--mangrove-200);
+    background: var(--mangrove-50);
+    color: var(--mangrove-900);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .controls button:active { background: var(--mangrove-100); }
+  .hint {
+    margin-top: 8px;
+    font-size: 0.78rem;
+    color: #64748b;
+    text-align: center;
+    max-width: 800px;
+  }
+  noscript {
+    display: block;
+    max-width: 800px;
+    padding: 20px;
+    background: var(--mangrove-50);
+    border: 1px solid var(--mangrove-200);
+    border-radius: 10px;
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Lompat Mangrove</h1>
+  <a href="/santai-sejenak/">← Kembali ke Santai Sejenak</a>
+</header>
+
+<noscript>
+  Game ini butuh JavaScript untuk berjalan. Aktifkan JavaScript di browser Anda, atau kembali ke
+  <a href="/santai-sejenak/">Santai Sejenak</a>.
+</noscript>
+
+<div class="stage" id="stage">
+  <canvas id="game" width="800" height="300" aria-label="Area permainan Lompat Mangrove"></canvas>
+
+  <div class="overlay" id="startScreen">
+    <h2>Lompat Mangrove</h2>
+    <p>
+      Jadi peneliti mangrove yang berlari menyusuri hutan bakau. Lompati akar napas, tunduk di bawah dahan,
+      dan kumpulkan propagul sebanyak-banyaknya.
+    </p>
+    <div class="legend">
+      <span><i class="ic-spike"></i> Akar napas — LOMPAT</span>
+      <span><i class="ic-branch"></i> Dahan — TUNDUK</span>
+      <span><i class="ic-seed"></i> Propagul — poin</span>
+    </div>
+    <button class="primary" id="startBtn">Mulai</button>
+  </div>
+
+  <div class="overlay" id="overScreen" hidden>
+    <h2>Game Over</h2>
+    <div class="score-row">
+      <span>Skor: <b id="finalScore">0</b></span>
+      <span>Terbaik: <b id="bestScore">0</b></span>
+    </div>
+    <button class="primary" id="retryBtn">Main Lagi</button>
+  </div>
+</div>
+
+<div class="controls">
+  <button id="jumpBtn" type="button">⬆ Lompat</button>
+  <button id="duckBtn" type="button">⬇ Tunduk</button>
+</div>
+<p class="hint">Keyboard: panah atas / spasi untuk lompat, panah bawah untuk tunduk. Di ponsel, pakai tombol di atas.</p>
+
+<script>
+(function () {
+  var canvas = document.getElementById('game');
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
+  var groundY = 240;
+
+  var startScreen = document.getElementById('startScreen');
+  var overScreen = document.getElementById('overScreen');
+  var startBtn = document.getElementById('startBtn');
+  var retryBtn = document.getElementById('retryBtn');
+  var jumpBtn = document.getElementById('jumpBtn');
+  var duckBtn = document.getElementById('duckBtn');
+  var finalScoreEl = document.getElementById('finalScore');
+  var bestScoreEl = document.getElementById('bestScore');
+
+  var BEST_KEY = 'mangrove-run-best';
+  function getBest() {
+    try { return parseInt(localStorage.getItem(BEST_KEY) || '0', 10) || 0; } catch (e) { return 0; }
+  }
+  function setBest(v) {
+    try { localStorage.setItem(BEST_KEY, String(v)); } catch (e) {}
+  }
+
+  var state = 'idle'; // idle | playing | over
+  var player, obstacles, seeds, speed, spawnTimer, seedTimer, score, elapsed;
+
+  function resetGame() {
+    player = {
+      x: 90,
+      standH: 48,
+      duckH: 26,
+      w: 34,
+      vy: 0,
+      jumping: false,
+      ducking: false,
+    };
+    obstacles = [];
+    seeds = [];
+    speed = 230;
+    spawnTimer = 1.1;
+    seedTimer = 1.4;
+    score = 0;
+    elapsed = 0;
+  }
+
+  function playerBox() {
+    var h = player.jumping ? player.standH : (player.ducking ? player.duckH : player.standH);
+    var bottom = groundY - (player.jumping ? player.jumpOffset : 0);
+    var top = bottom - h;
+    return { x: player.x, top: top, bottom: bottom, w: player.w };
+  }
+
+  function overlap(a, b) {
+    return a.x < b.x + b.w && a.x + a.w > b.x && a.top < b.bottom && a.bottom > b.top;
+  }
+
+  function spawnObstacle() {
+    var type = Math.random() < 0.5 ? 'up' : 'down';
+    if (type === 'up') {
+      obstacles.push({ type: 'up', x: W + 10, w: 22, top: groundY - 34, bottom: groundY });
+    } else {
+      obstacles.push({ type: 'down', x: W + 10, w: 26, top: 0, bottom: 210 });
+    }
+  }
+
+  function spawnSeed() {
+    // hindari menumpuk persis di atas rintangan yang baru saja muncul
+    var x = W + 40 + Math.random() * 60;
+    seeds.push({ x: x, w: 16, top: 178, bottom: 200, taken: false });
+  }
+
+  function update(dt) {
+    elapsed += dt;
+    speed = Math.min(420, 230 + elapsed * 6);
+    score += dt * 8;
+
+    // fisika lompat
+    if (player.jumping) {
+      player.vy += 900 * dt;
+      player.jumpOffset -= player.vy * dt;
+      if (player.jumpOffset <= 0) {
+        player.jumpOffset = 0;
+        player.jumping = false;
+        player.vy = 0;
+      }
+    }
+
+    // spawn
+    spawnTimer -= dt;
+    if (spawnTimer <= 0) {
+      spawnObstacle();
+      spawnTimer = 1.15 + Math.random() * 0.9 - elapsed * 0.01;
+      if (spawnTimer < 0.75) spawnTimer = 0.75;
+    }
+    seedTimer -= dt;
+    if (seedTimer <= 0) {
+      spawnSeed();
+      seedTimer = 1.6 + Math.random() * 1.2;
+    }
+
+    // gerak & tabrakan
+    var pb = playerBox();
+    for (var i = obstacles.length - 1; i >= 0; i--) {
+      var o = obstacles[i];
+      o.x -= speed * dt;
+      if (o.x + o.w < -10) { obstacles.splice(i, 1); continue; }
+      if (overlap(pb, o)) { endGame(); return; }
+    }
+    for (var j = seeds.length - 1; j >= 0; j--) {
+      var s = seeds[j];
+      s.x -= speed * dt;
+      if (s.x + s.w < -10) { seeds.splice(j, 1); continue; }
+      if (!s.taken && overlap(pb, s)) {
+        s.taken = true;
+        score += 25;
+        seeds.splice(j, 1);
+      }
+    }
+  }
+
+  function draw() {
+    // langit
+    var sky = ctx.createLinearGradient(0, 0, 0, groundY);
+    sky.addColorStop(0, '#eaf7f0');
+    sky.addColorStop(1, '#ffffff');
+    ctx.fillStyle = sky;
+    ctx.fillRect(0, 0, W, groundY);
+
+    // tanah/lumpur
+    var mud = ctx.createLinearGradient(0, groundY, 0, H);
+    mud.addColorStop(0, '#c9b18a');
+    mud.addColorStop(1, '#a98b5e');
+    ctx.fillStyle = mud;
+    ctx.fillRect(0, groundY, W, H - groundY);
+    ctx.fillStyle = '#8a6f47';
+    ctx.fillRect(0, groundY, W, 3);
+
+    // rintangan: akar napas
+    obstacles.forEach(function (o) {
+      if (o.type === 'up') {
+        ctx.fillStyle = '#105c34';
+        ctx.beginPath();
+        ctx.moveTo(o.x, o.bottom);
+        ctx.lineTo(o.x + o.w / 2, o.top);
+        ctx.lineTo(o.x + o.w, o.bottom);
+        ctx.closePath();
+        ctx.fill();
+      } else {
+        ctx.fillStyle = '#3f8f89';
+        ctx.fillRect(o.x, o.top, o.w, o.bottom - o.top);
+        ctx.beginPath();
+        ctx.ellipse(o.x + o.w / 2, o.bottom, o.w / 2 + 3, 8, 0, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    });
+
+    // propagul
+    seeds.forEach(function (s) {
+      ctx.fillStyle = '#c98a3b';
+      ctx.beginPath();
+      ctx.ellipse(s.x + s.w / 2, (s.top + s.bottom) / 2, s.w / 2, (s.bottom - s.top) / 2, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#7a5426';
+      ctx.fillRect(s.x + s.w / 2 - 1.5, s.top - 4, 3, 5);
+    });
+
+    // pemain
+    var pb = playerBox();
+    ctx.fillStyle = '#0d4429';
+    ctx.beginPath();
+    ctx.arc(pb.x + pb.w / 2, pb.top + (player.ducking && !player.jumping ? 8 : 10), 9, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#147a44';
+    ctx.fillRect(pb.x + 4, pb.top + (player.ducking && !player.jumping ? 14 : 18), pb.w - 8, pb.bottom - pb.top - (player.ducking && !player.jumping ? 16 : 20));
+
+    // skor
+    ctx.fillStyle = '#0d4429';
+    ctx.font = '600 16px ui-sans-serif, system-ui, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText('Skor: ' + Math.floor(score), W - 14, 26);
+  }
+
+  var last = 0;
+  function loop(ts) {
+    if (state !== 'playing') return;
+    if (!last) last = ts;
+    var dt = Math.min(0.033, (ts - last) / 1000);
+    last = ts;
+    update(dt);
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  function startGame() {
+    resetGame();
+    state = 'playing';
+    startScreen.hidden = true;
+    overScreen.hidden = true;
+    last = 0;
+    requestAnimationFrame(loop);
+  }
+
+  function endGame() {
+    state = 'over';
+    var s = Math.floor(score);
+    var best = getBest();
+    if (s > best) { best = s; setBest(best); }
+    finalScoreEl.textContent = String(s);
+    bestScoreEl.textContent = String(best);
+    overScreen.hidden = false;
+    draw();
+  }
+
+  function doJump() {
+    if (state !== 'playing') return;
+    if (!player.jumping && !player.ducking) {
+      player.jumping = true;
+      player.jumpOffset = 0;
+      player.vy = -420;
+    }
+  }
+  function setDuck(v) {
+    if (state !== 'playing') return;
+    if (!player.jumping) player.ducking = v;
+  }
+
+  startBtn.addEventListener('click', startGame);
+  retryBtn.addEventListener('click', startGame);
+
+  jumpBtn.addEventListener('click', doJump);
+  duckBtn.addEventListener('touchstart', function (e) { e.preventDefault(); setDuck(true); });
+  duckBtn.addEventListener('touchend', function (e) { e.preventDefault(); setDuck(false); });
+  duckBtn.addEventListener('mousedown', function () { setDuck(true); });
+  duckBtn.addEventListener('mouseup', function () { setDuck(false); });
+  duckBtn.addEventListener('mouseleave', function () { setDuck(false); });
+
+  window.addEventListener('keydown', function (e) {
+    if (e.code === 'ArrowUp' || e.code === 'Space' || e.code === 'KeyW') { e.preventDefault(); doJump(); }
+    if (e.code === 'ArrowDown' || e.code === 'KeyS') { e.preventDefault(); setDuck(true); }
+  });
+  window.addEventListener('keyup', function (e) {
+    if (e.code === 'ArrowDown' || e.code === 'KeyS') { setDuck(false); }
+  });
+
+  // gambar layar awal statis (posisi berdiri) agar tidak kosong sebelum "Mulai"
+  resetGame();
+  draw();
+  bestScoreEl.textContent = String(getBest());
+})();
+</script>
+</body>
+</html>

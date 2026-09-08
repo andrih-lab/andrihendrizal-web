@@ -25,6 +25,21 @@ const posts = (await getCollection('santai', (entry) => !entry.data.draft)).sort
       — jangan dikutip di skripsi.
     </p>
 
+    <div class="mt-8 flex flex-col items-start gap-3 rounded-lg border border-mangrove-200 bg-mangrove-50 p-5 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2 class="font-serif text-lg font-semibold text-mangrove-950">Lompat Mangrove</h2>
+        <p class="mt-1 text-sm text-slate-600">
+          Game kecil: lompati akar napas, tunduk di bawah dahan, kumpulkan propagul. Iseng-iseng saja.
+        </p>
+      </div>
+      <a
+        href="/mangrove-run/"
+        class="shrink-0 rounded-md bg-mangrove-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-mangrove-800"
+      >
+        Main sekarang →
+      </a>
+    </div>
+
     {
       posts.length === 0 ? (
         <p class="mt-6 text-sm italic text-slate-500">Tulisan baru akan tampil di sini segera.</p>

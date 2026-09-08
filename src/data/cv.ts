@@ -119,6 +119,34 @@ export const training: CvTraining[] = [
   },
 ];
 
+export interface CvMembership {
+  organization: Bilingual;
+  role: Bilingual;
+  memberId: string;
+  location: Bilingual;
+}
+
+export const memberships: CvMembership[] = [
+  {
+    organization: {
+      en: 'International Society for Mangrove Ecosystems (ISME)',
+      id: 'International Society for Mangrove Ecosystems (ISME)',
+    },
+    role: { en: 'Lifetime Member', id: 'Anggota Seumur Hidup (Lifetime Member)' },
+    memberId: '1342LIF2603',
+    location: { en: 'Japan', id: 'Jepang' },
+  },
+  {
+    organization: {
+      en: 'Ikatan Ilmuwan Indonesia Internasional (I4)',
+      id: 'Ikatan Ilmuwan Indonesia Internasional (I4)',
+    },
+    role: { en: 'Member', id: 'Anggota' },
+    memberId: '2310090010',
+    location: { en: 'Indonesia', id: 'Indonesia' },
+  },
+];
+
 export interface CvGrant {
   title: Bilingual;
   funder: Bilingual;

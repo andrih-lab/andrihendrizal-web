@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { useTranslations } from '../../../i18n/utils';
-import { education, experience, training, grants, technicalSkills } from '../../../data/cv';
+import { education, experience, training, memberships, grants, technicalSkills } from '../../../data/cv';
 import { rankings } from '../../../data/rankings';
 
 const lang = 'en';
@@ -76,6 +76,25 @@ const t = useTranslations(lang);
               <p class="text-sm text-slate-600">{item.provider[lang]}</p>
               <p class="text-sm text-slate-500">
                 {item.location[lang]} · {item.year}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.cv.membershipsHeading}</h2>
+      <ul class="mt-4 space-y-4">
+        {
+          memberships.map((item) => (
+            <li>
+              <p class="font-medium text-mangrove-900">{item.organization[lang]}</p>
+              <p class="text-sm text-slate-600">
+                {item.role[lang]} · {item.location[lang]}
+              </p>
+              <p class="text-sm text-slate-500">
+                {t.cv.membershipIdLabel}: {item.memberId}
               </p>
             </li>
           ))

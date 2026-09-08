@@ -113,6 +113,8 @@ export const id = {
     experienceHeading: 'Pengalaman',
     internationalBadge: 'Internasional',
     trainingHeading: 'Pelatihan dan Program Internasional',
+    membershipsHeading: 'Keanggotaan Profesional',
+    membershipIdLabel: 'Nomor Anggota',
     grantsHeading: 'Hibah Penelitian',
     grantsYear: 'Tahun',
     grantsFunder: 'Pemberi',

@@ -115,6 +115,8 @@ export const en = {
     experienceHeading: 'Experience',
     internationalBadge: 'International',
     trainingHeading: 'International Training & Programs',
+    membershipsHeading: 'Professional Memberships',
+    membershipIdLabel: 'Member ID',
     grantsHeading: 'Research Grants',
     grantsYear: 'Year',
     grantsFunder: 'Funder',
