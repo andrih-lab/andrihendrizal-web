@@ -9,7 +9,13 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://andrihendrizal.com',
   trailingSlash: 'always',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // /mangrove-guide/ adalah berkas statis di public/ (di luar routing
+      // Astro), jadi tidak otomatis terdeteksi — daftarkan manual di sini.
+      customPages: ['https://andrihendrizal.com/mangrove-guide/'],
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },
