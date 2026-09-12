@@ -8,7 +8,7 @@ purchaseUrl: https://andrihendrizal.lynk.id/
 cover: /images/uploads/MembangunWebsitePortofolioAkademik.jpg
 tags:
   - '-'
-draft: true
+draft: false
 ---
 
 -
