@@ -77,6 +77,15 @@ const imageUrl = image ? new URL(image, Astro.site) : undefined;
       src="https://static.cloudflareinsights.com/beacon.min.js"
       data-cf-beacon='{"token": "98b41ebf50584797bd5853cbf7b732af"}'
     ></script>
+
+    <!-- Google AdSense (Auto ads): Google memilih sendiri posisi & jumlah
+    iklan yang wajar di tiap halaman, jadi tidak perlu ad slot manual di
+    setiap komponen. Posisi per halaman bisa disesuaikan/dikecualikan lewat
+    "Ad review center" di dashboard AdSense tanpa perlu ubah kode ini. -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4359747611697478"
+      crossorigin="anonymous"></script>
   </head>
   <body class="flex min-h-screen flex-col bg-white font-sans text-mangrove-950">
     <Header lang={lang} hasAlternate={hasAlternate} />

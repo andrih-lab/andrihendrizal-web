@@ -28,6 +28,7 @@ export const id = {
   },
   footer: {
     copyright: 'Hak cipta dilindungi.',
+    privacyPolicy: 'Kebijakan Privasi',
   },
   // Tiga bidang fokus riset — dipakai bersama oleh Beranda dan Research
   // (Bagian 1 dan Bagian 5 dokumen rancang bangun).

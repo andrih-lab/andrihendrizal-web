@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  lang={lang}
+  title={`Privacy Policy — ${t.site.name}`}
+  description="What data this website processes: analytics, advertising, and contact."
+>
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="font-serif text-3xl font-semibold text-mangrove-950">Privacy Policy</h1>
+    <p class="mt-2 max-w-2xl text-sm text-slate-500">Last updated: September 2026.</p>
+
+    <p class="mt-6 max-w-2xl text-slate-700">
+      This website is a personal academic portfolio. There is no sign-in, no user accounts, and no database of
+      visitor information. This page explains the limited data processed when you visit.
+    </p>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">Analytics</h2>
+      <p class="mt-2 max-w-2xl text-slate-700">
+        This site uses Cloudflare Web Analytics, which is cookie-free. It only records aggregate, anonymous
+        statistics — such as visit counts and country of origin — and cannot identify individual visitors.
+      </p>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">Advertising</h2>
+      <p class="mt-2 max-w-2xl text-slate-700">
+        This site displays ads served by Google AdSense. Google and its advertising partners may use cookies or
+        device identifiers to show ads based on your visits to this and other websites. You can review or turn off
+        ad personalization at{' '}
+        <a
+          href="https://adssettings.google.com/"
+          target="_blank"
+          rel="noopener"
+          class="font-medium text-mangrove-700 underline hover:text-mangrove-900"
+        >
+          Google Ads Settings
+        </a>{' '}
+        or at{' '}
+        <a
+          href="https://www.aboutads.info/choices/"
+          target="_blank"
+          rel="noopener"
+          class="font-medium text-mangrove-700 underline hover:text-mangrove-900"
+        >
+          aboutads.info/choices
+        </a>.
+      </p>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">Contact & the game leaderboard</h2>
+      <p class="mt-2 max-w-2xl text-slate-700">
+        This site has no contact form or comment system that stores data. A message you send to the email address
+        on the Contact page goes directly to that inbox and is not stored by this website. The same applies to
+        score screenshots voluntarily emailed for the "Lompat Mangrove" game — they are used only to feature
+        selected high scores on the Santai Sejenak page.
+      </p>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">Changes to this policy</h2>
+      <p class="mt-2 max-w-2xl text-slate-700">
+        This policy may be updated occasionally as the site changes. The version published here always reflects
+        current practice.
+      </p>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">Questions</h2>
+      <p class="mt-2 max-w-2xl text-slate-700">
+        Questions about this policy can be sent to{' '}
+        <a
+          href={`mailto:${t.contact.emailValue}`}
+          class="font-medium text-mangrove-700 underline hover:text-mangrove-900"
+        >
+          {t.contact.emailValue}
+        </a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

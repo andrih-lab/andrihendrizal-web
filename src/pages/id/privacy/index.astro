@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+
+const lang = 'id';
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  lang={lang}
+  title={`Kebijakan Privasi — ${t.site.name}`}
+  description="Data apa saja yang diproses situs ini: analitik, iklan, dan kontak."
+>
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="font-serif text-3xl font-semibold text-mangrove-950">Kebijakan Privasi</h1>
+    <p class="mt-2 max-w-2xl text-sm text-slate-500">Terakhir diperbarui: September 2026.</p>
+
+    <p class="mt-6 max-w-2xl text-slate-700">
+      Situs ini adalah portofolio akademik pribadi. Tidak ada login, tidak ada akun pengguna, dan tidak ada basis
+      data informasi pengunjung. Halaman ini menjelaskan data terbatas yang diproses saat Anda mengunjungi situs
+      ini.
+    </p>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">Analitik</h2>
+      <p class="mt-2 max-w-2xl text-slate-700">
+        Situs ini memakai Cloudflare Web Analytics, yang bebas cookie. Alat ini hanya mencatat statistik agregat
+        dan anonim — seperti jumlah kunjungan dan negara asal — dan tidak bisa mengidentifikasi pengunjung secara
+        individu.
+      </p>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">Iklan</h2>
+      <p class="mt-2 max-w-2xl text-slate-700">
+        Situs ini menampilkan iklan yang disajikan oleh Google AdSense. Google dan mitra periklanannya dapat
+        memakai cookie atau identitas perangkat untuk menampilkan iklan berdasarkan kunjungan Anda ke situs ini
+        maupun situs lain. Anda bisa meninjau atau menonaktifkan personalisasi iklan lewat{' '}
+        <a
+          href="https://adssettings.google.com/"
+          target="_blank"
+          rel="noopener"
+          class="font-medium text-mangrove-700 underline hover:text-mangrove-900"
+        >
+          Google Ads Settings
+        </a>{' '}
+        atau di{' '}
+        <a
+          href="https://www.aboutads.info/choices/"
+          target="_blank"
+          rel="noopener"
+          class="font-medium text-mangrove-700 underline hover:text-mangrove-900"
+        >
+          aboutads.info/choices
+        </a>.
+      </p>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">Kontak & papan skor game</h2>
+      <p class="mt-2 max-w-2xl text-slate-700">
+        Situs ini tidak punya formulir kontak atau sistem komentar yang menyimpan data. Pesan yang Anda kirim ke
+        alamat email di halaman Kontak langsung masuk ke kotak masuk itu dan tidak disimpan oleh situs ini. Hal
+        yang sama berlaku untuk tangkapan layar skor yang dikirim secara sukarela lewat email untuk game "Lompat
+        Mangrove" — hanya dipakai untuk memajang skor tertinggi pilihan di halaman Santai Sejenak.
+      </p>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">Perubahan kebijakan</h2>
+      <p class="mt-2 max-w-2xl text-slate-700">
+        Kebijakan ini sewaktu-waktu bisa diperbarui seiring perubahan situs. Versi yang dipublikasikan di sini
+        selalu mencerminkan praktik yang berlaku saat ini.
+      </p>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">Pertanyaan</h2>
+      <p class="mt-2 max-w-2xl text-slate-700">
+        Pertanyaan seputar kebijakan ini bisa dikirim ke{' '}
+        <a
+          href={`mailto:${t.contact.emailValue}`}
+          class="font-medium text-mangrove-700 underline hover:text-mangrove-900"
+        >
+          {t.contact.emailValue}
+        </a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
