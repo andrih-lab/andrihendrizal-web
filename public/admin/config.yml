@@ -181,7 +181,9 @@ collections:
         label: "Photo / Foto (isi ini ATAU video di bawah, bukan dua-duanya)"
         widget: "image"
         required: false
-        hint: "Foto otomatis dikompres saat situs di-build, tidak perlu dikecilkan manual dulu."
+        media_folder: "/public/images/microscopy-uploads"
+        public_folder: "/images/microscopy-uploads"
+        hint: "Foto otomatis dikompres DAN diberi watermark saat situs di-build — tidak perlu dikecilkan atau diberi watermark manual dulu."
       - name: "youtubeId"
         label: "YouTube Video ID (isi ini ATAU foto di atas)"
         widget: "string"
