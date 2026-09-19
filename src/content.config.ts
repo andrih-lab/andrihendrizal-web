@@ -85,4 +85,22 @@ const santai = defineCollection({
   }),
 });
 
-export const collections = { writing, books, courses, santai };
+// Dokumentasi mikroskop (foto/video hasil pengamatan). Dikelola lewat
+// /admin. Setiap entri boleh berupa foto (berkas gambar, dioptimasi
+// otomatis oleh scripts/optimize-uploads.mjs saat build) ATAU video —
+// video TIDAK diunggah langsung ke situs (boros kuota bandwidth Netlify),
+// cukup tautan YouTube (boleh "tidak terdaftar/unlisted" bila tak ingin
+// publik di YouTube) yang ditanamkan sebagai pemutar.
+const microscopy = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/microscopy' }),
+  schema: z.object({
+    caption: z.object({ en: z.string(), id: z.string() }),
+    date: z.coerce.date(),
+    specimen: z.string().optional(),
+    image: z.string().optional(),
+    youtubeId: z.string().optional(),
+    draft: z.boolean().default(true),
+  }),
+});
+
+export const collections = { writing, books, courses, santai, microscopy };

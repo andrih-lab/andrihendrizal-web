@@ -162,3 +162,32 @@ collections:
           - { name: "url", label: "URL", widget: "string" }
       - { name: "quote", label: "Reader Quote", widget: "text", required: false }
       - { name: "body", label: "Notes (not shown on site)", widget: "markdown", required: false }
+
+  - name: "microscopy"
+    label: "Microscopy / Mikroskop"
+    folder: "src/content/microscopy"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - name: "caption"
+        label: "Caption"
+        widget: "object"
+        fields:
+          - { name: "en", label: "English", widget: "string" }
+          - { name: "id", label: "Indonesia", widget: "string" }
+      - { name: "date", label: "Date / Tanggal", widget: "datetime" }
+      - { name: "specimen", label: "Specimen / Sampel (optional)", widget: "string", required: false }
+      - name: "image"
+        label: "Photo / Foto (isi ini ATAU video di bawah, bukan dua-duanya)"
+        widget: "image"
+        required: false
+        hint: "Foto otomatis dikompres saat situs di-build, tidak perlu dikecilkan manual dulu."
+      - name: "youtubeId"
+        label: "YouTube Video ID (isi ini ATAU foto di atas)"
+        widget: "string"
+        required: false
+        hint: "Ambil dari URL video, mis. youtube.com/watch?v=INI_ID_NYA — bisa video 'tidak terdaftar/unlisted' bila tak ingin publik di YouTube."
+      - name: "draft"
+        label: "Draft (unpublished until unchecked) / Draf (belum tayang selagi dicentang)"
+        widget: "boolean"
+        default: true

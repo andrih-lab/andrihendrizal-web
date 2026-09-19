@@ -87,6 +87,9 @@ export const id = {
     toolCta: 'Buka Panduan Identifikasi Mangrove →',
     galleryHeading: 'Galeri Foto Lapangan',
     galleryEmpty: 'Foto lapangan lainnya segera menyusul.',
+    microscopyHeading: 'Dokumentasi Mikroskop',
+    microscopyIntro: 'Foto dan video hasil pengamatan mikroskop dari kegiatan riset.',
+    microscopyEmpty: 'Dokumentasi mikroskop akan ditambahkan segera.',
   },
   publications: {
     title: 'Publikasi',

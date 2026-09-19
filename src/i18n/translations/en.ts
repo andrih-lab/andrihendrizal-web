@@ -89,6 +89,9 @@ export const en = {
     toolCta: 'Open the Mangrove ID Guide →',
     galleryHeading: 'Field Photo Gallery',
     galleryEmpty: 'More field photos coming soon.',
+    microscopyHeading: 'Microscopy Documentation',
+    microscopyIntro: 'Photos and videos from microscope observations during fieldwork and lab work.',
+    microscopyEmpty: 'Microscopy documentation will be added soon.',
   },
   publications: {
     title: 'Publications',

@@ -1,0 +1,31 @@
+# Belum ada entri dokumentasi mikroskop. Tambahkan lewat /admin (koleksi
+# "Microscopy / Mikroskop"), atau tambahkan satu berkas .md di sini secara
+# manual dengan frontmatter sesuai skema di src/content.config.ts.
+#
+# Contoh entri FOTO:
+#
+# ---
+# caption:
+#   en: 'Cross-section of a mangrove leaf under 40x magnification'
+#   id: 'Penampang melintang daun mangrove pada perbesaran 40x'
+# date: 2026-09-19
+# specimen: 'Rhizophora apiculata'
+# image: '/images/uploads/nama-berkas.jpg'
+# draft: false
+# ---
+#
+# Contoh entri VIDEO (isi youtubeId, bukan image — jangan isi keduanya):
+#
+# ---
+# caption:
+#   en: 'Timelapse of stomatal movement'
+#   id: 'Timelapse pergerakan stomata'
+# date: 2026-09-19
+# youtubeId: 'dQw4w9WgXcQ'
+# draft: false
+# ---
+#
+# Foto yang diunggah lewat /admin otomatis dikompres saat situs di-build
+# (lihat scripts/optimize-uploads.mjs) — tidak perlu dikecilkan manual.
+# Video TIDAK diunggah langsung: unggah ke YouTube dulu (boleh "tidak
+# terdaftar/unlisted"), lalu isi ID videonya di sini.
