@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// Mengompres DAN membubuhkan watermark otomatis untuk foto mikroskop yang
-// diunggah lewat /admin (folder public/images/microscopy-uploads/ — folder
+// Mengompres DAN membubuhkan watermark otomatis untuk folder-folder upload
+// CMS yang isinya dokumentasi/koleksi pribadi (mikroskop, herbarium) — folder
 // terpisah dari public/images/uploads/ yang dipakai sampul buku/kursus,
 // SENGAJA tidak diberi watermark karena memang dibuat untuk dibagikan/
-// dipajang di toko buku pihak ketiga).
+// dipajang di toko buku pihak ketiga.
 //
 // Watermark ini penanda kepemilikan, bukan proteksi sungguhan — masih bisa
 // di-crop orang yang niat. Tujuannya supaya pemakaian ulang tanpa izin
@@ -17,12 +17,16 @@ import { readdir, stat, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-const UPLOADS_DIR = fileURLToPath(new URL('../public/images/microscopy-uploads/', import.meta.url));
+// Tambahkan nama folder baru di sini kalau ada koleksi lain yang juga perlu
+// watermark di masa depan.
+const WATERMARK_FOLDERS = ['public/images/microscopy-uploads/', 'public/images/herbarium-uploads/'];
 
 const MAX_WIDTH = 1600;
 const QUALITY = 78;
 const IMAGE_EXT = new Set(['.jpg', '.jpeg', '.png', '.webp']);
-const WATERMARK_TEXT = '© Andri Hendrizal';
+// Tahun berjalan disertakan otomatis, tidak perlu diperbarui manual tiap
+// pergantian tahun.
+const WATERMARK_TEXT = `© Andri Hendrizal ${new Date().getFullYear()}`;
 
 function watermarkSvg(width, height) {
   // Ukuran teks proporsional terhadap lebar foto, supaya tetap terbaca di
@@ -50,36 +54,43 @@ function watermarkSvg(width, height) {
   `);
 }
 
-let entries;
-try {
-  entries = await readdir(UPLOADS_DIR, { withFileTypes: true });
-} catch (err) {
-  if (err.code === 'ENOENT') {
-    console.log('watermark-microscopy: belum ada folder public/images/microscopy-uploads/, dilewati.');
-    process.exit(0);
+async function watermarkFolder(relativeDir) {
+  const dir = fileURLToPath(new URL(`../${relativeDir}`, import.meta.url));
+  let entries;
+  try {
+    entries = await readdir(dir, { withFileTypes: true });
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      console.log(`watermark-uploads: belum ada folder ${relativeDir}, dilewati.`);
+      return;
+    }
+    throw err;
   }
-  throw err;
+
+  for (const entry of entries) {
+    if (!entry.isFile()) continue;
+    const ext = path.extname(entry.name).toLowerCase();
+    if (!IMAGE_EXT.has(ext)) continue;
+
+    const filePath = path.join(dir, entry.name);
+    const before = (await stat(filePath)).size;
+
+    const resized = sharp(filePath).resize({ width: MAX_WIDTH, withoutEnlargement: true });
+    const { width, height } = await resized.metadata();
+    const watermarked = resized.composite([{ input: watermarkSvg(width, height), top: 0, left: 0 }]);
+
+    const buffer =
+      ext === '.png'
+        ? await watermarked.png({ quality: QUALITY, compressionLevel: 9 }).toBuffer()
+        : ext === '.webp'
+          ? await watermarked.webp({ quality: QUALITY }).toBuffer()
+          : await watermarked.jpeg({ quality: QUALITY, mozjpeg: true }).toBuffer();
+
+    await writeFile(filePath, buffer);
+    console.log(`watermark-uploads: ${entry.name} ${(before / 1024).toFixed(0)}KB -> ${(buffer.length / 1024).toFixed(0)}KB (watermarked)`);
+  }
 }
 
-for (const entry of entries) {
-  if (!entry.isFile()) continue;
-  const ext = path.extname(entry.name).toLowerCase();
-  if (!IMAGE_EXT.has(ext)) continue;
-
-  const filePath = path.join(UPLOADS_DIR, entry.name);
-  const before = (await stat(filePath)).size;
-
-  const resized = sharp(filePath).resize({ width: MAX_WIDTH, withoutEnlargement: true });
-  const { width, height } = await resized.metadata();
-  const watermarked = resized.composite([{ input: watermarkSvg(width, height), top: 0, left: 0 }]);
-
-  const buffer =
-    ext === '.png'
-      ? await watermarked.png({ quality: QUALITY, compressionLevel: 9 }).toBuffer()
-      : ext === '.webp'
-        ? await watermarked.webp({ quality: QUALITY }).toBuffer()
-        : await watermarked.jpeg({ quality: QUALITY, mozjpeg: true }).toBuffer();
-
-  await writeFile(filePath, buffer);
-  console.log(`watermark-microscopy: ${entry.name} ${(before / 1024).toFixed(0)}KB -> ${(buffer.length / 1024).toFixed(0)}KB (watermarked)`);
+for (const folder of WATERMARK_FOLDERS) {
+  await watermarkFolder(folder);
 }
