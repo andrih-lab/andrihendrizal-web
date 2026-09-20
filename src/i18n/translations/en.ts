@@ -135,6 +135,8 @@ export const en = {
     trainingHeading: 'International Training & Programs',
     membershipsHeading: 'Professional Memberships',
     membershipIdLabel: 'Member ID',
+    editorialHeading: 'Editorial & Reviewer Roles',
+    invitedTalksHeading: 'Invited Talks',
     grantsHeading: 'Research Grants',
     grantsYear: 'Year',
     grantsFunder: 'Funder',

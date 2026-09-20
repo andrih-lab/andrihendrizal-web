@@ -1,7 +1,16 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { useTranslations } from '../../../i18n/utils';
-import { education, experience, training, memberships, grants, technicalSkills } from '../../../data/cv';
+import {
+  education,
+  experience,
+  training,
+  memberships,
+  editorialRoles,
+  invitedTalks,
+  grants,
+  technicalSkills,
+} from '../../../data/cv';
 import { rankings } from '../../../data/rankings';
 
 const lang = 'id';
@@ -96,6 +105,36 @@ const t = useTranslations(lang);
               <p class="text-sm text-slate-500">
                 {t.cv.membershipIdLabel}: {item.memberId}
               </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.cv.editorialHeading}</h2>
+      <ul class="mt-4 space-y-4">
+        {
+          editorialRoles.map((item) => (
+            <li>
+              <p class="font-medium text-mangrove-900">{item.role[lang]}</p>
+              <p class="text-sm text-slate-600">{item.journal[lang]}</p>
+              <p class="text-sm text-slate-500">{item.period}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.cv.invitedTalksHeading}</h2>
+      <ul class="mt-4 space-y-4">
+        {
+          invitedTalks.map((item) => (
+            <li>
+              <p class="font-medium text-mangrove-900">{item.title[lang]}</p>
+              <p class="text-sm text-slate-600">{item.organization[lang]}</p>
+              <p class="text-sm text-slate-500">{item.year}</p>
             </li>
           ))
         }

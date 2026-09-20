@@ -17,13 +17,21 @@ const recentPosts = (await getCollection('writing', (entry) => entry.data.lang =
   .slice(0, 2);
 
 // JSON-LD Person (Bagian 8: data terstruktur di beranda, memuat ORCID dan
-// afiliasi).
+// afiliasi). alumniOf dan worksFor ditambahkan supaya Google punya sinyal
+// identitas/afiliasi yang lebih lengkap untuk Knowledge Panel — lihat data/cv.ts
+// untuk detail pendidikan.
 const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: t.site.name,
   jobTitle: t.home.heroPosition,
-  affiliation: { '@type': 'CollegeOrUniversity', name: 'Universitas Riau' },
+  description: t.site.description,
+  worksFor: { '@type': 'CollegeOrUniversity', name: 'Universitas Riau' },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Universitas Riau' },
+    { '@type': 'CollegeOrUniversity', name: 'Universitas Gadjah Mada' },
+    { '@type': 'CollegeOrUniversity', name: 'Universiti Malaya' },
+  ],
   url: new URL(`/${lang}/`, Astro.site).toString(),
   image: new URL('/images/portrait.webp', Astro.site).toString(),
   sameAs: academicProfiles.map((p) => p.url),

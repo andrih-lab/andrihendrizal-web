@@ -133,6 +133,8 @@ export const id = {
     trainingHeading: 'Pelatihan dan Program Internasional',
     membershipsHeading: 'Keanggotaan Profesional',
     membershipIdLabel: 'Nomor Anggota',
+    editorialHeading: 'Peran Editorial dan Reviewer',
+    invitedTalksHeading: 'Undangan Sebagai Narasumber',
     grantsHeading: 'Hibah Penelitian',
     grantsYear: 'Tahun',
     grantsFunder: 'Pemberi',

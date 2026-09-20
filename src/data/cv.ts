@@ -230,6 +230,84 @@ export const grants: CvGrant[] = [
   },
 ];
 
+export interface CvEditorialRole {
+  role: Bilingual;
+  journal: Bilingual;
+  period: string;
+}
+
+// Ditranskripsi dari arsip halaman "Penunjang" situs staff.unri.ac.id
+// (2020–2021). Hanya peran editorial jurnal ilmiah yang dimuat — peran
+// administratif seperti "Redaktur Website Jurusan" sengaja tidak disertakan.
+export const editorialRoles: CvEditorialRole[] = [
+  {
+    role: { en: 'Advisory Editorial Board', id: 'Advisory Editorial Board' },
+    journal: {
+      en: 'Jurnal Klorofil, Biology Study Program, Faculty of Science and Technology, UIN Sumatera Utara Medan',
+      id: 'Jurnal Klorofil, Program Studi Biologi, Fakultas Sains dan Teknologi, UIN Sumatera Utara Medan',
+    },
+    period: '2021',
+  },
+  {
+    role: { en: 'Section Editor', id: 'Section Editor' },
+    journal: {
+      en: 'Jurnal Sumberdaya dan Lingkungan Akuatik, Faculty of Fisheries and Marine Science, Universitas Riau',
+      id: 'Jurnal Sumberdaya dan Lingkungan Akuatik, FPK Universitas Riau',
+    },
+    period: '2021',
+  },
+  {
+    role: { en: 'Assistant Editor', id: 'Assistant Editor' },
+    journal: {
+      en: 'Jurnal Berkala Perikanan Terubuk, Faculty of Fisheries and Marine Science, Universitas Riau',
+      id: 'Jurnal Berkala Perikanan Terubuk, FPK Universitas Riau',
+    },
+    period: '2020–2021',
+  },
+];
+
+export interface CvInvitedTalk {
+  title: Bilingual;
+  organization: Bilingual;
+  year: string;
+}
+
+// Ditranskripsi dari arsip halaman "Narasumber" situs staff.unri.ac.id (2021).
+export const invitedTalks: CvInvitedTalk[] = [
+  {
+    title: {
+      en: 'Boosting Creativity Through Digitalization of Tourism Businesses in the New Normal Era',
+      id: 'Membangkitkan Kreativitas Melalui Digitalisasi Usaha Pariwisata di Masa Era Kebiasaan Baru',
+    },
+    organization: {
+      en: 'Riau Provincial Tourism Office, Kepulauan Meranti Regency',
+      id: 'Dinas Pariwisata Provinsi Riau, Kabupaten Kepulauan Meranti',
+    },
+    year: '2021',
+  },
+  {
+    title: {
+      en: 'Strengthening the Branding of Kampung Patin Tourism Village Through Promotion and Marketing',
+      id: 'Memperkuat Branding Desa Wisata Kampung Patin dengan Promosi dan Pemasaran',
+    },
+    organization: { en: 'Riau College of Tourism (STP Riau)', id: 'Sekolah Tinggi Pariwisata Riau' },
+    year: '2021',
+  },
+  {
+    title: { en: 'Digital Marketing Training', id: 'Pelatihan Digital Marketing' },
+    organization: { en: 'Riau College of Tourism (STP Riau)', id: 'Sekolah Tinggi Pariwisata Riau' },
+    year: '2021',
+  },
+  {
+    title: {
+      en: 'Building Digital Marketing Promotion Systems (Branding, Advertising, and Selling)',
+      id: 'Membangun Sistem Promosi dan Pemasaran Digital Marketing (Branding, Advertising, dan Selling)',
+    },
+    organization: { en: 'Riau College of Tourism (STP Riau)', id: 'Sekolah Tinggi Pariwisata Riau' },
+    year: '2021',
+  },
+];
+
 export interface CvSkillArea {
   title: Bilingual;
   description: Bilingual;

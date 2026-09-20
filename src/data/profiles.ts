@@ -12,4 +12,5 @@ export const academicProfiles: AcademicProfile[] = [
   { name: 'Scopus', url: 'https://www.scopus.com/authid/detail.uri?authorId=57223107515' },
   { name: 'ResearchGate', url: 'https://www.researchgate.net/profile/Andri-Hendrizal' },
   { name: 'LinkedIn', url: 'https://linkedin.com/in/andri-hendrizal' },
+  { name: 'Universitas Riau Staff Profile', url: 'https://andrihendrizal.staff.unri.ac.id/' },
 ];
