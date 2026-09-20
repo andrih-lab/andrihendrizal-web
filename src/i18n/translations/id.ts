@@ -62,6 +62,10 @@ export const id = {
     // faktual dari Lampiran A, ditonjolkan juga di halaman CV.
     internationalNote:
       'Keterlibatan internasional terbaru mencakup konsultasi riset bersama World Resources Institute (WRI) Indonesia serta program bersama East-West Center (Amerika Serikat) dan University of Sopron (Hongaria).',
+    // Latar belakang masa studi sarjana (arsip staff.unri.ac.id, halaman
+    // "Profil") — ditulis faktual/netral, tanpa superlatif (Bagian 12).
+    backgroundNote:
+      'Selama masa studi sarjana, ia pernah menjabat sebagai Bupati Mahasiswa di Universitas Riau (2011/2012) dan menerima predikat mahasiswa teladan pada tahun ajaran yang sama. Pada tahun 2013, ia terpilih sebagai satu dari tujuh delegasi Indonesia untuk program Study of the U.S. Institute mengenai isu lingkungan global, yang diselenggarakan oleh East-West Center di Hawaii.',
     publicationsHeading: 'Publikasi Terbaru',
     publicationsEmpty: 'Publikasi akan tampil di sini begitu tersedia.',
     writingHeading: 'Tulisan Terbaru',
@@ -86,6 +90,13 @@ export const id = {
     toolIntro:
       'Panduan interaktif 46 spesies mangrove Indonesia, lengkap dengan ciri akar/batang/daun/bunga/buah, alat banding cepat, dan tes mandiri.',
     toolCta: 'Buka Panduan Identifikasi Mangrove →',
+    outreachHeading: 'Pengabdian Masyarakat',
+    // Direvisi: memimpin dengan 2 publikasi pengabdian masyarakat yang
+    // langsung bertema mangrove (2025, lihat halaman Publications), baru
+    // menyebut program pengabdian umum dari arsip staff.unri.ac.id
+    // (2019–2021) sebagai konteks tambahan (Bagian 12).
+    outreachNote:
+      'Publikasi pengabdian masyarakatnya berfokus pada kelompok masyarakat pesisir yang bergantung pada mangrove di Riau — termasuk pelatihan digital marketing untuk kelompok produk olahan mangrove di Bengkalis dan inisiatif branding berbasis website untuk produk olahan mangrove (keduanya 2025, lihat halaman Publikasi). Ia juga terlibat dalam program pengabdian yang lebih umum, seperti pelatihan pengelolaan sampah plastik dan sosialisasi ketahanan pangan di sekolah dasar (2019–2021).',
     galleryHeading: 'Galeri Foto Lapangan',
     galleryEmpty: 'Foto lapangan lainnya segera menyusul.',
     microscopyHeading: 'Dokumentasi Mikroskop',

@@ -1,0 +1,25 @@
+# Andri Hendrizal
+
+> Personal academic site of Andri Hendrizal, a lecturer and researcher at the Department of Aquatic Resources Management, Universitas Riau, and a PhD student (by Research) at the Institute of Biological Sciences, Universiti Malaya. His research focuses on mangrove ecology, with additional interests in blue carbon and local ecological knowledge in Riau's coastal mangroves, Indonesia.
+
+This site is bilingual (English/Indonesian). Pages below link to the English version; swap `/en/` for `/id/` in any URL for the Indonesian version.
+
+## Research & Publications
+
+- [Research](https://andrihendrizal.com/en/research/): Field sites, focus areas, and photo documentation of mangrove ecology fieldwork.
+- [Publications](https://andrihendrizal.com/en/publications/): Full, filterable publication list (synced from OpenAlex via ORCID), plus a curated selection with short descriptions.
+- [CV](https://andrihendrizal.com/en/cv/): Education, experience, research grants, editorial/reviewer roles, invited talks, and professional memberships.
+- [Writing](https://andrihendrizal.com/en/writing/): Short articles on mangrove ecology and field methods.
+- [Herbarium](https://andrihendrizal.com/en/herbarium/): Plant specimen series organized by field visit.
+
+## Public Resources
+
+- [Mangrove ID Guide](https://andrihendrizal.com/mangrove-guide/): A standalone, Indonesian-language field guide for identifying mangrove species (not part of the bilingual site structure).
+- [Courses](https://andrihendrizal.com/en/courses/): Free and paid short courses.
+- [Books](https://andrihendrizal.com/en/books/): Authored and edited books.
+
+## Identity & Contact
+
+- [Contact](https://andrihendrizal.com/en/contact/): Email and links to ORCID, Google Scholar, Scopus, ResearchGate, LinkedIn, and the Universitas Riau staff profile.
+- ORCID: https://orcid.org/0000-0002-1629-992X
+- Google Scholar: https://scholar.google.com/citations?user=vU41v1EAAAAJ

@@ -64,6 +64,10 @@ export const en = {
     // faktual dari Lampiran A, ditonjolkan juga di halaman CV.
     internationalNote:
       'Recent international engagement includes a research consultancy with World Resources Institute (WRI) Indonesia and fellowships with the East-West Center (USA) and University of Sopron (Hungary).',
+    // Latar belakang masa studi sarjana (arsip staff.unri.ac.id, halaman
+    // "Profil") — ditulis faktual/netral, tanpa superlatif (Bagian 12).
+    backgroundNote:
+      'During his undergraduate studies, he served as student body president at Universitas Riau (2011–2012) and received the university’s model-student recognition for the same academic year. In 2013 he was one of seven Indonesian delegates selected for the Study of the U.S. Institute program on global environmental issues, hosted by the East-West Center in Hawaii.',
     publicationsHeading: 'Recent Publications',
     publicationsEmpty: 'Publications will appear here once available.',
     writingHeading: 'Recent Writing',
@@ -88,6 +92,13 @@ export const en = {
     toolIntro:
       'An interactive guide to 46 Indonesian mangrove species, with root/stem/leaf/flower/fruit identification notes, a quick-compare tool, and a self-test quiz. In Indonesian.',
     toolCta: 'Open the Mangrove ID Guide →',
+    outreachHeading: 'Community Engagement',
+    // Direvisi: memimpin dengan 2 publikasi pengabdian masyarakat yang
+    // langsung bertema mangrove (2025, lihat halaman Publications), baru
+    // menyebut program pengabdian umum dari arsip staff.unri.ac.id
+    // (2019–2021) sebagai konteks tambahan (Bagian 12).
+    outreachNote:
+      'His community-service publications focus on mangrove-dependent communities in Riau — including digital-marketing training for a mangrove products group in Bengkalis and a website-based branding initiative for mangrove-derived products (both 2025, see Publications). He has also contributed to broader community programs, such as plastic-waste management training and food-security outreach at local schools (2019–2021).',
     galleryHeading: 'Field Photo Gallery',
     galleryEmpty: 'More field photos coming soon.',
     microscopyHeading: 'Microscopy Documentation',

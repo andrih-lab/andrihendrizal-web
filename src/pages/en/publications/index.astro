@@ -35,9 +35,25 @@ const workTypes = [...new Set(publications.map((p) => p.workType))].sort();
 function authorsKeywords(pub: Publication): string {
   return [pub.title, pub.venue ?? '', ...pub.authors].join(' ').toLowerCase();
 }
+
+// JSON-LD ScholarlyArticle per publikasi, supaya Google/mesin AI-search
+// mengenali tiap karya sebagai entitas ilmiah tertaut ke Person di beranda
+// (dicocokkan lewat nama penulis + sameAs), bukan sekadar teks biasa.
+// Sengaja tidak menyertakan citedByCount — bukan properti schema.org
+// standar, dan situs ini tidak menampilkan angka sitasi mentah di mana pun.
+const publicationsJsonLd = publications.map((pub) => ({
+  '@context': 'https://schema.org',
+  '@type': 'ScholarlyArticle',
+  name: pub.title,
+  author: pub.authors.map((name) => ({ '@type': 'Person', name })),
+  ...(pub.venue && { isPartOf: { '@type': 'Periodical', name: pub.venue } }),
+  ...(pub.publicationDate && { datePublished: pub.publicationDate }),
+  ...(pub.doi && { url: pub.doi, sameAs: pub.doi }),
+}));
 ---
 
 <BaseLayout lang={lang} title={`${t.publications.title} — ${t.site.name}`} description={t.publications.description}>
+  {publicationsJsonLd.map((item) => <script slot="head" type="application/ld+json" set:html={JSON.stringify(item)} />)}
   <section class="mx-auto max-w-4xl px-4 py-12">
     <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.publications.title}</h1>
     <p class="mt-2 text-sm text-slate-500">{t.publications.intro}</p>

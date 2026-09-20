@@ -21,3 +21,22 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    # Report-Only dulu, bukan enforced: situs ini pakai Google AdSense (Auto
+    # ads) yang memuat script/iframe dari banyak subdomain Google secara
+    # dinamis, dan belum bisa diuji langsung dari lingkungan build ini.
+    # Pantau lewat DevTools Console (tab Issues/Console, kategori CSP) di
+    # situs live selama beberapa hari — kalau bersih dari pelanggaran,
+    # ganti nama header ini jadi "Content-Security-Policy" (tanpa
+    # "-Report-Only") untuk benar-benar menegakkannya.
+    Content-Security-Policy-Report-Only = """\
+      default-src 'self'; \
+      script-src 'self' https://static.cloudflareinsights.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.doubleclick.net https://*.googletagservices.com https://*.googleadservices.com https://unpkg.com; \
+      style-src 'self' 'unsafe-inline'; \
+      img-src 'self' data: https:; \
+      font-src 'self' data:; \
+      connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com https://*.google.com https://*.doubleclick.net https://*.googlesyndication.com; \
+      frame-src https://www.youtube-nocookie.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com; \
+      object-src 'none'; \
+      base-uri 'self'; \
+      frame-ancestors 'none'\
+      """
