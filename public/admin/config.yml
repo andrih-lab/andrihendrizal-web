@@ -193,3 +193,46 @@ collections:
         label: "Draft (unpublished until unchecked) / Draf (belum tayang selagi dicentang)"
         widget: "boolean"
         default: true
+
+  - name: "herbarium"
+    label: "Herbarium"
+    folder: "src/content/herbarium"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - name: "title"
+        label: "Series Title / Judul Seri"
+        widget: "object"
+        hint: "e.g. \"Payakumbuh Family Visit\" / mis. \"Kunjungan Keluarga di Payakumbuh\""
+        fields:
+          - { name: "en", label: "English", widget: "string" }
+          - { name: "id", label: "Indonesia", widget: "string" }
+      - { name: "location", label: "Location / Lokasi", widget: "string", hint: "e.g. \"Payakumbuh, Sumatera Barat\"" }
+      - { name: "date", label: "Date / Tanggal", widget: "datetime" }
+      - name: "description"
+        label: "Description / Deskripsi (optional)"
+        widget: "object"
+        required: false
+        fields:
+          - { name: "en", label: "English", widget: "string", required: false }
+          - { name: "id", label: "Indonesia", widget: "string", required: false }
+      - name: "specimens"
+        label: "Specimens / Spesimen"
+        widget: "list"
+        default: []
+        hint: "One entry per plant specimen collected on this trip / Satu entri per spesimen tumbuhan yang dikumpulkan di perjalanan ini."
+        fields:
+          - { name: "scientificName", label: "Scientific Name / Nama Ilmiah", widget: "string", hint: "e.g. Ficus benjamina" }
+          - { name: "localName", label: "Local Name / Nama Daerah", widget: "string", required: false }
+          - { name: "family", label: "Family / Famili", widget: "string", required: false, hint: "e.g. Moraceae" }
+          - { name: "notes", label: "Notes / Catatan", widget: "text", required: false }
+          - name: "image"
+            label: "Specimen Photo / Foto Spesimen"
+            widget: "image"
+            media_folder: "/public/images/herbarium-uploads"
+            public_folder: "/images/herbarium-uploads"
+            hint: "Foto otomatis dikompres DAN diberi watermark saat situs di-build."
+      - name: "draft"
+        label: "Draft (unpublished until unchecked) / Draf (belum tayang selagi dicentang)"
+        widget: "boolean"
+        default: true

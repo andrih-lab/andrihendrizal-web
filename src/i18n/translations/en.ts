@@ -15,6 +15,7 @@ export const en = {
     home: 'Home',
     research: 'Research',
     mangroveGuide: 'Mangrove ID Guide',
+    herbarium: 'Herbarium',
     publications: 'Publications',
     writing: 'Writing',
     courses: 'Courses',
@@ -92,6 +93,19 @@ export const en = {
     microscopyHeading: 'Microscopy Documentation',
     microscopyIntro: 'Photos and videos from microscope observations during fieldwork and lab work.',
     microscopyEmpty: 'Microscopy documentation will be added soon.',
+  },
+  herbarium: {
+    title: 'Herbarium',
+    description: 'A collection of plant specimens gathered by Andri Hendrizal, organized by field trip.',
+    intro:
+      'Specimens collected during family visits and field courses, documented here as part of a broader effort to bring scientific literacy back into public view.',
+    empty: 'Herbarium series will be added soon.',
+    backToList: '← Back to Herbarium',
+    locationLabel: 'Location',
+    familyLabel: 'Family',
+    localNameLabel: 'Local name',
+    specimensHeading: 'Specimens',
+    specimensLabel: 'specimens',
   },
   publications: {
     title: 'Publications',

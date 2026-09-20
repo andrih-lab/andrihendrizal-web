@@ -14,6 +14,7 @@ export const id = {
     home: 'Beranda',
     research: 'Riset',
     mangroveGuide: 'Panduan Mangrove',
+    herbarium: 'Herbarium',
     publications: 'Publikasi',
     writing: 'Tulisan',
     courses: 'Kursus',
@@ -90,6 +91,19 @@ export const id = {
     microscopyHeading: 'Dokumentasi Mikroskop',
     microscopyIntro: 'Foto dan video hasil pengamatan mikroskop dari kegiatan riset.',
     microscopyEmpty: 'Dokumentasi mikroskop akan ditambahkan segera.',
+  },
+  herbarium: {
+    title: 'Herbarium',
+    description: 'Koleksi spesimen tumbuhan yang dikumpulkan Andri Hendrizal, disusun per seri perjalanan lapangan.',
+    intro:
+      'Spesimen yang dikumpulkan saat kunjungan keluarga maupun kuliah lapangan, didokumentasikan di sini sebagai bagian dari upaya memasyarakatkan kembali ilmu pengetahuan ke ruang publik.',
+    empty: 'Seri herbarium akan ditambahkan segera.',
+    backToList: '← Kembali ke Herbarium',
+    locationLabel: 'Lokasi',
+    familyLabel: 'Famili',
+    localNameLabel: 'Nama daerah',
+    specimensHeading: 'Spesimen',
+    specimensLabel: 'spesimen',
   },
   publications: {
     title: 'Publikasi',

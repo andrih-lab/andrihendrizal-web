@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const lang = 'id';
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+  const series = await getCollection('herbarium', (entry) => !entry.data.draft);
+  return series.map((item) => ({
+    params: { slug: item.id },
+    props: { item },
+  }));
+}
+
+interface Props {
+  item: CollectionEntry<'herbarium'>;
+}
+
+const { item } = Astro.props;
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${item.data.title[lang]} — ${t.herbarium.title} — ${t.site.name}`}
+  description={item.data.description?.[lang] ?? t.herbarium.description}
+>
+  <article class="mx-auto max-w-4xl px-4 py-12">
+    <p class="text-sm">
+      <a href={`/${lang}/herbarium/`} class="text-mangrove-700 hover:underline">
+        {t.herbarium.backToList}
+      </a>
+    </p>
+    <h1 class="mt-4 font-serif text-3xl font-semibold text-mangrove-950">{item.data.title[lang]}</h1>
+    <p class="mt-2 text-sm text-slate-500">
+      {t.herbarium.locationLabel}: {item.data.location} ·{' '}
+      {item.data.date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+    </p>
+    {item.data.description?.[lang] && <p class="mt-4 max-w-2xl text-slate-700">{item.data.description[lang]}</p>}
+
+    <h2 class="mt-10 font-serif text-xl font-semibold text-mangrove-900">
+      {t.herbarium.specimensHeading} ({item.data.specimens.length})
+    </h2>
+    <ul class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {item.data.specimens.map((specimen) => (
+        <li>
+          <img
+            src={specimen.image}
+            alt={specimen.scientificName}
+            loading="lazy"
+            decoding="async"
+            class="h-56 w-full rounded-lg object-cover"
+          />
+          <p class="mt-2 text-sm font-semibold italic text-mangrove-900">{specimen.scientificName}</p>
+          {specimen.localName && <p class="text-xs text-slate-600">{t.herbarium.localNameLabel}: {specimen.localName}</p>}
+          {specimen.family && <p class="text-xs text-slate-500">{t.herbarium.familyLabel}: {specimen.family}</p>}
+          {specimen.notes && <p class="mt-1 text-xs text-slate-600">{specimen.notes}</p>}
+        </li>
+      ))}
+    </ul>
+  </article>
+</BaseLayout>

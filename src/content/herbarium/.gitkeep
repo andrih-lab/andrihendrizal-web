@@ -1,0 +1,25 @@
+# Belum ada seri herbarium. Tambahkan lewat /admin (koleksi "Herbarium"),
+# atau tambahkan satu berkas .md di sini secara manual dengan frontmatter
+# sesuai skema di src/content.config.ts, contoh:
+#
+# ---
+# title:
+#   en: 'Payakumbuh Family Visit'
+#   id: 'Kunjungan Keluarga di Payakumbuh'
+# location: 'Payakumbuh, Sumatera Barat'
+# date: 2026-09-20
+# description:
+#   en: 'Specimens collected around the family home during a visit.'
+#   id: 'Spesimen yang dikumpulkan di sekitar rumah keluarga saat berkunjung.'
+# specimens:
+#   - scientificName: 'Ficus benjamina'
+#     localName: 'Beringin'
+#     family: 'Moraceae'
+#     notes: 'Tumbuh di pekarangan rumah.'
+#     image: '/images/herbarium-uploads/nama-berkas.jpg'
+# draft: false
+# ---
+#
+# Foto spesimen yang diunggah lewat /admin otomatis dikompres DAN diberi
+# watermark saat situs di-build (lihat scripts/watermark-uploads.mjs) —
+# tidak perlu dikecilkan atau diberi watermark manual dulu.

@@ -103,4 +103,32 @@ const microscopy = defineCollection({
   }),
 });
 
-export const collections = { writing, books, courses, santai, microscopy };
+// Koleksi herbarium, disusun per "seri" — satu seri per kunjungan/perjalanan
+// (mis. mengunjungi mertua di Payakumbuh, atau kuliah lapangan ke suatu
+// danau), berisi beberapa spesimen tumbuhan yang dikumpulkan di sana.
+// Nama ilmiah sengaja satu bahasa (konvensi internasional, tidak perlu
+// diterjemahkan) sementara judul/deskripsi seri tetap dwibahasa mengikuti
+// pola bagian lain situs ini.
+const herbarium = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/herbarium' }),
+  schema: z.object({
+    title: z.object({ en: z.string(), id: z.string() }),
+    location: z.string(),
+    date: z.coerce.date(),
+    description: z.object({ en: z.string(), id: z.string() }).optional(),
+    specimens: z
+      .array(
+        z.object({
+          scientificName: z.string(),
+          localName: z.string().optional(),
+          family: z.string().optional(),
+          notes: z.string().optional(),
+          image: z.string(),
+        }),
+      )
+      .default([]),
+    draft: z.boolean().default(true),
+  }),
+});
+
+export const collections = { writing, books, courses, santai, microscopy, herbarium };
