@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { getCollection } from 'astro:content';
+
+const lang = 'id';
+const t = useTranslations(lang);
+
+const items = (await getCollection('microscopy', (entry) => !entry.data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout lang={lang} title={`${t.microscopy.title} — ${t.site.name}`} description={t.microscopy.description}>
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.microscopy.title}</h1>
+    <p class="mt-2 max-w-2xl text-slate-600">{t.microscopy.intro}</p>
+
+    {
+      items.length === 0 ? (
+        <p class="mt-6 text-sm italic text-slate-500">{t.microscopy.empty}</p>
+      ) : (
+        <ul class="mt-8 grid gap-6 sm:grid-cols-2">
+          {items.map((item) => {
+            const extraImages = [item.data.originalImage, ...item.data.additionalImages].filter(
+              (src): src is string => Boolean(src),
+            );
+            return (
+              <li class="overflow-hidden rounded-lg border border-mangrove-200">
+                {item.data.youtubeId ? (
+                  <div class="aspect-video w-full overflow-hidden bg-black">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${item.data.youtubeId}`}
+                      title={item.data.caption[lang]}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      class="h-full w-full"
+                    />
+                  </div>
+                ) : (
+                  item.data.image && (
+                    <img
+                      src={item.data.image}
+                      alt={item.data.caption[lang]}
+                      loading="lazy"
+                      decoding="async"
+                      class="h-56 w-full object-cover"
+                    />
+                  )
+                )}
+                <div class="p-4">
+                  <p class="font-semibold text-mangrove-900">{item.data.caption[lang]}</p>
+                  {item.data.scientificName && <p class="text-sm italic text-slate-600">{item.data.scientificName}</p>}
+                  {item.data.magnification && (
+                    <p class="mt-1 text-xs text-slate-500">
+                      {t.microscopy.magnificationLabel}: {item.data.magnification}
+                    </p>
+                  )}
+                  {item.data.notes?.[lang] && <p class="mt-2 text-sm text-slate-700">{item.data.notes[lang]}</p>}
+                  {extraImages.length > 0 && (
+                    <div class="mt-3">
+                      <p class="text-xs font-medium uppercase tracking-wide text-slate-500">
+                        {t.microscopy.moreImagesLabel}
+                      </p>
+                      <div class="mt-2 grid grid-cols-3 gap-2">
+                        {extraImages.map((src) => (
+                          <img
+                            src={src}
+                            alt={item.data.caption[lang]}
+                            loading="lazy"
+                            decoding="async"
+                            class="h-20 w-full rounded object-cover"
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      )
+    }
+  </section>
+</BaseLayout>

@@ -4,14 +4,9 @@ import ResearchMap from '../../../components/ResearchMap.astro';
 import { useTranslations } from '../../../i18n/utils';
 import { technicalSkills } from '../../../data/cv';
 import { galleryPhotos } from '../../../data/gallery';
-import { getCollection } from 'astro:content';
 
 const lang = 'id';
 const t = useTranslations(lang);
-
-const microscopyItems = (await getCollection('microscopy', (entry) => !entry.data.draft)).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
 ---
 
 <BaseLayout lang={lang} title={`${t.research.title} — ${t.site.name}`} description={t.research.description}>
@@ -93,41 +88,12 @@ const microscopyItems = (await getCollection('microscopy', (entry) => !entry.dat
 
     <div class="mt-10">
       <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.research.microscopyHeading}</h2>
-      <p class="mt-2 max-w-2xl text-sm text-slate-600">{t.research.microscopyIntro}</p>
-      {
-        microscopyItems.length > 0 ? (
-          <ul class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {microscopyItems.map((item) => (
-              <li>
-                {item.data.youtubeId ? (
-                  <div class="aspect-video w-full overflow-hidden rounded-lg bg-black">
-                    <iframe
-                      src={`https://www.youtube-nocookie.com/embed/${item.data.youtubeId}`}
-                      title={item.data.caption[lang]}
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen
-                      class="h-full w-full"
-                    />
-                  </div>
-                ) : item.data.image ? (
-                  <img
-                    src={item.data.image}
-                    alt={item.data.caption[lang]}
-                    loading="lazy"
-                    decoding="async"
-                    class="h-56 w-full rounded-lg object-cover"
-                  />
-                ) : null}
-                <p class="mt-2 text-sm text-slate-700">{item.data.caption[lang]}</p>
-                {item.data.specimen && <p class="text-xs italic text-slate-500">{item.data.specimen}</p>}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p class="mt-3 text-sm italic text-slate-500">{t.research.microscopyEmpty}</p>
-        )
-      }
+      <p class="mt-2 max-w-2xl text-slate-700">{t.research.microscopyIntro}</p>
+      <p class="mt-3 text-sm">
+        <a href={`/${lang}/microscopy/`} class="font-medium text-mangrove-700 hover:underline">
+          {t.research.microscopyCta}
+        </a>
+      </p>
     </div>
   </section>
 </BaseLayout>

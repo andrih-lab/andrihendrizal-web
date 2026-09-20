@@ -176,14 +176,41 @@ collections:
           - { name: "en", label: "English", widget: "string" }
           - { name: "id", label: "Indonesia", widget: "string" }
       - { name: "date", label: "Date / Tanggal", widget: "datetime" }
-      - { name: "specimen", label: "Specimen / Sampel (optional)", widget: "string", required: false }
+      - { name: "scientificName", label: "Scientific Name / Nama Ilmiah (optional)", widget: "string", required: false, hint: "e.g. Pandanus amaryllifolius" }
+      - { name: "magnification", label: "Magnification / Perbesaran (optional)", widget: "string", required: false, hint: "e.g. 40x" }
+      - name: "notes"
+        label: "Notes / Catatan Tambahan (optional)"
+        widget: "object"
+        required: false
+        fields:
+          - { name: "en", label: "English", widget: "text", required: false }
+          - { name: "id", label: "Indonesia", widget: "text", required: false }
+      - name: "originalImage"
+        label: "Original/Whole Specimen Photo / Foto Asli Spesimen (optional)"
+        widget: "image"
+        required: false
+        media_folder: "/public/images/microscopy-uploads"
+        public_folder: "/images/microscopy-uploads"
+        hint: "Foto spesimen sebelum diperiksa di bawah mikroskop."
       - name: "image"
-        label: "Photo / Foto (isi ini ATAU video di bawah, bukan dua-duanya)"
+        label: "Main Microscope Photo / Foto Utama di Bawah Mikroskop (isi ini ATAU video di bawah, bukan dua-duanya)"
         widget: "image"
         required: false
         media_folder: "/public/images/microscopy-uploads"
         public_folder: "/images/microscopy-uploads"
         hint: "Foto otomatis dikompres DAN diberi watermark saat situs di-build — tidak perlu dikecilkan atau diberi watermark manual dulu."
+      - name: "additionalImages"
+        label: "Additional Microscope Photos / Foto Mikroskop Tambahan (optional)"
+        widget: "list"
+        required: false
+        default: []
+        field:
+          name: "image"
+          label: "Photo / Foto"
+          widget: "image"
+          media_folder: "/public/images/microscopy-uploads"
+          public_folder: "/images/microscopy-uploads"
+        hint: "Mis. perbesaran atau sudut berbeda dari foto utama."
       - name: "youtubeId"
         label: "YouTube Video ID (isi ini ATAU foto di atas)"
         widget: "string"
@@ -226,11 +253,62 @@ collections:
           - { name: "localName", label: "Local Name / Nama Daerah", widget: "string", required: false }
           - { name: "family", label: "Family / Famili", widget: "string", required: false, hint: "e.g. Moraceae" }
           - { name: "notes", label: "Notes / Catatan", widget: "text", required: false }
+          - name: "wholePlantImage"
+            label: "Whole Plant Photo / Foto Tumbuhan Utuh (optional)"
+            widget: "image"
+            required: false
+            media_folder: "/public/images/herbarium-uploads"
+            public_folder: "/images/herbarium-uploads"
+            hint: "Foto tumbuhan utuh di habitatnya, sebelum dikeringkan/ditekan."
           - name: "image"
-            label: "Specimen Photo / Foto Spesimen"
+            label: "Herbarium/Pressed Specimen Photo / Foto Spesimen Herbarium"
             widget: "image"
             media_folder: "/public/images/herbarium-uploads"
             public_folder: "/images/herbarium-uploads"
+            hint: "Foto otomatis dikompres DAN diberi watermark saat situs di-build."
+      - name: "draft"
+        label: "Draft (unpublished until unchecked) / Draf (belum tayang selagi dicentang)"
+        widget: "boolean"
+        default: true
+
+  - name: "wetSpecimens"
+    label: "Wet Specimens / Awetan Basah"
+    folder: "src/content/wet-specimens"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - name: "title"
+        label: "Series Title / Judul Seri"
+        widget: "object"
+        hint: "e.g. \"Mangrove Root Fauna, Pangkalan Jambi\" / mis. \"Fauna Akar Mangrove, Pangkalan Jambi\""
+        fields:
+          - { name: "en", label: "English", widget: "string" }
+          - { name: "id", label: "Indonesia", widget: "string" }
+      - { name: "location", label: "Location / Lokasi", widget: "string", hint: "e.g. \"Pangkalan Jambi, Bengkalis, Riau\"" }
+      - { name: "date", label: "Date / Tanggal", widget: "datetime" }
+      - name: "description"
+        label: "Description / Deskripsi (optional)"
+        widget: "object"
+        required: false
+        fields:
+          - { name: "en", label: "English", widget: "string", required: false }
+          - { name: "id", label: "Indonesia", widget: "string", required: false }
+      - name: "specimens"
+        label: "Specimens / Spesimen"
+        widget: "list"
+        default: []
+        hint: "One entry per specimen jar/vial from this collecting session / Satu entri per toples/wadah spesimen dari sesi koleksi ini."
+        fields:
+          - { name: "scientificName", label: "Scientific Name / Nama Ilmiah", widget: "string", hint: "e.g. Cerithidea obtusa" }
+          - { name: "localName", label: "Local Name / Nama Daerah", widget: "string", required: false }
+          - { name: "family", label: "Family / Famili", widget: "string", required: false, hint: "e.g. Potamididae" }
+          - { name: "preservationMethod", label: "Preservation Method / Metode Pengawetan", widget: "string", required: false, hint: "e.g. \"70% ethanol\"" }
+          - { name: "notes", label: "Notes / Catatan", widget: "text", required: false }
+          - name: "image"
+            label: "Specimen Photo / Foto Spesimen"
+            widget: "image"
+            media_folder: "/public/images/wet-specimen-uploads"
+            public_folder: "/images/wet-specimen-uploads"
             hint: "Foto otomatis dikompres DAN diberi watermark saat situs di-build."
       - name: "draft"
         label: "Draft (unpublished until unchecked) / Draf (belum tayang selagi dicentang)"

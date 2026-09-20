@@ -16,6 +16,7 @@ export const en = {
     research: 'Research',
     mangroveGuide: 'Mangrove ID Guide',
     herbarium: 'Herbarium',
+    microscopy: 'Microscopy',
     publications: 'Publications',
     writing: 'Writing',
     courses: 'Courses',
@@ -92,6 +93,7 @@ export const en = {
     toolIntro:
       'An interactive guide to 46 Indonesian mangrove species, with root/stem/leaf/flower/fruit identification notes, a quick-compare tool, and a self-test quiz. In Indonesian.',
     toolCta: 'Open the Mangrove ID Guide →',
+    microscopyCta: 'Open Microscopy Documentation →',
     outreachHeading: 'Community Engagement',
     // Direvisi: memimpin dengan 2 publikasi pengabdian masyarakat yang
     // langsung bertema mangrove (2025, lihat halaman Publications), baru
@@ -103,11 +105,10 @@ export const en = {
     galleryEmpty: 'More field photos coming soon.',
     microscopyHeading: 'Microscopy Documentation',
     microscopyIntro: 'Photos and videos from microscope observations during fieldwork and lab work.',
-    microscopyEmpty: 'Microscopy documentation will be added soon.',
   },
   herbarium: {
     title: 'Herbarium',
-    description: 'A collection of plant specimens gathered by Andri Hendrizal, organized by field trip.',
+    description: 'A collection of plant specimens and preserved fauna gathered by Andri Hendrizal, organized by field trip.',
     intro:
       'Specimens collected during family visits and field courses, documented here as part of a broader effort to bring scientific literacy back into public view.',
     empty: 'Herbarium series will be added soon.',
@@ -117,6 +118,26 @@ export const en = {
     localNameLabel: 'Local name',
     specimensHeading: 'Specimens',
     specimensLabel: 'specimens',
+    plantsHeading: 'Herbarium (Plants)',
+    wholePlantLabel: 'whole plant',
+    pressedSpecimenLabel: 'herbarium specimen',
+    // Fauna: awetan basah (siput, udang, kepiting kecil ekosistem mangrove
+    // diawetkan dalam alkohol 70%) — koleksi terpisah dari herbarium
+    // (taksonomi berbeda) tapi ditampilkan di halaman yang sama, bukan menu
+    // navbar sendiri, karena kontennya masih sedikit.
+    faunaHeading: 'Fauna (Wet-Preserved Specimens)',
+    faunaIntro: 'Small invertebrates from the mangrove ecosystem — snails, shrimp, crabs — preserved in 70% ethanol.',
+    faunaEmpty: 'Wet-specimen series will be added soon.',
+    preservationLabel: 'Preservation',
+  },
+  microscopy: {
+    title: 'Microscopy Documentation',
+    description: 'Photos and videos from microscope observations by Andri Hendrizal, during fieldwork and lab work.',
+    intro:
+      'Photos and videos from microscope observations during fieldwork and lab work, including the original specimen photo where available.',
+    empty: 'Microscopy documentation will be added soon.',
+    magnificationLabel: 'Magnification',
+    moreImagesLabel: 'More photos',
   },
   publications: {
     title: 'Publications',

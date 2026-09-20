@@ -19,7 +19,11 @@ import path from 'node:path';
 
 // Tambahkan nama folder baru di sini kalau ada koleksi lain yang juga perlu
 // watermark di masa depan.
-const WATERMARK_FOLDERS = ['public/images/microscopy-uploads/', 'public/images/herbarium-uploads/'];
+const WATERMARK_FOLDERS = [
+  'public/images/microscopy-uploads/',
+  'public/images/herbarium-uploads/',
+  'public/images/wet-specimen-uploads/',
+];
 
 const MAX_WIDTH = 1600;
 const QUALITY = 78;

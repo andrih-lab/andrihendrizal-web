@@ -85,19 +85,28 @@ const santai = defineCollection({
   }),
 });
 
-// Dokumentasi mikroskop (foto/video hasil pengamatan). Dikelola lewat
-// /admin. Setiap entri boleh berupa foto (berkas gambar, dioptimasi
-// otomatis oleh scripts/optimize-uploads.mjs saat build) ATAU video —
-// video TIDAK diunggah langsung ke situs (boros kuota bandwidth Netlify),
-// cukup tautan YouTube (boleh "tidak terdaftar/unlisted" bila tak ingin
-// publik di YouTube) yang ditanamkan sebagai pemutar.
+// Dokumentasi mikroskop (foto/video hasil pengamatan), sejak halaman
+// Mikroskop tersendiri (bukan lagi bagian dari Research) berisi: foto asli/
+// utuh spesimen sebelum diperiksa (originalImage), satu atau lebih foto di
+// bawah mikroskop (image = foto utama, additionalImages = foto tambahan
+// pada perbesaran/sudut lain), nama ilmiah, perbesaran, dan catatan
+// tambahan dwibahasa. Dikelola lewat /admin. Setiap entri boleh berupa foto
+// (berkas gambar, dioptimasi otomatis oleh scripts/optimize-uploads.mjs
+// saat build) ATAU video — video TIDAK diunggah langsung ke situs (boros
+// kuota bandwidth Netlify), cukup tautan YouTube (boleh "tidak terdaftar/
+// unlisted" bila tak ingin publik di YouTube) yang ditanamkan sebagai
+// pemutar.
 const microscopy = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/microscopy' }),
   schema: z.object({
     caption: z.object({ en: z.string(), id: z.string() }),
     date: z.coerce.date(),
-    specimen: z.string().optional(),
+    scientificName: z.string().optional(),
+    magnification: z.string().optional(),
+    notes: z.object({ en: z.string(), id: z.string() }).optional(),
+    originalImage: z.string().optional(),
     image: z.string().optional(),
+    additionalImages: z.array(z.string()).default([]),
     youtubeId: z.string().optional(),
     draft: z.boolean().default(true),
   }),
@@ -123,6 +132,9 @@ const herbarium = defineCollection({
           localName: z.string().optional(),
           family: z.string().optional(),
           notes: z.string().optional(),
+          // Foto tumbuhan utuh di habitat, sebelum dikeringkan/ditekan —
+          // opsional karena tidak selalu sempat difoto di lapangan.
+          wholePlantImage: z.string().optional(),
           image: z.string(),
         }),
       )
@@ -131,4 +143,35 @@ const herbarium = defineCollection({
   }),
 });
 
-export const collections = { writing, books, courses, santai, microscopy, herbarium };
+// Koleksi awetan basah (fauna kecil ekosistem mangrove — siput, udang,
+// kepiting — diawetkan dalam alkohol 70%). Ditampilkan sebagai bagian
+// "Fauna" di halaman Herbarium yang sama (bukan menu navbar terpisah,
+// karena kontennya masih sedikit), tapi disimpan sebagai koleksi Astro
+// tersendiri karena secara taksonomi bukan herbarium (herbarium = khusus
+// tumbuhan). Struktur per-seri sama seperti herbarium: satu seri per sesi
+// pemotretan/koleksi, berisi beberapa spesimen.
+const wetSpecimens = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/wet-specimens' }),
+  schema: z.object({
+    title: z.object({ en: z.string(), id: z.string() }),
+    location: z.string(),
+    date: z.coerce.date(),
+    description: z.object({ en: z.string(), id: z.string() }).optional(),
+    specimens: z
+      .array(
+        z.object({
+          scientificName: z.string(),
+          localName: z.string().optional(),
+          family: z.string().optional(),
+          // Mis. "70% ethanol, dikoleksi dari akar mangrove".
+          preservationMethod: z.string().optional(),
+          notes: z.string().optional(),
+          image: z.string(),
+        }),
+      )
+      .default([]),
+    draft: z.boolean().default(true),
+  }),
+});
+
+export const collections = { writing, books, courses, santai, microscopy, herbarium, wetSpecimens };

@@ -1,0 +1,26 @@
+# Belum ada seri awetan basah. Tambahkan lewat /admin (koleksi "Awetan
+# Basah / Wet Specimens"), atau tambahkan satu berkas .md di sini secara
+# manual dengan frontmatter sesuai skema di src/content.config.ts, contoh:
+#
+# ---
+# title:
+#   en: 'Mangrove Root Fauna, Pangkalan Jambi'
+#   id: 'Fauna Akar Mangrove, Pangkalan Jambi'
+# location: 'Pangkalan Jambi, Bengkalis, Riau'
+# date: 2026-09-20
+# description:
+#   en: 'Small invertebrates collected around mangrove roots.'
+#   id: 'Invertebrata kecil yang dikumpulkan di sekitar akar mangrove.'
+# specimens:
+#   - scientificName: 'Cerithidea obtusa'
+#     localName: 'Siput bakau'
+#     family: 'Potamididae'
+#     preservationMethod: '70% ethanol'
+#     notes: 'Dikoleksi dari substrat lumpur di bawah tegakan mangrove.'
+#     image: '/images/wet-specimen-uploads/nama-berkas.jpg'
+# draft: false
+# ---
+#
+# Foto spesimen yang diunggah lewat /admin otomatis dikompres DAN diberi
+# watermark saat situs di-build (lihat scripts/watermark-uploads.mjs) —
+# tidak perlu dikecilkan atau diberi watermark manual dulu.

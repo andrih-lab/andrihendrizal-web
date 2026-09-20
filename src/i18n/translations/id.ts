@@ -15,6 +15,7 @@ export const id = {
     research: 'Riset',
     mangroveGuide: 'Panduan Mangrove',
     herbarium: 'Herbarium',
+    microscopy: 'Mikroskop',
     publications: 'Publikasi',
     writing: 'Tulisan',
     courses: 'Kursus',
@@ -90,6 +91,7 @@ export const id = {
     toolIntro:
       'Panduan interaktif 46 spesies mangrove Indonesia, lengkap dengan ciri akar/batang/daun/bunga/buah, alat banding cepat, dan tes mandiri.',
     toolCta: 'Buka Panduan Identifikasi Mangrove →',
+    microscopyCta: 'Buka Dokumentasi Mikroskop →',
     outreachHeading: 'Pengabdian Masyarakat',
     // Direvisi: memimpin dengan 2 publikasi pengabdian masyarakat yang
     // langsung bertema mangrove (2025, lihat halaman Publications), baru
@@ -101,11 +103,11 @@ export const id = {
     galleryEmpty: 'Foto lapangan lainnya segera menyusul.',
     microscopyHeading: 'Dokumentasi Mikroskop',
     microscopyIntro: 'Foto dan video hasil pengamatan mikroskop dari kegiatan riset.',
-    microscopyEmpty: 'Dokumentasi mikroskop akan ditambahkan segera.',
   },
   herbarium: {
     title: 'Herbarium',
-    description: 'Koleksi spesimen tumbuhan yang dikumpulkan Andri Hendrizal, disusun per seri perjalanan lapangan.',
+    description:
+      'Koleksi spesimen tumbuhan dan awetan fauna yang dikumpulkan Andri Hendrizal, disusun per seri perjalanan lapangan.',
     intro:
       'Spesimen yang dikumpulkan saat kunjungan keluarga maupun kuliah lapangan, didokumentasikan di sini sebagai bagian dari upaya memasyarakatkan kembali ilmu pengetahuan ke ruang publik.',
     empty: 'Seri herbarium akan ditambahkan segera.',
@@ -115,6 +117,26 @@ export const id = {
     localNameLabel: 'Nama daerah',
     specimensHeading: 'Spesimen',
     specimensLabel: 'spesimen',
+    plantsHeading: 'Herbarium (Tumbuhan)',
+    wholePlantLabel: 'tumbuhan utuh',
+    pressedSpecimenLabel: 'spesimen herbarium',
+    // Fauna: awetan basah (siput, udang, kepiting kecil ekosistem mangrove
+    // diawetkan dalam alkohol 70%) — koleksi terpisah dari herbarium
+    // (taksonomi berbeda) tapi ditampilkan di halaman yang sama, bukan menu
+    // navbar sendiri, karena kontennya masih sedikit.
+    faunaHeading: 'Fauna (Awetan Basah)',
+    faunaIntro: 'Invertebrata kecil dari ekosistem mangrove — siput, udang, kepiting — diawetkan dalam alkohol 70%.',
+    faunaEmpty: 'Seri awetan basah akan ditambahkan segera.',
+    preservationLabel: 'Pengawetan',
+  },
+  microscopy: {
+    title: 'Dokumentasi Mikroskop',
+    description: 'Foto dan video hasil pengamatan mikroskop oleh Andri Hendrizal, dari kegiatan lapangan dan lab.',
+    intro:
+      'Foto dan video hasil pengamatan mikroskop dari kegiatan lapangan dan lab, termasuk foto spesimen asli bila tersedia.',
+    empty: 'Dokumentasi mikroskop akan ditambahkan segera.',
+    magnificationLabel: 'Perbesaran',
+    moreImagesLabel: 'Foto lainnya',
   },
   publications: {
     title: 'Publikasi',

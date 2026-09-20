@@ -1,14 +1,14 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { useTranslations } from '../../../i18n/utils';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../../i18n/utils';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
-const lang = 'id';
+const lang = 'en';
 const t = useTranslations(lang);
 
 export async function getStaticPaths() {
-  const series = await getCollection('herbarium', (entry) => !entry.data.draft);
+  const series = await getCollection('wetSpecimens', (entry) => !entry.data.draft);
   return series.map((item) => ({
     params: { slug: item.id },
     props: { item },
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  item: CollectionEntry<'herbarium'>;
+  item: CollectionEntry<'wetSpecimens'>;
 }
 
 const { item } = Astro.props;
@@ -24,7 +24,7 @@ const { item } = Astro.props;
 
 <BaseLayout
   lang={lang}
-  title={`${item.data.title[lang]} — ${t.herbarium.title} — ${t.site.name}`}
+  title={`${item.data.title[lang]} — ${t.herbarium.faunaHeading} — ${t.site.name}`}
   description={item.data.description?.[lang] ?? t.herbarium.description}
 >
   <article class="mx-auto max-w-4xl px-4 py-12">
@@ -36,7 +36,7 @@ const { item } = Astro.props;
     <h1 class="mt-4 font-serif text-3xl font-semibold text-mangrove-950">{item.data.title[lang]}</h1>
     <p class="mt-2 text-sm text-slate-500">
       {t.herbarium.locationLabel}: {item.data.location} ·{' '}
-      {item.data.date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+      {item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
     </p>
     {item.data.description?.[lang] && <p class="mt-4 max-w-2xl text-slate-700">{item.data.description[lang]}</p>}
 
@@ -46,27 +46,21 @@ const { item } = Astro.props;
     <ul class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {item.data.specimens.map((specimen) => (
         <li>
-          <div class="grid grid-cols-2 gap-1">
-            {specimen.wholePlantImage && (
-              <img
-                src={specimen.wholePlantImage}
-                alt={`${specimen.scientificName} — ${t.herbarium.wholePlantLabel}`}
-                loading="lazy"
-                decoding="async"
-                class="h-56 w-full rounded-lg object-cover"
-              />
-            )}
-            <img
-              src={specimen.image}
-              alt={`${specimen.scientificName} — ${t.herbarium.pressedSpecimenLabel}`}
-              loading="lazy"
-              decoding="async"
-              class:list={['h-56 w-full rounded-lg object-cover', !specimen.wholePlantImage && 'col-span-2']}
-            />
-          </div>
+          <img
+            src={specimen.image}
+            alt={specimen.scientificName}
+            loading="lazy"
+            decoding="async"
+            class="h-56 w-full rounded-lg object-cover"
+          />
           <p class="mt-2 text-sm font-semibold italic text-mangrove-900">{specimen.scientificName}</p>
           {specimen.localName && <p class="text-xs text-slate-600">{t.herbarium.localNameLabel}: {specimen.localName}</p>}
           {specimen.family && <p class="text-xs text-slate-500">{t.herbarium.familyLabel}: {specimen.family}</p>}
+          {specimen.preservationMethod && (
+            <p class="text-xs text-slate-500">
+              {t.herbarium.preservationLabel}: {specimen.preservationMethod}
+            </p>
+          )}
           {specimen.notes && <p class="mt-1 text-xs text-slate-600">{specimen.notes}</p>}
         </li>
       ))}

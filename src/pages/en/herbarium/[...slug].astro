@@ -46,13 +46,24 @@ const { item } = Astro.props;
     <ul class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {item.data.specimens.map((specimen) => (
         <li>
-          <img
-            src={specimen.image}
-            alt={specimen.scientificName}
-            loading="lazy"
-            decoding="async"
-            class="h-56 w-full rounded-lg object-cover"
-          />
+          <div class="grid grid-cols-2 gap-1">
+            {specimen.wholePlantImage && (
+              <img
+                src={specimen.wholePlantImage}
+                alt={`${specimen.scientificName} — ${t.herbarium.wholePlantLabel}`}
+                loading="lazy"
+                decoding="async"
+                class="h-56 w-full rounded-lg object-cover"
+              />
+            )}
+            <img
+              src={specimen.image}
+              alt={`${specimen.scientificName} — ${t.herbarium.pressedSpecimenLabel}`}
+              loading="lazy"
+              decoding="async"
+              class:list={['h-56 w-full rounded-lg object-cover', !specimen.wholePlantImage && 'col-span-2']}
+            />
+          </div>
           <p class="mt-2 text-sm font-semibold italic text-mangrove-900">{specimen.scientificName}</p>
           {specimen.localName && <p class="text-xs text-slate-600">{t.herbarium.localNameLabel}: {specimen.localName}</p>}
           {specimen.family && <p class="text-xs text-slate-500">{t.herbarium.familyLabel}: {specimen.family}</p>}

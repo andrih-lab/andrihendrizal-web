@@ -9,6 +9,9 @@ const t = useTranslations(lang);
 const series = (await getCollection('herbarium', (entry) => !entry.data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
+const faunaSeries = (await getCollection('wetSpecimens', (entry) => !entry.data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 ---
 
 <BaseLayout lang={lang} title={`${t.herbarium.title} — ${t.site.name}`} description={t.herbarium.description}>
@@ -16,22 +19,56 @@ const series = (await getCollection('herbarium', (entry) => !entry.data.draft)).
     <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.herbarium.title}</h1>
     <p class="mt-2 max-w-2xl text-slate-600">{t.herbarium.intro}</p>
 
+    <h2 class="mt-10 font-serif text-xl font-semibold text-mangrove-900">{t.herbarium.plantsHeading}</h2>
     {
       series.length === 0 ? (
-        <p class="mt-6 text-sm italic text-slate-500">{t.herbarium.empty}</p>
+        <p class="mt-4 text-sm italic text-slate-500">{t.herbarium.empty}</p>
       ) : (
-        <ul class="mt-8 grid gap-6 sm:grid-cols-2">
+        <ul class="mt-4 grid gap-6 sm:grid-cols-2">
           {series.map((item) => {
             const cover = item.data.specimens[0]?.image;
             return (
               <li class="overflow-hidden rounded-lg border border-mangrove-200">
                 {cover && <img src={cover} alt="" loading="lazy" decoding="async" class="h-48 w-full object-cover" />}
                 <div class="p-4">
-                  <h2 class="font-serif text-lg font-semibold text-mangrove-900">
+                  <h3 class="font-serif text-lg font-semibold text-mangrove-900">
                     <a href={`/${lang}/herbarium/${item.id}/`} class="hover:underline">
                       {item.data.title[lang]}
                     </a>
-                  </h2>
+                  </h3>
+                  <p class="mt-1 text-sm text-slate-500">
+                    {item.data.location} ·{' '}
+                    {item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </p>
+                  <p class="mt-2 text-sm text-slate-700">
+                    {item.data.specimens.length} {t.herbarium.specimensLabel}
+                  </p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      )
+    }
+
+    <h2 class="mt-12 font-serif text-xl font-semibold text-mangrove-900">{t.herbarium.faunaHeading}</h2>
+    <p class="mt-2 max-w-2xl text-sm text-slate-600">{t.herbarium.faunaIntro}</p>
+    {
+      faunaSeries.length === 0 ? (
+        <p class="mt-4 text-sm italic text-slate-500">{t.herbarium.faunaEmpty}</p>
+      ) : (
+        <ul class="mt-4 grid gap-6 sm:grid-cols-2">
+          {faunaSeries.map((item) => {
+            const cover = item.data.specimens[0]?.image;
+            return (
+              <li class="overflow-hidden rounded-lg border border-mangrove-200">
+                {cover && <img src={cover} alt="" loading="lazy" decoding="async" class="h-48 w-full object-cover" />}
+                <div class="p-4">
+                  <h3 class="font-serif text-lg font-semibold text-mangrove-900">
+                    <a href={`/${lang}/herbarium/fauna/${item.id}/`} class="hover:underline">
+                      {item.data.title[lang]}
+                    </a>
+                  </h3>
                   <p class="mt-1 text-sm text-slate-500">
                     {item.data.location} ·{' '}
                     {item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
