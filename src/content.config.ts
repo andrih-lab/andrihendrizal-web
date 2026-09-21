@@ -107,6 +107,17 @@ const microscopy = defineCollection({
     originalImage: z.string().optional(),
     image: z.string().optional(),
     additionalImages: z.array(z.string()).default([]),
+    // Preparat anatomi daun (opsional, isi yang relevan saja) — untuk
+    // anatomi daun lengkap biasanya dibuat 3-4 preparat dari satu daun:
+    // sayatan melintang (paling informatif: epidermis, kutikula, palisade/
+    // bunga karang, berkas pengangkut), dua sayatan paradermal (atas dan
+    // bawah, untuk bentuk sel epidermis/trikoma/stomata — stomata biasanya
+    // lebih banyak di permukaan bawah), dan sayatan melintang tangkai daun
+    // (petiol, untuk susunan berkas pengangkut).
+    transversalSection: z.string().optional(),
+    paradermalAdaxialSection: z.string().optional(),
+    paradermalAbaxialSection: z.string().optional(),
+    petioleSection: z.string().optional(),
     youtubeId: z.string().optional(),
     draft: z.boolean().default(true),
   }),

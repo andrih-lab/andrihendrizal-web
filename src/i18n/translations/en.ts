@@ -138,6 +138,13 @@ export const en = {
     empty: 'Microscopy documentation will be added soon.',
     magnificationLabel: 'Magnification',
     moreImagesLabel: 'More photos',
+    // Preparat anatomi daun — lihat komentar di src/content.config.ts untuk
+    // penjelasan tiap jenis sayatan.
+    leafSectionsLabel: 'Leaf anatomy preparations',
+    transversalLabel: 'Transversal section',
+    paradermalAdaxialLabel: 'Paradermal section (upper/adaxial)',
+    paradermalAbaxialLabel: 'Paradermal section (lower/abaxial)',
+    petioleLabel: 'Petiole cross-section',
   },
   publications: {
     title: 'Publications',

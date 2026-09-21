@@ -25,6 +25,12 @@ const items = (await getCollection('microscopy', (entry) => !entry.data.draft)).
             const extraImages = [item.data.originalImage, ...item.data.additionalImages].filter(
               (src): src is string => Boolean(src),
             );
+            const leafSections = [
+              { label: t.microscopy.transversalLabel, src: item.data.transversalSection },
+              { label: t.microscopy.paradermalAdaxialLabel, src: item.data.paradermalAdaxialSection },
+              { label: t.microscopy.paradermalAbaxialLabel, src: item.data.paradermalAbaxialSection },
+              { label: t.microscopy.petioleLabel, src: item.data.petioleSection },
+            ].filter((s): s is { label: string; src: string } => Boolean(s.src));
             return (
               <li class="overflow-hidden rounded-lg border border-mangrove-200">
                 {item.data.youtubeId ? (
@@ -72,6 +78,27 @@ const items = (await getCollection('microscopy', (entry) => !entry.data.draft)).
                             decoding="async"
                             class="h-20 w-full rounded object-cover"
                           />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {leafSections.length > 0 && (
+                    <div class="mt-3">
+                      <p class="text-xs font-medium uppercase tracking-wide text-slate-500">
+                        {t.microscopy.leafSectionsLabel}
+                      </p>
+                      <div class="mt-2 grid grid-cols-2 gap-2">
+                        {leafSections.map((section) => (
+                          <div>
+                            <img
+                              src={section.src}
+                              alt={`${item.data.caption[lang]} — ${section.label}`}
+                              loading="lazy"
+                              decoding="async"
+                              class="h-24 w-full rounded object-cover"
+                            />
+                            <p class="mt-1 text-xs text-slate-500">{section.label}</p>
+                          </div>
                         ))}
                       </div>
                     </div>

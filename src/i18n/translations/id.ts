@@ -137,6 +137,13 @@ export const id = {
     empty: 'Dokumentasi mikroskop akan ditambahkan segera.',
     magnificationLabel: 'Perbesaran',
     moreImagesLabel: 'Foto lainnya',
+    // Preparat anatomi daun — lihat komentar di src/content.config.ts untuk
+    // penjelasan tiap jenis sayatan.
+    leafSectionsLabel: 'Preparat anatomi daun',
+    transversalLabel: 'Sayatan transversal',
+    paradermalAdaxialLabel: 'Sayatan paradermal (atas/adaksial)',
+    paradermalAbaxialLabel: 'Sayatan paradermal (bawah/abaksial)',
+    petioleLabel: 'Sayatan melintang petiol',
   },
   publications: {
     title: 'Publikasi',
