@@ -129,6 +129,9 @@ export const en = {
     faunaIntro: 'Small invertebrates from the mangrove ecosystem — snails, shrimp, crabs — preserved in 70% ethanol.',
     faunaEmpty: 'Wet-specimen series will be added soon.',
     preservationLabel: 'Preservation',
+    filterCategory: 'Category',
+    filterAll: 'All',
+    filterNoResults: 'No series match this category.',
   },
   microscopy: {
     title: 'Microscopy Documentation',

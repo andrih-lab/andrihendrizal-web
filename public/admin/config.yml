@@ -271,6 +271,12 @@ collections:
         fields:
           - { name: "en", label: "English", widget: "string", required: false }
           - { name: "id", label: "Indonesia", widget: "string", required: false }
+      - name: "categories"
+        label: "Categories / Kategori (optional)"
+        widget: "list"
+        required: false
+        default: []
+        hint: "Bebas, satu kategori per baris — mis. \"Rumput\", \"Invasive Species\", \"Payakumbuh\". Dipakai untuk badge dan filter pencarian di halaman Herbarium."
       - name: "specimens"
         label: "Specimens / Spesimen"
         widget: "list"

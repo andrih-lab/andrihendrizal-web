@@ -12,6 +12,12 @@ const series = (await getCollection('herbarium', (entry) => !entry.data.draft)).
 const faunaSeries = (await getCollection('wetSpecimens', (entry) => !entry.data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
+
+// Daftar kategori unik dari seluruh seri tumbuhan, dipakai untuk isi
+// dropdown filter (Bagian 5 pola: sama seperti filter di halaman
+// Publications). Fauna belum punya kategori (Bagian 12: bisa ditambahkan
+// belakangan kalau kontennya sudah lebih banyak).
+const categories = [...new Set(series.flatMap((item) => item.data.categories))].sort((a, b) => a.localeCompare(b));
 ---
 
 <BaseLayout lang={lang} title={`${t.herbarium.title} — ${t.site.name}`} description={t.herbarium.description}>
@@ -24,30 +30,63 @@ const faunaSeries = (await getCollection('wetSpecimens', (entry) => !entry.data.
       series.length === 0 ? (
         <p class="mt-4 text-sm italic text-slate-500">{t.herbarium.empty}</p>
       ) : (
-        <ul class="mt-4 grid gap-6 sm:grid-cols-2">
-          {series.map((item) => {
-            const cover = item.data.specimens[0]?.image;
-            return (
-              <li class="overflow-hidden rounded-lg border border-mangrove-200">
-                {cover && <img src={cover} alt="" loading="lazy" decoding="async" class="h-48 w-full object-cover" />}
-                <div class="p-4">
-                  <h3 class="font-serif text-lg font-semibold text-mangrove-900">
-                    <a href={`/${lang}/herbarium/${item.id}/`} class="hover:underline">
-                      {item.data.title[lang]}
-                    </a>
-                  </h3>
-                  <p class="mt-1 text-sm text-slate-500">
-                    {item.data.location} ·{' '}
-                    {item.data.date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
-                  </p>
-                  <p class="mt-2 text-sm text-slate-700">
-                    {item.data.specimens.length} {t.herbarium.specimensLabel}
-                  </p>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+        <>
+          {categories.length > 0 && (
+            <form id="herbarium-filters" class="mt-4 flex flex-wrap items-end gap-4 text-sm">
+              <div>
+                <label for="filter-category" class="block text-slate-600">
+                  {t.herbarium.filterCategory}
+                </label>
+                <select id="filter-category" class="mt-1 rounded border border-mangrove-300 bg-white px-2 py-1">
+                  <option value="">{t.herbarium.filterAll}</option>
+                  {categories.map((c) => (
+                    <option value={c}>{c}</option>
+                  ))}
+                </select>
+              </div>
+              <p id="filter-empty-note" hidden class="w-full text-slate-500">
+                {t.herbarium.filterNoResults}
+              </p>
+            </form>
+          )}
+          <ul id="herbarium-list" class="mt-4 grid gap-6 sm:grid-cols-2">
+            {series.map((item) => {
+              const cover = item.data.specimens[0]?.image;
+              return (
+                <li
+                  data-series
+                  data-categories={item.data.categories.join('|')}
+                  class="overflow-hidden rounded-lg border border-mangrove-200"
+                >
+                  {cover && (
+                    <img src={cover} alt="" loading="lazy" decoding="async" class="h-48 w-full object-cover" />
+                  )}
+                  <div class="p-4">
+                    <h3 class="font-serif text-lg font-semibold text-mangrove-900">
+                      <a href={`/${lang}/herbarium/${item.id}/`} class="hover:underline">
+                        {item.data.title[lang]}
+                      </a>
+                    </h3>
+                    <p class="mt-1 text-sm text-slate-500">
+                      {item.data.location} ·{' '}
+                      {item.data.date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </p>
+                    <p class="mt-2 text-sm text-slate-700">
+                      {item.data.specimens.length} {t.herbarium.specimensLabel}
+                    </p>
+                    {item.data.categories.length > 0 && (
+                      <ul class="mt-2 flex flex-wrap gap-1">
+                        {item.data.categories.map((c) => (
+                          <li class="rounded bg-mangrove-100 px-1.5 py-0.5 text-xs text-slate-700">{c}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </>
       )
     }
 
@@ -85,3 +124,26 @@ const faunaSeries = (await getCollection('wetSpecimens', (entry) => !entry.data.
     }
   </section>
 </BaseLayout>
+
+<script>
+  // Penyaring progresif berdasarkan kategori (pola sama seperti filter di
+  // halaman Publications). Tanpa JS, seluruh seri tetap tampil dan terbaca
+  // penuh — skrip ini hanya lapisan kenyamanan opsional.
+  const categorySelect = document.getElementById('filter-category') as HTMLSelectElement | null;
+  const emptyNote = document.getElementById('filter-empty-note');
+  const items = Array.from(document.querySelectorAll<HTMLElement>('#herbarium-list [data-series]'));
+
+  function applyFilters() {
+    const category = categorySelect?.value ?? '';
+    let visibleCount = 0;
+    for (const item of items) {
+      const categories = (item.dataset.categories ?? '').split('|');
+      const visible = !category || categories.includes(category);
+      item.hidden = !visible;
+      if (visible) visibleCount++;
+    }
+    if (emptyNote) emptyNote.hidden = visibleCount !== 0;
+  }
+
+  categorySelect?.addEventListener('change', applyFilters);
+</script>

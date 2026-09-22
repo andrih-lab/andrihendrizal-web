@@ -128,6 +128,9 @@ export const id = {
     faunaIntro: 'Invertebrata kecil dari ekosistem mangrove — siput, udang, kepiting — diawetkan dalam alkohol 70%.',
     faunaEmpty: 'Seri awetan basah akan ditambahkan segera.',
     preservationLabel: 'Pengawetan',
+    filterCategory: 'Kategori',
+    filterAll: 'Semua',
+    filterNoResults: 'Tidak ada seri yang cocok dengan kategori ini.',
   },
   microscopy: {
     title: 'Dokumentasi Mikroskop',

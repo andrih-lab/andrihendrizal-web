@@ -136,6 +136,11 @@ const herbarium = defineCollection({
     location: z.string(),
     date: z.coerce.date(),
     description: z.object({ en: z.string(), id: z.string() }).optional(),
+    // Kategori bebas, ditulis manual per seri (mis. "Rumput", "Invasive
+    // Species", "Payakumbuh") — dipakai untuk badge dan filter pencarian
+    // di halaman Herbarium. Sengaja bukan enum tetap karena kategorinya
+    // memang dimaksudkan tumbuh seiring koleksi bertambah.
+    categories: z.array(z.string()).default([]),
     specimens: z
       .array(
         z.object({
