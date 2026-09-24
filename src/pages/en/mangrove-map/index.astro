@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import MangroveMap from '../../../components/MangroveMap.astro';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const staticMaps = [
+  { key: 'eksisting', label: t.mangroveMap.eksistingLabel },
+  { key: 'potensi', label: t.mangroveMap.potensiLabel },
+];
+---
+
+<BaseLayout lang={lang} title={`${t.mangroveMap.title} — ${t.site.name}`} description={t.mangroveMap.description}>
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.mangroveMap.title}</h1>
+    <p class="mt-2 max-w-2xl text-slate-600">{t.mangroveMap.intro}</p>
+
+    <MangroveMap lang={lang} />
+
+    <div class="mt-12">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.mangroveMap.staticHeading}</h2>
+      <p class="mt-2 max-w-2xl text-sm text-slate-600">{t.mangroveMap.staticIntro}</p>
+      <ul class="mt-4 grid gap-4 sm:grid-cols-2">
+        {
+          staticMaps.map((m) => (
+            <li class="overflow-hidden rounded-lg border border-mangrove-200">
+              <img
+                src={`/mangrove-map/peta-mangrove-${m.key}-en.png`}
+                alt={m.label}
+                loading="lazy"
+                decoding="async"
+                class="w-full object-cover"
+              />
+              <div class="flex items-center justify-between gap-2 p-3 text-sm">
+                <span class="font-medium text-mangrove-900">{m.label}</span>
+                <span class="flex gap-3">
+                  <a
+                    href={`/mangrove-map/peta-mangrove-${m.key}-en.png`}
+                    download
+                    class="text-mangrove-700 hover:underline"
+                  >
+                    {t.mangroveMap.downloadPng}
+                  </a>
+                  <a
+                    href={`/mangrove-map/peta-mangrove-${m.key}-en.pdf`}
+                    download
+                    class="text-mangrove-700 hover:underline"
+                  >
+                    {t.mangroveMap.downloadPdf}
+                  </a>
+                </span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

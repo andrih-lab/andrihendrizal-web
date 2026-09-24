@@ -16,6 +16,7 @@ export const id = {
     mangroveGuide: 'Panduan Mangrove',
     herbarium: 'Herbarium',
     microscopy: 'Mikroskop',
+    mangroveMap: 'Peta Mangrove',
     publications: 'Publikasi',
     writing: 'Tulisan',
     courses: 'Kursus',
@@ -131,6 +132,29 @@ export const id = {
     filterCategory: 'Kategori',
     filterAll: 'Semua',
     filterNoResults: 'Tidak ada seri yang cocok dengan kategori ini.',
+  },
+  mangroveMap: {
+    title: 'Peta Sebaran Mangrove',
+    description:
+      'Peta interaktif dan peta acuan luas mangrove Indonesia per provinsi tahun 2024, berdasarkan Keputusan Peta Mangrove Nasional.',
+    intro:
+      'Luas mangrove eksisting dan luas potensi habitat mangrove per provinsi, tahun 2024, berdasarkan Peta Mangrove Nasional. Klik provinsi untuk melihat angkanya; halaman ini memetakan total per provinsi, bukan per bidang mangrove individual — lihat catatan di bawah untuk alasannya.',
+    mapLabel: 'Peta interaktif luas mangrove per provinsi',
+    metricLabel: 'Metrik',
+    eksistingLabel: 'Mangrove Eksisting',
+    potensiLabel: 'Potensi Habitat',
+    provinceLabel: 'Provinsi',
+    unitHa: 'Ha',
+    noData: 'tidak ada data',
+    streetBasemap: 'Peta Jalan',
+    satelliteBasemap: 'Citra Satelit',
+    sourceNote:
+      'Sumber: Keputusan Menteri Kehutanan RI No. 594 Tahun 2025 tentang Peta Mangrove Nasional Tahun 2024, Lampiran II (hanya total per provinsi — dokumen sumber tidak menyertakan geometri per-bidang mangrove). Batas provinsi: Indonesia GeoJSON & TopoJSON Maps (38 Provinces) oleh denyherianto, CC BY 4.0.',
+    staticHeading: 'Peta Statis Acuan',
+    staticIntro:
+      'Versi siap cetak dari peta di atas, dilengkapi skala, arah utara, grid koordinat, dan inset lokasi Asia Tenggara — untuk sitasi, laporan, atau presentasi.',
+    downloadPng: 'Unduh PNG (300 dpi)',
+    downloadPdf: 'Unduh PDF (vektor)',
   },
   microscopy: {
     title: 'Dokumentasi Mikroskop',

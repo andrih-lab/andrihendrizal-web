@@ -17,6 +17,7 @@ export const en = {
     mangroveGuide: 'Mangrove ID Guide',
     herbarium: 'Herbarium',
     microscopy: 'Microscopy',
+    mangroveMap: 'Mangrove Map',
     publications: 'Publications',
     writing: 'Writing',
     courses: 'Courses',
@@ -132,6 +133,29 @@ export const en = {
     filterCategory: 'Category',
     filterAll: 'All',
     filterNoResults: 'No series match this category.',
+  },
+  mangroveMap: {
+    title: 'Mangrove Distribution Map',
+    description:
+      "Interactive and reference maps of Indonesia's mangrove area by province, 2024, based on the National Mangrove Map decree.",
+    intro:
+      "Existing mangrove area and potential mangrove habitat area by province, 2024, based on Indonesia's National Mangrove Map. Click a province to see its figures; this page currently maps province-level totals, not individual mangrove patches — see the note below for why.",
+    mapLabel: 'Interactive map of mangrove area by province',
+    metricLabel: 'Metric',
+    eksistingLabel: 'Existing Mangrove',
+    potensiLabel: 'Potential Habitat',
+    provinceLabel: 'Province',
+    unitHa: 'ha',
+    noData: 'no data',
+    streetBasemap: 'Streets',
+    satelliteBasemap: 'Satellite',
+    sourceNote:
+      'Source: Decree of the Indonesian Minister of Forestry No. 594/2025 on the 2024 National Mangrove Map, Annex II (province-level totals only — the source document does not include per-polygon mangrove geometry). Province boundaries: Indonesia GeoJSON & TopoJSON Maps (38 Provinces) by denyherianto, CC BY 4.0.',
+    staticHeading: 'Static Reference Maps',
+    staticIntro:
+      'Print-ready versions of the map above, with scale bar, north arrow, coordinate grid, and a Southeast Asia locator inset — for citation, reports, or presentations.',
+    downloadPng: 'Download PNG (300 dpi)',
+    downloadPdf: 'Download PDF (vector)',
   },
   microscopy: {
     title: 'Microscopy Documentation',

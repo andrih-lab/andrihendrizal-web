@@ -16,3 +16,8 @@ node_modules/
 # misc
 .DS_Store
 npm-debug.log*
+Rplots.pdf
+
+# hasil skrip R lokal (bukan sumber) — sudah disalin ke public/mangrove-map/
+# untuk yang dipakai situs, lihat scripts/mangrove-map/README.md
+scripts/mangrove-map/output/

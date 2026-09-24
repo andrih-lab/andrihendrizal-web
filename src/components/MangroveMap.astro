@@ -1,0 +1,242 @@
+---
+// Peta choropleth luas mangrove per provinsi (Bagian 8: "Situs harus tetap
+// terbaca tanpa JavaScript aktif, kecuali peta"). Data digabung lewat
+// scripts/mangrove-map/01_join_and_export_web.R dari Lampiran II SK
+// Menteri Kehutanan No. 594/2025 — lihat scripts/mangrove-map/SOURCES.md
+// untuk detail sumber & lisensi. Konten yang sama (tabel provinsi)
+// disediakan di dalam <noscript> untuk pengunjung tanpa JS.
+import { useTranslations } from '../i18n/utils';
+import type { Locale } from '../i18n/config';
+import mangroveGeoJson from '../../public/data/mangrove-provinsi-2024.geojson?raw';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const geo = JSON.parse(mangroveGeoJson) as {
+  features: {
+    properties: {
+      provinsi: string;
+      mangrove_eksisting_ha: number | null;
+      potensi_habitat_ha: number | null;
+    };
+  }[];
+};
+
+const tableRows = geo.features
+  .map((f) => f.properties)
+  .filter((p) => p.mangrove_eksisting_ha !== null)
+  .sort((a, b) => (b.mangrove_eksisting_ha ?? 0) - (a.mangrove_eksisting_ha ?? 0));
+
+function fmt(n: number | null, localeTag: string) {
+  if (n === null) return '-';
+  return n.toLocaleString(localeTag);
+}
+const localeTag = lang === 'id' ? 'id-ID' : 'en-US';
+---
+
+<div class="mt-6">
+  <div class="flex flex-wrap items-center gap-3 text-sm">
+    <span class="font-medium text-slate-600">{t.mangroveMap.metricLabel}:</span>
+    <div role="group" aria-label={t.mangroveMap.metricLabel} class="flex overflow-hidden rounded-md border border-mangrove-300">
+      <button type="button" id="metric-eksisting" data-metric="mangrove_eksisting_ha" class="px-3 py-1.5 text-xs font-medium">
+        {t.mangroveMap.eksistingLabel}
+      </button>
+      <button type="button" id="metric-potensi" data-metric="potensi_habitat_ha" class="border-l border-mangrove-300 px-3 py-1.5 text-xs font-medium">
+        {t.mangroveMap.potensiLabel}
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mangrove-map"
+    class="mt-3 h-[32rem] w-full rounded-lg border border-mangrove-200"
+    aria-label={t.mangroveMap.mapLabel}
+  >
+  </div>
+  <script type="application/json" id="mangrove-map-data" set:html={mangroveGeoJson} />
+  <script
+    type="application/json"
+    id="mangrove-map-i18n"
+    set:html={JSON.stringify({
+      eksistingLabel: t.mangroveMap.eksistingLabel,
+      potensiLabel: t.mangroveMap.potensiLabel,
+      unitHa: t.mangroveMap.unitHa,
+      noData: t.mangroveMap.noData,
+      streetBasemap: t.mangroveMap.streetBasemap,
+      satelliteBasemap: t.mangroveMap.satelliteBasemap,
+      localeTag,
+    })}
+  />
+
+  <div id="mangrove-legend" class="mt-3 flex flex-wrap items-center gap-3 text-xs text-slate-600"></div>
+
+  <p class="mt-3 max-w-2xl text-xs text-slate-500">
+    {t.mangroveMap.sourceNote}
+  </p>
+
+  <noscript>
+    <div class="mt-4 overflow-x-auto">
+      <table class="w-full min-w-[24rem] text-left text-sm">
+        <thead>
+          <tr class="border-b border-mangrove-300 text-slate-500">
+            <th scope="col" class="py-2 pr-4 font-semibold">{t.mangroveMap.provinceLabel}</th>
+            <th scope="col" class="py-2 pr-4 font-semibold">{t.mangroveMap.eksistingLabel} (Ha)</th>
+            <th scope="col" class="py-2 font-semibold">{t.mangroveMap.potensiLabel} (Ha)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            tableRows.map((row) => (
+              <tr class="border-b border-mangrove-100">
+                <td class="py-2 pr-4 text-slate-700">{row.provinsi}</td>
+                <td class="py-2 pr-4 text-slate-600">{fmt(row.mangrove_eksisting_ha, localeTag)}</td>
+                <td class="py-2 text-slate-600">{fmt(row.potensi_habitat_ha, localeTag)}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </noscript>
+</div>
+
+<script>
+  import L from 'leaflet';
+  import 'leaflet/dist/leaflet.css';
+  import type { FeatureCollection } from 'geojson';
+
+  interface ProvinceProps {
+    provinsi: string;
+    kode_prov: string;
+    pulau_gugus: string;
+    mangrove_eksisting_ha: number | null;
+    potensi_habitat_ha: number | null;
+  }
+
+  const dataEl = document.getElementById('mangrove-map-data');
+  const i18nEl = document.getElementById('mangrove-map-i18n');
+  const mapEl = document.getElementById('mangrove-map');
+  const legendEl = document.getElementById('mangrove-legend');
+  const btnEksisting = document.getElementById('metric-eksisting');
+  const btnPotensi = document.getElementById('metric-potensi');
+
+  if (dataEl?.textContent && i18nEl?.textContent && mapEl && legendEl && btnEksisting && btnPotensi) {
+    const geo: FeatureCollection<any, ProvinceProps> = JSON.parse(dataEl.textContent);
+    const i18n = JSON.parse(i18nEl.textContent) as {
+      eksistingLabel: string;
+      potensiLabel: string;
+      unitHa: string;
+      noData: string;
+      streetBasemap: string;
+      satelliteBasemap: string;
+      localeTag: string;
+    };
+
+    // Palet mengikuti src/styles/global.css (--color-mangrove-*).
+    const palette = ['#f1faf4', '#dcf2e4', '#b8e5c9', '#86cfa4', '#1a8a4f', '#0d4429'];
+
+    type Metric = 'mangrove_eksisting_ha' | 'potensi_habitat_ha';
+    let activeMetric: Metric = 'mangrove_eksisting_ha';
+
+    function quantileBreaks(values: number[], n: number): number[] {
+      const sorted = [...values].sort((a, b) => a - b);
+      const breaks: number[] = [];
+      for (let i = 0; i <= n; i++) {
+        const idx = Math.min(sorted.length - 1, Math.round((i / n) * (sorted.length - 1)));
+        breaks.push(sorted[idx]);
+      }
+      return breaks;
+    }
+
+    function colorFor(value: number | null, breaks: number[]): string {
+      if (value === null) return '#e5e7eb';
+      for (let i = 0; i < palette.length; i++) {
+        if (value <= breaks[i + 1]) return palette[i];
+      }
+      return palette[palette.length - 1];
+    }
+
+    function fmtNum(n: number | null): string {
+      if (n === null) return i18n.noData;
+      return `${n.toLocaleString(i18n.localeTag)} ${i18n.unitHa}`;
+    }
+
+    const map = L.map(mapEl).setView([-2, 117], 5);
+
+    const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+    });
+    const satelliteLayer = L.tileLayer(
+      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      { attribution: 'Tiles &copy; Esri', maxZoom: 18 },
+    );
+    streetLayer.addTo(map);
+    L.control
+      .layers({ [i18n.streetBasemap]: streetLayer, [i18n.satelliteBasemap]: satelliteLayer })
+      .addTo(map);
+
+    let geoLayer: L.GeoJSON;
+
+    function renderLegend(breaks: number[]) {
+      legendEl!.innerHTML = '';
+      for (let i = 0; i < palette.length; i++) {
+        const item = document.createElement('span');
+        item.className = 'flex items-center gap-1.5';
+        const swatch = document.createElement('span');
+        swatch.className = 'inline-block h-3 w-3 rounded-sm';
+        swatch.style.backgroundColor = palette[i];
+        const label = document.createElement('span');
+        label.textContent = `${Math.round(breaks[i]).toLocaleString(i18n.localeTag)}-${Math.round(breaks[i + 1]).toLocaleString(i18n.localeTag)}`;
+        item.append(swatch, label);
+        legendEl!.appendChild(item);
+      }
+    }
+
+    function draw() {
+      const values = geo.features
+        .map((f) => f.properties[activeMetric])
+        .filter((v): v is number => v !== null);
+      const breaks = quantileBreaks(values, palette.length);
+
+      if (geoLayer) geoLayer.remove();
+      geoLayer = L.geoJSON(geo, {
+        style: (feature) => ({
+          fillColor: colorFor(feature?.properties[activeMetric] ?? null, breaks),
+          fillOpacity: 0.8,
+          color: '#ffffff',
+          weight: 1,
+        }),
+        onEachFeature: (feature, layer) => {
+          const p = feature.properties as ProvinceProps;
+          layer.bindPopup(
+            `<strong>${p.provinsi}</strong><br>${i18n.eksistingLabel}: ${fmtNum(p.mangrove_eksisting_ha)}<br>${i18n.potensiLabel}: ${fmtNum(p.potensi_habitat_ha)}`,
+          );
+          layer.on('mouseover', () => (layer as L.Path).setStyle({ weight: 2.5 }));
+          layer.on('mouseout', () => (layer as L.Path).setStyle({ weight: 1 }));
+        },
+      }).addTo(map);
+
+      renderLegend(breaks);
+
+      const isEksisting = activeMetric === 'mangrove_eksisting_ha';
+      btnEksisting!.className = `px-3 py-1.5 text-xs font-medium ${isEksisting ? 'bg-mangrove-700 text-white' : 'bg-white text-slate-700 hover:bg-mangrove-50'}`;
+      btnPotensi!.className = `border-l border-mangrove-300 px-3 py-1.5 text-xs font-medium ${!isEksisting ? 'bg-mangrove-700 text-white' : 'bg-white text-slate-700 hover:bg-mangrove-50'}`;
+    }
+
+    btnEksisting.addEventListener('click', () => {
+      activeMetric = 'mangrove_eksisting_ha';
+      draw();
+    });
+    btnPotensi.addEventListener('click', () => {
+      activeMetric = 'potensi_habitat_ha';
+      draw();
+    });
+
+    draw();
+  }
+</script>
