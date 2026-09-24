@@ -156,6 +156,11 @@ export const en = {
       'Print-ready versions of the map above, with scale bar, north arrow, coordinate grid, and a Southeast Asia locator inset — for citation, reports, or presentations.',
     downloadPng: 'Download PNG (300 dpi)',
     downloadPdf: 'Download PDF (vector)',
+    citeHeading: 'How to Cite',
+    citeIntro:
+      'This map is an original work by Andri Hendrizal, compiled from public data, and is released under a Creative Commons Attribution 4.0 (CC BY 4.0) license — you are free to reuse and adapt it, including commercially, as long as you credit the source below.',
+    citeCopy: 'Copy citation',
+    citeCopied: 'Copied',
   },
   microscopy: {
     title: 'Microscopy Documentation',

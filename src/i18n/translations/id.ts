@@ -155,6 +155,11 @@ export const id = {
       'Versi siap cetak dari peta di atas, dilengkapi skala, arah utara, grid koordinat, dan inset lokasi Asia Tenggara — untuk sitasi, laporan, atau presentasi.',
     downloadPng: 'Unduh PNG (300 dpi)',
     downloadPdf: 'Unduh PDF (vektor)',
+    citeHeading: 'Cara Mengutip',
+    citeIntro:
+      'Peta ini adalah karya orisinal Andri Hendrizal, disusun dari data publik, dan dirilis di bawah lisensi Creative Commons Attribution 4.0 (CC BY 4.0) — boleh dipakai ulang dan diadaptasi, termasuk untuk keperluan komersial, selama mencantumkan sumber di bawah ini.',
+    citeCopy: 'Salin sitasi',
+    citeCopied: 'Tersalin',
   },
   microscopy: {
     title: 'Dokumentasi Mikroskop',

@@ -57,5 +57,59 @@ const staticMaps = [
         }
       </ul>
     </div>
+
+    <div class="mt-12">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.mangroveMap.citeHeading}</h2>
+      <p class="mt-2 max-w-2xl text-sm text-slate-600">{t.mangroveMap.citeIntro}</p>
+      <div class="mt-3 flex items-start justify-between gap-3 rounded-lg border border-mangrove-200 bg-mangrove-50 p-4">
+        <code id="mangrove-citation" class="text-sm text-slate-700">
+          Hendrizal, A. (2026). Indonesia Mangrove Distribution Map by Province, 2024. andrihendrizal.com. Data:
+          Indonesian Ministry of Forestry, Decree No. 594/2025. https://andrihendrizal.com/en/mangrove-map/
+        </code>
+        <button
+          type="button"
+          id="mangrove-citation-copy"
+          data-label-copy={t.mangroveMap.citeCopy}
+          data-label-copied={t.mangroveMap.citeCopied}
+          class="shrink-0 rounded-md border border-mangrove-300 bg-white px-3 py-1.5 text-xs font-medium text-mangrove-700 hover:bg-mangrove-100"
+        >
+          {t.mangroveMap.citeCopy}
+        </button>
+      </div>
+    </div>
   </section>
 </BaseLayout>
+
+<script>
+  const btn = document.getElementById('mangrove-citation-copy');
+  const text = document.getElementById('mangrove-citation');
+
+  function selectCitationText() {
+    if (!text) return;
+    const range = document.createRange();
+    range.selectNodeContents(text);
+    const selection = window.getSelection();
+    selection?.removeAllRanges();
+    selection?.addRange(range);
+  }
+
+  btn?.addEventListener('click', async () => {
+    if (!text) return;
+    const value = text.textContent?.trim().replace(/\s+/g, ' ') ?? '';
+    const original = btn.getAttribute('data-label-copy');
+    let copied = false;
+    try {
+      await navigator.clipboard.writeText(value);
+      copied = true;
+    } catch {
+      // Clipboard permission denied (common in older browsers/certain
+      // contexts) — select the text instead so the user can copy manually
+      // (Ctrl/Cmd+C).
+      selectCitationText();
+    }
+    btn.textContent = copied ? btn.getAttribute('data-label-copied') : original;
+    setTimeout(() => {
+      if (original) btn.textContent = original;
+    }, 2000);
+  });
+</script>

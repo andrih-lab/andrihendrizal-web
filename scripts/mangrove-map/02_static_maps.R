@@ -62,9 +62,9 @@ make_static_map <- function(value_col, lang) {
         legend = "Luas (Ha)"
       ),
       caption = paste0(
-        "Sumber: Keputusan Menteri Kehutanan RI No. 594 Tahun 2025 tentang Peta Mangrove Nasional Tahun 2024, Lampiran II.\n",
+        "Sumber data: Keputusan Menteri Kehutanan RI No. 594 Tahun 2025 tentang Peta Mangrove Nasional Tahun 2024, Lampiran II.\n",
         "Batas provinsi: Indonesia GeoJSON & TopoJSON Maps (38 Provinces) oleh denyherianto, CC BY 4.0.\n",
-        "Dibuat oleh Andri Hendrizal - andrihendrizal.com"
+        "(c) 2026 Andri Hendrizal, andrihendrizal.com - Peta dirilis di bawah lisensi CC BY 4.0"
       )
     ),
     en = list(
@@ -77,9 +77,9 @@ make_static_map <- function(value_col, lang) {
         legend = "Area (ha)"
       ),
       caption = paste0(
-        "Source: Decree of the Indonesian Minister of Forestry No. 594/2025 on the 2024 National Mangrove Map, Annex II.\n",
+        "Data source: Decree of the Indonesian Minister of Forestry No. 594/2025 on the 2024 National Mangrove Map, Annex II.\n",
         "Province boundaries: Indonesia GeoJSON & TopoJSON Maps (38 Provinces) by denyherianto, CC BY 4.0.\n",
-        "Map by Andri Hendrizal - andrihendrizal.com"
+        "(c) 2026 Andri Hendrizal, andrihendrizal.com - map released under CC BY 4.0"
       )
     )
   )
