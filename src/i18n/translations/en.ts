@@ -12,6 +12,7 @@ export const en = {
   },
   nav: {
     label: 'Primary navigation',
+    menu: 'Menu',
     home: 'Home',
     research: 'Research',
     mangroveGuide: 'Mangrove ID Guide',
@@ -144,6 +145,8 @@ export const en = {
     metricLabel: 'Metric',
     eksistingLabel: 'Existing Mangrove',
     potensiLabel: 'Potential Habitat',
+    metricHelp:
+      'Existing Mangrove: current mangrove cover. Potential Habitat: coastal land not currently covered by mangrove but suitable for mangrove rehabilitation (e.g. former aquaculture ponds or degraded mangrove land).',
     provinceLabel: 'Province',
     unitHa: 'ha',
     noData: 'no data',

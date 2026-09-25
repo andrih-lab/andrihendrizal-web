@@ -11,6 +11,7 @@ export const id = {
   },
   nav: {
     label: 'Navigasi utama',
+    menu: 'Menu',
     home: 'Beranda',
     research: 'Riset',
     mangroveGuide: 'Panduan Mangrove',
@@ -143,6 +144,8 @@ export const id = {
     metricLabel: 'Metrik',
     eksistingLabel: 'Mangrove Eksisting',
     potensiLabel: 'Potensi Habitat',
+    metricHelp:
+      'Mangrove Eksisting: luas tutupan mangrove yang ada saat ini. Potensi Habitat: luas lahan di kawasan pesisir yang belum bertutupan mangrove namun sesuai/berpotensi untuk direhabilitasi menjadi mangrove (mis. bekas tambak atau lahan mangrove yang rusak).',
     provinceLabel: 'Provinsi',
     unitHa: 'Ha',
     noData: 'tidak ada data',

@@ -50,10 +50,11 @@ const localeTag = lang === 'id' ? 'id-ID' : 'en-US';
       </button>
     </div>
   </div>
+  <p class="mt-2 max-w-2xl text-xs text-slate-500">{t.mangroveMap.metricHelp}</p>
 
   <div
     id="mangrove-map"
-    class="mt-3 h-[32rem] w-full rounded-lg border border-mangrove-200"
+    class="mt-3 aspect-[4/3] w-full rounded-lg border border-mangrove-200 sm:aspect-auto sm:h-[32rem]"
     aria-label={t.mangroveMap.mapLabel}
   >
   </div>
@@ -165,7 +166,11 @@ const localeTag = lang === 'id' ? 'id-ID' : 'en-US';
       return `${n.toLocaleString(i18n.localeTag)} ${i18n.unitHa}`;
     }
 
-    const map = L.map(mapEl).setView([-2, 117], 5);
+    // Tanpa titik awal tetap: fitBounds di bawah (sekali, setelah data
+    // pertama dimuat) menyesuaikan zoom otomatis ke lebar peta yang
+    // sebenarnya — penting di layar sempit (HP), karena zoom level tetap
+    // yang pas di desktop akan memotong sebagian wilayah di layar sempit.
+    const map = L.map(mapEl);
 
     const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -181,6 +186,7 @@ const localeTag = lang === 'id' ? 'id-ID' : 'en-US';
       .addTo(map);
 
     let geoLayer: L.GeoJSON;
+    let hasFitBounds = false;
 
     function renderLegend(breaks: number[]) {
       legendEl!.innerHTML = '';
@@ -220,6 +226,15 @@ const localeTag = lang === 'id' ? 'id-ID' : 'en-US';
           layer.on('mouseout', () => (layer as L.Path).setStyle({ weight: 1 }));
         },
       }).addTo(map);
+
+      if (!hasFitBounds) {
+        // invalidateSize dulu — tanpa ini Leaflet kadang masih memakai
+        // ukuran kontainer sebelum CSS selesai diterapkan (terutama di
+        // layar sempit), sehingga fitBounds menghitung zoom yang salah.
+        map.invalidateSize();
+        map.fitBounds(geoLayer.getBounds(), { padding: [8, 8] });
+        hasFitBounds = true;
+      }
 
       renderLegend(breaks);
 
