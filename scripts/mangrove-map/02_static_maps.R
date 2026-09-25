@@ -17,6 +17,7 @@ suppressPackageStartupMessages({
   library(rnaturalearth)
   library(patchwork)
   library(classInt)
+  library(ggrepel)
 })
 
 out_dir <- "scripts/mangrove-map/output"
@@ -24,6 +25,17 @@ dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 
 idn <- st_read("public/data/mangrove-provinsi-2024.geojson", quiet = TRUE) %>%
   st_make_valid()
+
+# Titik label nama provinsi: st_point_on_surface (bukan centroid) supaya
+# titiknya selalu jatuh di dalam poligon, penting untuk provinsi berbentuk
+# kepulauan/tidak cembung (mis. Kepulauan Riau, Maluku).
+label_pts <- suppressWarnings(st_point_on_surface(idn))
+label_coords <- st_coordinates(label_pts)
+label_df <- data.frame(
+  provinsi = idn$provinsi,
+  X = label_coords[, 1],
+  Y = label_coords[, 2]
+)
 
 # Warna mengikuti palet mangrove situs (src/styles/global.css) supaya
 # konsisten dengan gaya visual andrihendrizal.com.
@@ -103,6 +115,14 @@ make_static_map <- function(value_col, lang) {
       name = lab$legend,
       na.translate = FALSE
     ) +
+    geom_text_repel(
+      data = label_df, aes(x = X, y = Y, label = provinsi), inherit.aes = FALSE,
+      size = 2.1, color = "#1f2937", fontface = "plain",
+      bg.color = "white", bg.r = 0.1,
+      seed = 42, max.overlaps = 30, max.time = 2,
+      segment.size = 0.2, segment.color = "grey40", segment.alpha = 0.7,
+      min.segment.length = 0.1, box.padding = 0.15, force = 1.2
+    ) +
     annotation_scale(location = "bl", width_hint = 0.25) +
     annotation_north_arrow(
       location = "tr", which_north = "true",
@@ -118,7 +138,10 @@ make_static_map <- function(value_col, lang) {
       legend.position = "right"
     )
 
-  p_final <- p + inset_element(make_inset(), left = 0.72, bottom = 0.05, right = 0.99, top = 0.35)
+  # Kotak inset dikecilkan & ditempatkan di pojok kanan-bawah agar tidak
+  # menimpa label "Papua Selatan" (titik labelnya di lat -6.85, sedikit di
+  # atas batas atas kotak ini).
+  p_final <- p + inset_element(make_inset(), left = 0.85, bottom = 0.02, right = 0.995, top = 0.20)
 
   slug <- paste0(which_layer, "-", lang)
   ggsave(file.path(out_dir, paste0("peta-mangrove-", slug, ".png")), p_final,
