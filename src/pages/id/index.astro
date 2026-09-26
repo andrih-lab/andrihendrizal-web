@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { talks } from '../../data/talks';
 import { useTranslations } from '../../i18n/utils';
 import { academicProfiles } from '../../data/profiles';
 import { getPublications, isSiteOwner } from '../../lib/openalex';
@@ -8,6 +9,7 @@ import { portraits } from '../../data/portraits';
 
 const lang = 'id';
 const t = useTranslations(lang);
+const latestTalk = talks[0];
 
 const publications = await getPublications();
 const recentPublications = publications.slice(0, 3);
@@ -73,6 +75,41 @@ const personJsonLd = {
       <p class="mt-3 max-w-2xl text-sm text-slate-600">{t.home.internationalNote}</p>
       <p class="mt-3 max-w-2xl text-sm text-slate-600">{t.home.backgroundNote}</p>
     </div>
+
+    {
+      latestTalk && (
+        <div class="mt-10">
+          <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.home.latestTalkHeading}</h2>
+          <a
+            href={`/${lang}/talks/#${latestTalk.id}`}
+            class="group mt-4 flex flex-col gap-4 rounded-lg border border-mangrove-200 bg-mangrove-50 p-4 transition-colors hover:border-sun-400 sm:flex-row sm:items-center"
+          >
+            {latestTalk.youtubeId && (
+              <span class="relative block shrink-0 overflow-hidden rounded-md sm:w-56">
+                <img
+                  src={`https://i.ytimg.com/vi/${latestTalk.youtubeId}/hqdefault.jpg`}
+                  alt=""
+                  width="480"
+                  height="360"
+                  loading="lazy"
+                  class="aspect-video w-full object-cover"
+                />
+                <span class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                  <span class="flex h-11 w-11 items-center justify-center rounded-full bg-sun-400 text-lg text-brand-950 shadow-md transition-transform group-hover:scale-110">▶</span>
+                </span>
+              </span>
+            )}
+            <span class="block">
+              <span class="block text-xs font-semibold uppercase tracking-wide text-sun-700">
+                {latestTalk.eventShort} · {latestTalk.location[lang]} · {latestTalk.dateLabel[lang]}
+              </span>
+              <span class="mt-1 block font-semibold text-mangrove-900 group-hover:underline">{latestTalk.title}</span>
+              <span class="mt-2 block text-sm text-mangrove-700">{t.home.latestTalkCta} →</span>
+            </span>
+          </a>
+        </div>
+      )
+    }
 
     <div class="mt-10">
       <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.home.focusHeading}</h2>

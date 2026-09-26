@@ -23,6 +23,7 @@ export const id = {
     courses: 'Kursus',
     books: 'Buku',
     grants: 'Hibah',
+    talks: 'Presentasi',
     santaiSejenak: 'Santai Sejenak',
     cv: 'CV',
     contact: 'Kontak',
@@ -63,6 +64,8 @@ export const id = {
     intro:
       'Andri Hendrizal adalah dosen dan peneliti di Departemen Manajemen Sumberdaya Perairan, Universitas Riau, serta mahasiswa PhD (by Research) di Institute of Biological Sciences, Universiti Malaya. Fokus risetnya adalah ekologi mangrove, dengan minat tambahan pada blue carbon dan pengetahuan ekologi lokal, bertumpu pada pemantauan lapangan jangka panjang di pesisir mangrove Riau dan sesekali didukung penginderaan jauh, GIS, serta pemetaan berbasis drone. Ia juga sesekali meneliti literasi biologi dan literasi lingkungan di pendidikan tinggi. Pada 2023–2024 ia menjabat sebagai Ocean Account Research and Engagement Consultant untuk World Resources Institute (WRI) Indonesia, dan risetnya didukung hibah dari Universitas Riau serta Kementerian Pendidikan Tinggi, Sains, dan Teknologi.',
     focusHeading: 'Fokus Riset',
+    latestTalkHeading: 'Presentasi Terbaru',
+    latestTalkCta: 'Semua presentasi',
     contributionStatement:
       'Risetnya memadukan ilmu blue carbon dengan pengetahuan ekologi lokal untuk mendukung pengelolaan mangrove berbasis masyarakat di kabupaten-kabupaten pesisir Riau.',
     // Sinyal internasional terkuat (Bagian 12 catatan penyusunan) — data
@@ -184,6 +187,15 @@ export const id = {
     paradermalAbaxialLabel: 'Sayatan paradermal (bawah/abaksial)',
     petioleLabel: 'Sayatan melintang petiol',
   },
+  talks: {
+    title: 'Presentasi',
+    description: 'Presentasi konferensi Andri Hendrizal tentang ekologi mangrove, blue carbon, dan tata kelola mangrove berbasis masyarakat, lengkap dengan video dan slide.',
+    intro: 'Rekaman presentasi di konferensi ilmiah, beserta slide bila tersedia.',
+    authorsLabel: 'Penulis',
+    watchOnYoutube: 'Tonton di YouTube',
+    downloadSlides: 'Unduh slide (PDF',
+    videoTitlePrefix: 'Video:',
+  },
   publications: {
     title: 'Publikasi',
     description: 'Publikasi Andri Hendrizal, diambil dari OpenAlex.',
@@ -213,6 +225,7 @@ export const id = {
     membershipsHeading: 'Keanggotaan Profesional',
     membershipIdLabel: 'Nomor Anggota',
     editorialHeading: 'Peran Editorial dan Reviewer',
+    conferenceHeading: 'Presentasi Konferensi',
     invitedTalksHeading: 'Undangan Sebagai Narasumber',
     grantsHeading: 'Hibah Penelitian',
     grantsYear: 'Tahun',

@@ -24,6 +24,7 @@ export const en = {
     courses: 'Courses',
     books: 'Books',
     grants: 'Grants',
+    talks: 'Talks',
     // Sengaja tidak diterjemahkan — bagian ini memang Indonesia-only.
     santaiSejenak: 'Santai Sejenak',
     cv: 'CV',
@@ -65,6 +66,8 @@ export const en = {
     intro:
       'Andri Hendrizal is a lecturer and researcher at the Department of Aquatic Resources Management, Universitas Riau, and a PhD student (by Research) at the Institute of Biological Sciences, Universiti Malaya. His research centers on mangrove ecology, with additional interests in blue carbon and local ecological knowledge, grounded in long-term field monitoring in Riau’s coastal mangroves and occasionally supported by remote sensing, GIS, and drone-based mapping. He also occasionally researches biology and environmental literacy in higher education. Between 2023 and 2024 he served as an Ocean Account Research and Engagement Consultant for World Resources Institute (WRI) Indonesia, and his research has been supported by grants from Universitas Riau and Indonesia’s Ministry of Higher Education, Science and Technology.',
     focusHeading: 'Research Focus',
+    latestTalkHeading: 'Latest Talk',
+    latestTalkCta: 'All talks',
     contributionStatement:
       'His research combines blue carbon science with local ecological knowledge to inform community-grounded mangrove management across Riau’s coastal districts.',
     // Sinyal internasional terkuat (Bagian 12 catatan penyusunan) — data
@@ -185,6 +188,15 @@ export const en = {
     paradermalAbaxialLabel: 'Paradermal section (lower/abaxial)',
     petioleLabel: 'Petiole cross-section',
   },
+  talks: {
+    title: 'Talks',
+    description: 'Conference presentations by Andri Hendrizal on mangrove ecology, blue carbon, and community-based mangrove governance, with videos and slides.',
+    intro: 'Recorded conference presentations, with slides where available.',
+    authorsLabel: 'Authors',
+    watchOnYoutube: 'Watch on YouTube',
+    downloadSlides: 'Download slides (PDF',
+    videoTitlePrefix: 'Video:',
+  },
   publications: {
     title: 'Publications',
     description: 'Publications by Andri Hendrizal, retrieved from OpenAlex.',
@@ -214,6 +226,7 @@ export const en = {
     membershipsHeading: 'Professional Memberships',
     membershipIdLabel: 'Member ID',
     editorialHeading: 'Editorial & Reviewer Roles',
+    conferenceHeading: 'Conference Presentations',
     invitedTalksHeading: 'Invited Talks',
     grantsHeading: 'Research Grants',
     grantsYear: 'Year',

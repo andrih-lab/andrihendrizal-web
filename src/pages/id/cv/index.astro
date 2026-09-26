@@ -12,6 +12,7 @@ import {
   technicalSkills,
 } from '../../../data/cv';
 import { rankings } from '../../../data/rankings';
+import { talks } from '../../../data/talks';
 
 const lang = 'id';
 const t = useTranslations(lang);
@@ -120,6 +121,24 @@ const t = useTranslations(lang);
               <p class="font-medium text-mangrove-900">{item.role[lang]}</p>
               <p class="text-sm text-slate-600">{item.journal[lang]}</p>
               <p class="text-sm text-slate-500">{item.period}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.cv.conferenceHeading}</h2>
+      <ul class="mt-4 space-y-4">
+        {
+          talks.map((talk) => (
+            <li>
+              <p class="font-medium text-mangrove-900">
+                <a href={`/${lang}/talks/#${talk.id}`} class="hover:underline">{talk.title}</a>
+              </p>
+              <p class="text-sm text-slate-600">{talk.authors.map((a) => a.name).join(', ')}</p>
+              <p class="text-sm text-slate-600">{talk.event} · {talk.location[lang]}</p>
+              <p class="text-sm text-slate-500">{talk.type[lang]} · {talk.dateLabel[lang]}</p>
             </li>
           ))
         }
