@@ -45,21 +45,27 @@ const personJsonLd = {
   image="/images/portrait.webp"
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
-  <section class="mx-auto max-w-4xl px-4 py-12">
-    <div class="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+  <!-- Pita pembuka: latar biru muda + dua segitiga oranye di sudut, meniru logo AH. -->
+  <div class="relative overflow-hidden bg-gradient-to-b from-brand-50 to-white">
+    <div aria-hidden="true" class="pointer-events-none absolute left-0 top-0 h-24 w-14 bg-sun-400 sm:h-36 sm:w-20" style="clip-path: polygon(0 0, 100% 0, 0 100%)"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute right-0 top-0 h-24 w-14 bg-sun-400 sm:h-36 sm:w-20" style="clip-path: polygon(0 0, 100% 0, 100% 100%)"></div>
+    <div class="relative mx-auto flex max-w-4xl flex-col items-start gap-6 px-4 pt-12 pb-4 sm:flex-row sm:items-center">
       <img
         id="hero-portrait"
         src="/images/portrait.webp"
         alt={t.site.name}
         width="160"
         height="160"
-        class="h-40 w-40 rounded-full border border-mangrove-200 object-cover"
+        class="h-40 w-40 rounded-full object-cover ring-4 ring-sun-400 ring-offset-4 ring-offset-brand-50"
       />
       <div>
         <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.site.name}</h1>
         <p class="mt-2 text-slate-600">{t.home.heroPosition}</p>
       </div>
     </div>
+  </div>
+
+  <section class="mx-auto max-w-4xl px-4 pb-12">
 
     <div class="mt-10">
       <h2 class="font-serif text-xl font-semibold text-mangrove-900">{t.home.introHeading}</h2>

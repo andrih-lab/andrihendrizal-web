@@ -11,11 +11,11 @@ const t = useTranslations(lang);
 const year = new Date().getFullYear();
 ---
 
-<footer class="mt-20 border-t border-mangrove-100">
+<footer class="mt-20 border-t-4 border-sun-400 bg-brand-950">
   <div class="mx-auto max-w-4xl px-4 py-8">
-    <div class="flex flex-wrap items-center justify-between gap-2 text-sm text-slate-500">
+    <div class="flex flex-wrap items-center justify-between gap-2 text-sm text-brand-200">
       <p>© {year} {t.site.name}. {t.footer.copyright}</p>
-      <a href={`/${lang}/privacy/`} class="underline hover:text-slate-700">
+      <a href={`/${lang}/privacy/`} class="underline hover:text-white">
         {t.footer.privacyPolicy}
       </a>
     </div>

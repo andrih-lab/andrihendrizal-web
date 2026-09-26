@@ -49,7 +49,8 @@ const currentPath = Astro.url.pathname;
             aria-current={currentPath === item.href ? 'page' : undefined}
             class:list={[
               'text-mangrove-800 transition-colors hover:text-mangrove-600',
-              currentPath === item.href && 'font-semibold text-mangrove-700',
+              currentPath === item.href &&
+                'font-semibold text-mangrove-700 underline decoration-sun-400 decoration-2 underline-offset-[6px]',
             ]}
           >
             {item.label}
