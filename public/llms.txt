@@ -1,6 +1,6 @@
 # Andri Hendrizal
 
-> Personal academic site of Andri Hendrizal, a lecturer and researcher at the Department of Aquatic Resources Management, Universitas Riau, and a PhD student (by Research) at the Institute of Biological Sciences, Universiti Malaya. His research focuses on mangrove ecology, with additional interests in blue carbon and local ecological knowledge in Riau's coastal mangroves, Indonesia.
+> Personal academic site of Andri Hendrizal, a lecturer and researcher at the Department of Aquatic Resources Management, Universitas Riau, and a PhD student (by Research) at the Institute of Biological Sciences, Universiti Malaya. His research focuses on mangrove ecology, with additional interests in blue carbon and local ecological knowledge in Riau's coastal mangroves, Indonesia, and occasional research on biology and environmental literacy in higher education.
 
 This site is bilingual (English/Indonesian). Pages below link to the English version; swap `/en/` for `/id/` in any URL for the Indonesian version.
 

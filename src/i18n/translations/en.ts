@@ -51,6 +51,10 @@ export const en = {
       title: 'Local Ecological Knowledge',
       description: 'Documenting and integrating community knowledge into mangrove management.',
     },
+    {
+      title: 'Higher Education',
+      description: 'Biology and environmental literacy in higher education.',
+    },
   ],
   home: {
     heroPosition:
@@ -59,7 +63,7 @@ export const en = {
     // Disusun dari Lampiran A dokumen rancang bangun (jabatan, riset,
     // pengalaman WRI Indonesia, hibah).
     intro:
-      'Andri Hendrizal is a lecturer and researcher at the Department of Aquatic Resources Management, Universitas Riau, and a PhD student (by Research) at the Institute of Biological Sciences, Universiti Malaya. His research centers on mangrove ecology, with additional interests in blue carbon and local ecological knowledge, grounded in long-term field monitoring in Riau’s coastal mangroves and occasionally supported by remote sensing, GIS, and drone-based mapping. Between 2023 and 2024 he served as an Ocean Account Research and Engagement Consultant for World Resources Institute (WRI) Indonesia, and his research has been supported by grants from Universitas Riau and Indonesia’s Ministry of Higher Education, Science and Technology.',
+      'Andri Hendrizal is a lecturer and researcher at the Department of Aquatic Resources Management, Universitas Riau, and a PhD student (by Research) at the Institute of Biological Sciences, Universiti Malaya. His research centers on mangrove ecology, with additional interests in blue carbon and local ecological knowledge, grounded in long-term field monitoring in Riau’s coastal mangroves and occasionally supported by remote sensing, GIS, and drone-based mapping. He also occasionally researches biology and environmental literacy in higher education. Between 2023 and 2024 he served as an Ocean Account Research and Engagement Consultant for World Resources Institute (WRI) Indonesia, and his research has been supported by grants from Universitas Riau and Indonesia’s Ministry of Higher Education, Science and Technology.',
     focusHeading: 'Research Focus',
     contributionStatement:
       'His research combines blue carbon science with local ecological knowledge to inform community-grounded mangrove management across Riau’s coastal districts.',
