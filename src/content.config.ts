@@ -46,6 +46,43 @@ const books = defineCollection({
   }),
 });
 
+// Koleksi bacaan pribadi (buku yang sudah/sedang dikoleksi & dibaca) —
+// BEDA dari `books` di atas, yang khusus buku karya Andri sendiri. Nomor
+// katalog & nomor panggil diisi manual mengikuti sistem penomoran fisik
+// yang sudah dipakai di rak buku pribadinya (dua lapis: No. Induk BK-xxxx
+// permanen per eksemplar, dan Nomor Panggil "[kelas DDC] [3 huruf
+// pengarang] [1 huruf judul]" untuk urutan rak) — situs ini TIDAK
+// menghitung ulang nomor tersebut, hanya menampilkan apa yang diisi,
+// supaya tetap sinkron dengan label fisik di punggung buku.
+const library = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/library' }),
+  schema: z.object({
+    catalogNumber: z.string(),
+    callNumber: z.string().optional(),
+    title: z.string(),
+    subtitle: z.string().optional(),
+    author: z.string(),
+    coAuthors: z.string().optional(),
+    publisher: z.string().optional(),
+    year: z.number().optional(),
+    isbn: z.string().optional(),
+    language: z.string().optional(),
+    pages: z.number().optional(),
+    // Subjek/topik bebas teks, dipakai untuk badge & filter di halaman
+    // Koleksi Bacaan (pola sama seperti `categories` di Herbarium).
+    categories: z.array(z.string()).default([]),
+    formats: z.array(z.enum(['cetak', 'pdf', 'epub', 'google-play'])).default([]),
+    // Satu tautan opsional ke sumber digital (Google Play Books, dsb.) —
+    // sengaja tidak berupa daftar seperti `purchaseLinks` di `books`,
+    // karena ini catatan koleksi pribadi, bukan etalase penjualan.
+    link: z.string().url().optional(),
+    cover: z.string().optional(),
+    status: z.enum(['belum', 'sedang', 'sudah']).default('belum'),
+    rating: z.number().min(1).max(5).optional(),
+    draft: z.boolean().default(true),
+  }),
+});
+
 // Kursus/mini e-course. Situs ini statis tanpa backend (Prinsip #1), jadi
 // tidak ada proteksi akses yang sungguhan aman di sini — bedanya dua jenis:
 // - access: 'free'  → isi (body Markdown, boleh sematkan <iframe> YouTube)
@@ -190,4 +227,4 @@ const wetSpecimens = defineCollection({
   }),
 });
 
-export const collections = { writing, books, courses, santai, microscopy, herbarium, wetSpecimens };
+export const collections = { writing, books, library, courses, santai, microscopy, herbarium, wetSpecimens };

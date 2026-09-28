@@ -163,6 +163,52 @@ collections:
       - { name: "quote", label: "Reader Quote", widget: "text", required: false }
       - { name: "body", label: "Notes (not shown on site)", widget: "markdown", required: false }
 
+  - name: "library"
+    label: "Koleksi Bacaan / Library"
+    folder: "src/content/library"
+    create: true
+    slug: "{{catalogNumber}}-{{slug}}"
+    fields:
+      - { name: "catalogNumber", label: "No. Induk / Catalog No. (e.g. \"BK-0001\")", widget: "string" }
+      - { name: "callNumber", label: "Nomor Panggil / Call No. (e.g. \"577.699 SRI k\")", widget: "string", required: false }
+      - { name: "title", label: "Judul / Title", widget: "string" }
+      - { name: "subtitle", label: "Anak Judul / Subtitle", widget: "string", required: false }
+      - { name: "author", label: "Pengarang Utama / Author", widget: "string" }
+      - { name: "coAuthors", label: "Pengarang/Editor Lain / Co-authors", widget: "string", required: false }
+      - { name: "publisher", label: "Penerbit / Publisher", widget: "string", required: false }
+      - { name: "year", label: "Tahun Terbit / Year", widget: "number", value_type: "int", required: false }
+      - { name: "isbn", label: "ISBN", widget: "string", required: false }
+      - { name: "language", label: "Bahasa Buku / Book Language", widget: "string", required: false }
+      - { name: "pages", label: "Jml Halaman / Pages", widget: "number", value_type: "int", required: false }
+      - name: "categories"
+        label: "Subjek/Topik / Subject (Kategori)"
+        widget: "list"
+        default: []
+        required: false
+        hint: "Bebas, satu subjek per baris — mis. \"Ekologi Mangrove\", \"Statistika\". Dipakai untuk filter di halaman Koleksi Bacaan."
+      - name: "formats"
+        label: "Format"
+        widget: "select"
+        multiple: true
+        options: ["cetak", "pdf", "epub", "google-play"]
+        default: []
+      - { name: "link", label: "Link (Google Play Books, dsb.)", widget: "string", required: false }
+      - { name: "cover", label: "Sampul / Cover Image", widget: "image", required: false }
+      - name: "status"
+        label: "Sudah Dibaca? / Reading Status"
+        widget: "select"
+        options:
+          - { label: "Belum", value: "belum" }
+          - { label: "Sedang Dibaca", value: "sedang" }
+          - { label: "Sudah", value: "sudah" }
+        default: "belum"
+      - { name: "rating", label: "Rating (1-5)", widget: "number", value_type: "int", min: 1, max: 5, required: false }
+      - name: "draft"
+        label: "Draft (unpublished until unchecked) / Draf (belum tayang selagi dicentang)"
+        widget: "boolean"
+        default: true
+      - { name: "body", label: "Ringkasan/Kesan Setelah Membaca / Reading Notes", widget: "markdown", required: false }
+
   - name: "microscopy"
     label: "Microscopy / Mikroskop"
     folder: "src/content/microscopy"

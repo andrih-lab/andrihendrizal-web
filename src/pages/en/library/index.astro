@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { getCollection, render } from 'astro:content';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const books = (await getCollection('library', (entry) => !entry.data.draft)).sort((a, b) =>
+  a.data.catalogNumber.localeCompare(b.data.catalogNumber),
+);
+
+// Render badan Markdown (ringkasan/kesan) tiap buku sekaligus di sini —
+// halaman ini satu-satunya tempat koleksi bacaan tampil, tidak ada
+// halaman detail per buku (Bagian: "sederhana, bukan resensi formal").
+const rendered = await Promise.all(books.map((book) => render(book)));
+
+const categories = [...new Set(books.flatMap((b) => b.data.categories))].sort((a, b) => a.localeCompare(b));
+const formats = [...new Set(books.flatMap((b) => b.data.formats))];
+
+const formatLabels: Record<string, string> = {
+  cetak: t.library.formatCetak,
+  pdf: t.library.formatPdf,
+  epub: t.library.formatEpub,
+  'google-play': t.library.formatGooglePlay,
+};
+const statusLabels: Record<string, string> = {
+  belum: t.library.statusBelum,
+  sedang: t.library.statusSedang,
+  sudah: t.library.statusSudah,
+};
+---
+
+<BaseLayout lang={lang} title={`${t.library.title} — ${t.site.name}`} description={t.library.description}>
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="font-serif text-3xl font-semibold text-mangrove-950">{t.library.title}</h1>
+    <p class="mt-2 max-w-2xl text-slate-600">{t.library.intro}</p>
+
+    {
+      books.length === 0 ? (
+        <p class="mt-6 text-sm italic text-slate-500">{t.library.empty}</p>
+      ) : (
+        <>
+          {(categories.length > 0 || formats.length > 0) && (
+            <form id="library-filters" class="mt-6 flex flex-wrap items-end gap-4 text-sm">
+              {categories.length > 0 && (
+                <div>
+                  <label for="filter-category" class="block text-slate-600">
+                    {t.library.filterCategory}
+                  </label>
+                  <select id="filter-category" class="mt-1 rounded border border-mangrove-300 bg-white px-2 py-1">
+                    <option value="">{t.library.filterAll}</option>
+                    {categories.map((c) => (
+                      <option value={c}>{c}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+              {formats.length > 0 && (
+                <div>
+                  <label for="filter-format" class="block text-slate-600">
+                    {t.library.filterFormat}
+                  </label>
+                  <select id="filter-format" class="mt-1 rounded border border-mangrove-300 bg-white px-2 py-1">
+                    <option value="">{t.library.filterAll}</option>
+                    {formats.map((f) => (
+                      <option value={f}>{formatLabels[f] ?? f}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+              <p id="filter-empty-note" hidden class="w-full text-slate-500">
+                {t.library.filterNoResults}
+              </p>
+            </form>
+          )}
+
+          <ul id="library-list" class="mt-6 grid gap-8 sm:grid-cols-2">
+            {books.map((book, i) => {
+              const { Content } = rendered[i];
+              return (
+                <li
+                  data-book
+                  data-categories={book.data.categories.join('|')}
+                  data-formats={book.data.formats.join('|')}
+                  class="border-l-2 border-mangrove-300 pl-4 py-1"
+                >
+                  {book.data.cover && (
+                    <img
+                      src={book.data.cover}
+                      alt={book.data.title}
+                      loading="lazy"
+                      decoding="async"
+                      class="mb-4 h-48 w-full rounded object-cover"
+                    />
+                  )}
+                  <p class="font-mono text-xs text-slate-400">
+                    {book.data.catalogNumber}
+                    {book.data.callNumber && ` · ${book.data.callNumber}`}
+                  </p>
+                  <h2 class="mt-0.5 font-serif text-lg font-semibold text-mangrove-900">
+                    {book.data.title}
+                    {book.data.subtitle && <span class="font-normal text-slate-600"> — {book.data.subtitle}</span>}
+                  </h2>
+                  <p class="mt-1 text-sm text-slate-500">
+                    {t.library.authorLabel} {book.data.author}
+                    {book.data.coAuthors && `, ${book.data.coAuthors}`}
+                  </p>
+                  <p class="mt-1 text-sm text-slate-500">
+                    {[book.data.publisher, book.data.year, book.data.pages && `${book.data.pages} ${t.library.pagesLabel}`]
+                      .filter(Boolean)
+                      .join(' · ')}
+                    {book.data.isbn && ` · ${t.library.isbnLabel} ${book.data.isbn}`}
+                  </p>
+
+                  <p class="mt-2 flex flex-wrap items-center gap-2 text-xs">
+                    <span class="rounded bg-mangrove-100 px-1.5 py-0.5 text-slate-700">
+                      {statusLabels[book.data.status]}
+                    </span>
+                    {book.data.formats.map((f) => (
+                      <span class="rounded bg-mangrove-50 px-1.5 py-0.5 text-slate-600 ring-1 ring-inset ring-mangrove-200">
+                        {formatLabels[f] ?? f}
+                      </span>
+                    ))}
+                    {book.data.rating && (
+                      <span class="text-amber-500" aria-label={`${t.library.ratingLabel}: ${book.data.rating}/5`}>
+                        {'★'.repeat(book.data.rating)}
+                        <span class="text-slate-300">{'★'.repeat(5 - book.data.rating)}</span>
+                      </span>
+                    )}
+                  </p>
+
+                  {book.data.categories.length > 0 && (
+                    <ul class="mt-2 flex flex-wrap gap-1">
+                      {book.data.categories.map((c) => (
+                        <li class="rounded bg-mangrove-100 px-1.5 py-0.5 text-xs text-slate-700">{c}</li>
+                      ))}
+                    </ul>
+                  )}
+
+                  <div class="prose prose-sm prose-neutral mt-3 max-w-none">
+                    <Content />
+                  </div>
+
+                  {book.data.link && (
+                    <a
+                      href={book.data.link}
+                      target="_blank"
+                      rel="noopener"
+                      class="mt-2 inline-block text-sm font-medium text-mangrove-700 hover:underline"
+                    >
+                      {t.library.linkLabel} →
+                    </a>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </>
+      )
+    }
+  </section>
+</BaseLayout>
+
+<script>
+  // Penyaring progresif dua filter (subjek + format), pola sama seperti
+  // filter kategori di halaman Herbarium. Tanpa JS, seluruh koleksi tetap
+  // tampil dan terbaca penuh — skrip ini hanya lapisan kenyamanan opsional.
+  const categorySelect = document.getElementById('filter-category') as HTMLSelectElement | null;
+  const formatSelect = document.getElementById('filter-format') as HTMLSelectElement | null;
+  const emptyNote = document.getElementById('filter-empty-note');
+  const items = Array.from(document.querySelectorAll<HTMLElement>('#library-list [data-book]'));
+
+  function applyFilters() {
+    const category = categorySelect?.value ?? '';
+    const format = formatSelect?.value ?? '';
+    let visibleCount = 0;
+    for (const item of items) {
+      const categories = (item.dataset.categories ?? '').split('|');
+      const formats = (item.dataset.formats ?? '').split('|');
+      const visible = (!category || categories.includes(category)) && (!format || formats.includes(format));
+      item.hidden = !visible;
+      if (visible) visibleCount++;
+    }
+    if (emptyNote) emptyNote.hidden = visibleCount !== 0;
+  }
+
+  categorySelect?.addEventListener('change', applyFilters);
+  formatSelect?.addEventListener('change', applyFilters);
+</script>

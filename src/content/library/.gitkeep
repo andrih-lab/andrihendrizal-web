@@ -1,0 +1,27 @@
+# Belum ada entri koleksi bacaan. Tambahkan lewat /admin (koleksi
+# "Koleksi Bacaan / Library"), atau tambahkan satu berkas .md di sini
+# secara manual dengan frontmatter sesuai skema di src/content.config.ts,
+# contoh:
+#
+# ---
+# catalogNumber: 'BK-0001'
+# callNumber: '574 CHR a'
+# title: 'Asking Questions in Biology'
+# subtitle: 'A Guide to Hypothesis-testing, Experimental Design and Presentation in Practical Work and Research Projects'
+# author: 'Chris Barnard, Francis Gilbert, Peter McGregor'
+# publisher: 'Pearson'
+# year: 2015
+# isbn: '978-1-292-08599-9'
+# language: 'Inggris'
+# pages: 250
+# categories: ['Metodologi Penelitian']
+# formats: ['cetak']
+# cover: '/images/uploads/asking-questions-in-biology.jpg'
+# status: 'sudah'
+# rating: 5
+# draft: false
+# ---
+#
+# Ringkasan/kesan singkat setelah membaca (opsional, badan Markdown ini
+# yang tampil di halaman Koleksi Bacaan — bukan resensi formal, cukup
+# beberapa kalimat).
