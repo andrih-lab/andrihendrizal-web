@@ -13,6 +13,10 @@ export const academicProfiles: AcademicProfile[] = [
   { name: 'ResearchGate', url: 'https://www.researchgate.net/profile/Andri-Hendrizal' },
   { name: 'LinkedIn', url: 'https://linkedin.com/in/andri-hendrizal' },
   { name: 'Universitas Riau Staff Profile', url: 'https://andrihendrizal.staff.unri.ac.id/' },
+  // SINTA (Science and Technology Index, Kemdiktisaintek RI) — indeks resmi
+  // pemerintah Indonesia, dipakai untuk penilaian hibah & kenaikan pangkat
+  // akademik. SINTA ID: 6709400.
+  { name: 'SINTA', url: 'https://sinta.kemdiktisaintek.go.id/authors/profile/6709400' },
   // Ditambahkan 2026-09-29: dua lembaga pemeringkat bibliometrik yang
   // datanya ditarik otomatis dari sumber lain (terutama Google Scholar) —
   // sameAs di sini membantu mereka menautkan identitas dengan benar.
