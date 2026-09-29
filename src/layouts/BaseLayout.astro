@@ -79,6 +79,20 @@ const imageUrl = image ? new URL(image, Astro.site) : undefined;
       data-cf-beacon='{"token": "98b41ebf50584797bd5853cbf7b732af"}'
     ></script>
 
+    <!-- Google Analytics (GA4): data lebih lengkap (sumber trafik, perilaku
+    per halaman, dst.) dibanding Cloudflare Web Analytics — TAPI ini pakai
+    cookie, beda dengan Cloudflare. Diungkap di Kebijakan Privasi. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-99DJ3CEBS9"></script>
+    <script>
+      const w = window as unknown as { dataLayer: unknown[] };
+      w.dataLayer = w.dataLayer || [];
+      function gtag(...args: unknown[]) {
+        w.dataLayer.push(args);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-99DJ3CEBS9');
+    </script>
+
     <!-- Google AdSense (Auto ads): Google memilih sendiri posisi & jumlah
     iklan yang wajar di tiap halaman, jadi tidak perlu ad slot manual di
     setiap komponen. Posisi per halaman bisa disesuaikan/dikecualikan lewat
