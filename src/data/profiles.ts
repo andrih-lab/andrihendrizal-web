@@ -13,4 +13,9 @@ export const academicProfiles: AcademicProfile[] = [
   { name: 'ResearchGate', url: 'https://www.researchgate.net/profile/Andri-Hendrizal' },
   { name: 'LinkedIn', url: 'https://linkedin.com/in/andri-hendrizal' },
   { name: 'Universitas Riau Staff Profile', url: 'https://andrihendrizal.staff.unri.ac.id/' },
+  // Ditambahkan 2026-09-29: dua lembaga pemeringkat bibliometrik yang
+  // datanya ditarik otomatis dari sumber lain (terutama Google Scholar) —
+  // sameAs di sini membantu mereka menautkan identitas dengan benar.
+  { name: 'ScholarGPS', url: 'https://scholargps.com/scholars/82824764754623/andri-hendrizal' },
+  { name: 'AD Scientific Index', url: 'https://adscientificindex.com/scientist/andri-hendrizal/5579888/' },
 ];
