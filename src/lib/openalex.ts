@@ -131,6 +131,25 @@ export async function getPublications(): Promise<Publication[]> {
   }
 
   const openAlexPublications = works.map(normalizeWork);
-  cache = [...openAlexPublications, ...manualPublications].sort(sortByRecency);
+  const merged = [...openAlexPublications, ...manualPublications].sort(sortByRecency);
+  cache = dedupeByTitle(merged);
   return cache;
+}
+
+// Zenodo (dan sumber lain) kadang menghasilkan dua entri OpenAlex terpisah
+// untuk karya yang sama — satu untuk "concept DOI" (selalu menunjuk versi
+// terbaru), satu lagi untuk DOI versi spesifik (mis. kasus nyata: dataset
+// "Existing Mangrove Area by Province in Indonesia 2024" tercatat sebagai
+// W7214375974/zenodo.22961114 dan W7214398078/zenodo.22961115 sekaligus).
+// Judulnya identik, jadi disaring di sini alih-alih menambal satu per satu.
+function dedupeByTitle(pubs: Publication[]): Publication[] {
+  const seen = new Set<string>();
+  const result: Publication[] = [];
+  for (const pub of pubs) {
+    const key = pub.title.trim().toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push(pub);
+  }
+  return result;
 }
