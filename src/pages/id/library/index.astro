@@ -6,6 +6,11 @@ import { getCollection, render } from 'astro:content';
 
 const lang = 'id';
 const countryName = (id: string) => libraryRef.negara.find((n) => n.id === id)?.[lang] ?? id;
+// Emoji bendera dari kode negara ISO (dua huruf → regional indicator); kosong = tanpa bendera.
+const countryFlag = (id: string) => {
+  const code = libraryRef.negara.find((n) => n.id === id)?.kode;
+  return code ? String.fromCodePoint(...[...code].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)) : '';
+};
 const t = useTranslations(lang);
 
 const books = (await getCollection('library', (entry) => !entry.data.draft)).sort((a, b) =>
@@ -113,7 +118,12 @@ const statusLabels: Record<string, string> = {
                       .filter(Boolean)
                       .join(' · ')}
                     {book.data.isbn && ` · ${t.library.isbnLabel} ${book.data.isbn}`}
-                    {book.data.acquiredIn && ` · ${t.library.acquiredLabel} ${countryName(book.data.acquiredIn)}`}
+                    {book.data.acquiredIn && (
+                      <>
+                        {' · '}
+                        {t.library.acquiredLabel} <span aria-hidden="true">{countryFlag(book.data.acquiredIn)}</span> {countryName(book.data.acquiredIn)}
+                      </>
+                    )}
                   </p>
 
                   <p class="mt-2 flex flex-wrap items-center gap-2 text-xs">

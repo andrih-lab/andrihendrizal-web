@@ -208,75 +208,93 @@
   "negara": [
     {
       "id": "Indonesia",
-      "en": "Indonesia"
+      "en": "Indonesia",
+      "kode": "ID"
     },
     {
       "id": "Singapura",
-      "en": "Singapore"
+      "en": "Singapore",
+      "kode": "SG"
     },
     {
       "id": "Malaysia",
-      "en": "Malaysia"
+      "en": "Malaysia",
+      "kode": "MY"
     },
     {
       "id": "Thailand",
-      "en": "Thailand"
+      "en": "Thailand",
+      "kode": "TH"
     },
     {
       "id": "Jepang",
-      "en": "Japan"
+      "en": "Japan",
+      "kode": "JP"
     },
     {
       "id": "Korea Selatan",
-      "en": "South Korea"
+      "en": "South Korea",
+      "kode": "KR"
     },
     {
       "id": "Tiongkok",
-      "en": "China"
+      "en": "China",
+      "kode": "CN"
     },
     {
       "id": "India",
-      "en": "India"
+      "en": "India",
+      "kode": "IN"
     },
     {
       "id": "Australia",
-      "en": "Australia"
+      "en": "Australia",
+      "kode": "AU"
     },
     {
       "id": "Inggris",
-      "en": "United Kingdom"
+      "en": "United Kingdom",
+      "kode": "GB"
     },
     {
       "id": "Belanda",
-      "en": "Netherlands"
+      "en": "Netherlands",
+      "kode": "NL"
     },
     {
       "id": "Jerman",
-      "en": "Germany"
+      "en": "Germany",
+      "kode": "DE"
     },
     {
       "id": "Prancis",
-      "en": "France"
+      "en": "France",
+      "kode": "FR"
     },
     {
       "id": "Amerika Serikat",
-      "en": "United States"
+      "en": "United States",
+      "kode": "US"
     },
     {
       "id": "Arab Saudi",
-      "en": "Saudi Arabia"
+      "en": "Saudi Arabia",
+      "kode": "SA"
     },
     {
       "id": "Uni Emirat Arab",
-      "en": "United Arab Emirates"
+      "en": "United Arab Emirates",
+      "kode": "AE"
     },
     {
       "id": "Turki",
-      "en": "Turkey"
+      "en": "Turkey",
+      "kode": "TR"
     },
     {
       "id": "Lainnya",
-      "en": "Other"
+      "en": "Other",
+      "kode": ""
     }
   ]
 }
