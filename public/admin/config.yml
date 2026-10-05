@@ -169,8 +169,10 @@ collections:
     create: true
     slug: "{{catalogNumber}}-{{slug}}"
     fields:
-      - { name: "catalogNumber", label: "No. Induk / Catalog No. (e.g. \"BK-0001\")", widget: "string" }
-      - { name: "callNumber", label: "Nomor Panggil / Call No. (e.g. \"577.699 SRI k\")", widget: "string", required: false }
+      # Lebih mudah: jalankan `npm run buku` di Terminal — No. Induk (lanjut dari nomor terakhir)
+      # dan Nomor Panggil terisi otomatis. Di CMS, isi manual: pakai nomor berikutnya yang belum dipakai.
+      - { name: "catalogNumber", label: "No. Induk / Catalog No. (nomor berikutnya setelah yang terakhir, mis. \"BK-0005\")", widget: "string" }
+      - { name: "callNumber", label: "Nomor Panggil / Call No. ([Kelas DDC] [3 huruf pengarang KAPITAL] [1 huruf judul kecil], mis. \"577.699 SRI k\")", widget: "string", required: false }
       - { name: "title", label: "Judul / Title", widget: "string" }
       - { name: "subtitle", label: "Anak Judul / Subtitle", widget: "string", required: false }
       - { name: "author", label: "Pengarang Utama / Author", widget: "string" }
@@ -178,14 +180,48 @@ collections:
       - { name: "publisher", label: "Penerbit / Publisher", widget: "string", required: false }
       - { name: "year", label: "Tahun Terbit / Year", widget: "number", value_type: "int", required: false }
       - { name: "isbn", label: "ISBN", widget: "string", required: false }
-      - { name: "language", label: "Bahasa Buku / Book Language", widget: "string", required: false }
+      - { name: "language", label: "Bahasa Buku / Book Language", widget: "select", options: ["Indonesia", "Inggris", "Arab", "Melayu", "Jepang", "Lainnya"], required: false }
       - { name: "pages", label: "Jml Halaman / Pages", widget: "number", value_type: "int", required: false }
       - name: "categories"
         label: "Subjek/Topik / Subject (Kategori)"
-        widget: "list"
+        widget: "select"
+        multiple: true
+        options:
+          - "Metodologi Penelitian"
+          - "Pengembangan Diri"
+          - "Karbon Biru"
+          - "Karya umum, komputer, dan informasi"
+          - "Pemrograman & perangkat lunak"
+          - "Filsafat dan psikologi"
+          - "Agama"
+          - "Ilmu sosial"
+          - "Sumber daya alam & lingkungan hidup"
+          - "Ekonomi produksi & pembangunan"
+          - "Hukum"
+          - "Pendidikan"
+          - "Bahasa"
+          - "Sains murni"
+          - "Statistika"
+          - "Lahan basah pesisir & karbon biru"
+          - "Biologi umum"
+          - "Ekologi"
+          - "Ekologi mangrove & estuari"
+          - "Tumbuhan (botani)"
+          - "Hewan (zoologi)"
+          - "Ikan"
+          - "Teknologi & ilmu terapan"
+          - "Pertanian"
+          - "Perikanan tangkap"
+          - "Akuakultur"
+          - "Konservasi sumber daya hayati"
+          - "Kesenian, hiburan, olahraga"
+          - "Kesusastraan"
+          - "Kesusastraan Indonesia"
+          - "Sejarah & geografi"
+          - "Geografi, pemetaan, perjalanan"
         default: []
         required: false
-        hint: "Bebas, satu subjek per baris — mis. \"Ekologi Mangrove\", \"Statistika\". Dipakai untuk filter di halaman Koleksi Bacaan."
+        hint: "Pilih dari daftar (sumber: sheet KODE_REFERENSI). Dipakai untuk filter di halaman Koleksi Bacaan. Pilihan baru: tambahkan di sini dan di scripts/library-reference.json."
       - name: "formats"
         label: "Format"
         widget: "select"

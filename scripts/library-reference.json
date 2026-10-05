@@ -1,0 +1,173 @@
+{
+  "_catatan": "Sumber tunggal daftar pilihan Koleksi Bacaan (dari sheet KODE_REFERENSI). Dipakai skrip scripts/tambah-buku.mjs; salin perubahan ke public/admin/config.yml (opsi dropdown CMS) bila menambah pilihan.",
+  "ddc": [
+    {
+      "kode": "000",
+      "deskripsi": "Karya umum, komputer, dan informasi"
+    },
+    {
+      "kode": "001.42",
+      "deskripsi": "Metodologi penelitian"
+    },
+    {
+      "kode": "005",
+      "deskripsi": "Pemrograman & perangkat lunak"
+    },
+    {
+      "kode": "100",
+      "deskripsi": "Filsafat dan psikologi"
+    },
+    {
+      "kode": "200",
+      "deskripsi": "Agama"
+    },
+    {
+      "kode": "300",
+      "deskripsi": "Ilmu sosial"
+    },
+    {
+      "kode": "333.7",
+      "deskripsi": "Sumber daya alam & lingkungan hidup"
+    },
+    {
+      "kode": "338",
+      "deskripsi": "Ekonomi produksi & pembangunan"
+    },
+    {
+      "kode": "340",
+      "deskripsi": "Hukum"
+    },
+    {
+      "kode": "370",
+      "deskripsi": "Pendidikan"
+    },
+    {
+      "kode": "400",
+      "deskripsi": "Bahasa"
+    },
+    {
+      "kode": "500",
+      "deskripsi": "Sains murni"
+    },
+    {
+      "kode": "519.5",
+      "deskripsi": "Statistika"
+    },
+    {
+      "kode": "551.457",
+      "deskripsi": "Lahan basah pesisir & karbon biru"
+    },
+    {
+      "kode": "574",
+      "deskripsi": "Biologi umum"
+    },
+    {
+      "kode": "577",
+      "deskripsi": "Ekologi"
+    },
+    {
+      "kode": "577.699",
+      "deskripsi": "Ekologi mangrove & estuari"
+    },
+    {
+      "kode": "580",
+      "deskripsi": "Tumbuhan (botani)"
+    },
+    {
+      "kode": "590",
+      "deskripsi": "Hewan (zoologi)"
+    },
+    {
+      "kode": "597",
+      "deskripsi": "Ikan"
+    },
+    {
+      "kode": "600",
+      "deskripsi": "Teknologi & ilmu terapan"
+    },
+    {
+      "kode": "630",
+      "deskripsi": "Pertanian"
+    },
+    {
+      "kode": "639.2",
+      "deskripsi": "Perikanan tangkap"
+    },
+    {
+      "kode": "639.3",
+      "deskripsi": "Akuakultur"
+    },
+    {
+      "kode": "639.9",
+      "deskripsi": "Konservasi sumber daya hayati"
+    },
+    {
+      "kode": "700",
+      "deskripsi": "Kesenian, hiburan, olahraga"
+    },
+    {
+      "kode": "800",
+      "deskripsi": "Kesusastraan"
+    },
+    {
+      "kode": "899.221",
+      "deskripsi": "Kesusastraan Indonesia"
+    },
+    {
+      "kode": "900",
+      "deskripsi": "Sejarah & geografi"
+    },
+    {
+      "kode": "910",
+      "deskripsi": "Geografi, pemetaan, perjalanan"
+    }
+  ],
+  "subjek": [
+    "Metodologi Penelitian",
+    "Pengembangan Diri",
+    "Karbon Biru",
+    "Karya umum, komputer, dan informasi",
+    "Pemrograman & perangkat lunak",
+    "Filsafat dan psikologi",
+    "Agama",
+    "Ilmu sosial",
+    "Sumber daya alam & lingkungan hidup",
+    "Ekonomi produksi & pembangunan",
+    "Hukum",
+    "Pendidikan",
+    "Bahasa",
+    "Sains murni",
+    "Statistika",
+    "Lahan basah pesisir & karbon biru",
+    "Biologi umum",
+    "Ekologi",
+    "Ekologi mangrove & estuari",
+    "Tumbuhan (botani)",
+    "Hewan (zoologi)",
+    "Ikan",
+    "Teknologi & ilmu terapan",
+    "Pertanian",
+    "Perikanan tangkap",
+    "Akuakultur",
+    "Konservasi sumber daya hayati",
+    "Kesenian, hiburan, olahraga",
+    "Kesusastraan",
+    "Kesusastraan Indonesia",
+    "Sejarah & geografi",
+    "Geografi, pemetaan, perjalanan"
+  ],
+  "bahasa": [
+    "Indonesia",
+    "Inggris",
+    "Arab",
+    "Melayu",
+    "Jepang",
+    "Lainnya"
+  ],
+  "format": [
+    "cetak",
+    "pdf",
+    "epub",
+    "google-play"
+  ]
+}
