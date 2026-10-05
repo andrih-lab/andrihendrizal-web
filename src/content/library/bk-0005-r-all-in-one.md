@@ -10,6 +10,7 @@ year: 2023
 isbn: 978-1-119-98369-9
 language: Inggris
 pages: 639
+acquiredIn: Malaysia
 categories:
   - Pemrograman & perangkat lunak
   - Statistika
