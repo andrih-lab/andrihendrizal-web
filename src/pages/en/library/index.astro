@@ -50,7 +50,7 @@ const formatLabels: Record<string, string> = {
       ) : (
         <>
           {(
-            <form id="library-filters" class="mt-6 flex flex-wrap items-end gap-4 text-sm">
+            <form id="library-filters" class="mt-6 flex flex-wrap items-end gap-4 rounded-xl bg-mangrove-50 p-4 text-sm">
               <div class="w-full sm:w-auto sm:min-w-72">
                 <label for="filter-search" class="block text-slate-600">
                   {t.library.searchLabel}
@@ -89,16 +89,25 @@ const formatLabels: Record<string, string> = {
                   </select>
                 </div>
               )}
+              <p id="library-count" data-template={t.library.countShowing} data-total={books.length} class="w-full text-xs text-slate-500">
+                {t.library.countShowing.replace('{n}', String(books.length)).replace('{total}', String(books.length))}
+              </p>
               <p id="filter-empty-note" hidden class="w-full text-slate-500">
                 {t.library.filterNoResults}
               </p>
             </form>
           )}
 
-          <ul id="library-list" class="mt-6 grid gap-8 sm:grid-cols-2">
+          <ul id="library-list" class="mt-6 grid gap-5 sm:grid-cols-2">
             {books.map((book, i) => {
               const { Content } = rendered[i];
               const spine = spineParts(book.data.callNumber);
+              const meta = [
+                book.data.publisher,
+                book.data.year,
+                book.data.pages && `${book.data.pages} ${t.library.pagesLabel}`,
+                book.data.isbn && `${t.library.isbnLabel} ${book.data.isbn}`,
+              ].filter(Boolean);
               return (
                 <li
                   data-book
@@ -117,87 +126,77 @@ const formatLabels: Record<string, string> = {
                     .filter(Boolean)
                     .join(' ')
                     .normalize('NFD')
-                    .replace(/[\u0300-\u036f]/g, '')
+                    .replace(/[̀-ͯ]/g, '')
                     .toLowerCase()}
                   data-categories={book.data.categories.join('|')}
                   data-formats={book.data.formats.join('|')}
-                  class="border-l-2 border-mangrove-300 pl-4 py-1"
+                  class="flex gap-3 rounded-xl border border-mangrove-200 bg-white p-3 shadow-sm sm:gap-4 sm:p-4 transition-shadow hover:shadow-md"
                 >
-                  <div class="flex gap-4">
-                    {spine && (
-                      <div
-                        aria-hidden="true"
-                        class="flex h-24 w-16 shrink-0 flex-col items-center justify-center rounded font-mono text-white shadow-sm"
-                        style={`background-color:${spine.color}`}
-                      >
-                        <span class="text-xs font-semibold leading-tight">{spine.ddc}</span>
-                        <span class="mt-1 text-sm font-bold leading-tight">{spine.author}</span>
-                        <span class="mt-1 text-sm leading-tight">{spine.title}</span>
+                  {spine && (
+                    <div
+                      aria-hidden="true"
+                      class="flex h-24 w-14 shrink-0 sm:h-28 sm:w-[4.5rem] flex-col items-center justify-center rounded-md font-mono text-white"
+                      style={`background-color:${spine.color};box-shadow:inset 4px 0 0 rgba(0,0,0,.2),0 1px 2px rgba(0,0,0,.2)`}
+                    >
+                      <span class="text-xs font-semibold leading-tight">{spine.ddc}</span>
+                      <span class="mt-1.5 text-sm font-bold leading-tight">{spine.author}</span>
+                      <span class="mt-1 text-sm leading-tight">{spine.title}</span>
+                    </div>
+                  )}
+                  <div class="min-w-0 flex-1">
+                    <p class="font-mono text-[11px] tracking-wide text-slate-400">
+                      {book.data.catalogNumber}
+                      {book.data.callNumber && ` · ${book.data.callNumber}`}
+                    </p>
+                    <h2 class="mt-0.5 font-serif text-lg font-semibold leading-snug text-mangrove-900">{book.data.title}</h2>
+                    {book.data.subtitle && <p class="text-sm italic leading-snug text-slate-500">{book.data.subtitle}</p>}
+                    <p class="mt-2 line-clamp-2 text-sm text-slate-700">
+                      {book.data.author}
+                      {book.data.coAuthors && `, ${book.data.coAuthors}`}
+                    </p>
+                    <p class="mt-1 text-xs leading-relaxed text-slate-500">
+                      {meta.join(' · ')}
+                      {book.data.acquiredIn && (
+                        <>
+                          {meta.length > 0 && ' · '}
+                          <span aria-hidden="true">{countryFlag(book.data.acquiredIn)}</span> {countryName(book.data.acquiredIn)}
+                        </>
+                      )}
+                    </p>
+
+                    <div class="mt-3 flex flex-wrap items-center gap-1.5 text-xs">
+                      {book.data.formats.map((f) => (
+                        <span class="rounded-full bg-mangrove-50 px-2 py-0.5 text-slate-600 ring-1 ring-inset ring-mangrove-200">
+                          {formatLabels[f] ?? f}
+                        </span>
+                      ))}
+                      {book.data.categories.map((c) => (
+                        <span class="rounded-full bg-mangrove-100 px-2 py-0.5 text-slate-700">{c}</span>
+                      ))}
+                      {book.data.rating && (
+                        <span class="ml-auto text-amber-500" aria-label={`${t.library.ratingLabel}: ${book.data.rating}/5`}>
+                          {'★'.repeat(book.data.rating)}
+                          <span class="text-slate-300">{'★'.repeat(5 - book.data.rating)}</span>
+                        </span>
+                      )}
+                    </div>
+
+                    {book.body?.trim() && (
+                      <div class="prose prose-sm prose-neutral mt-3 max-w-none border-t border-mangrove-100 pt-3">
+                        <Content />
                       </div>
                     )}
-                    <div class="min-w-0 flex-1">
-                  <p class="font-mono text-xs text-slate-400">
-                    {book.data.catalogNumber}
-                    {book.data.callNumber && ` · ${book.data.callNumber}`}
-                  </p>
-                  <h2 class="mt-0.5 font-serif text-lg font-semibold text-mangrove-900">
-                    {book.data.title}
-                    {book.data.subtitle && <span class="font-normal text-slate-600"> — {book.data.subtitle}</span>}
-                  </h2>
-                  <p class="mt-1 text-sm text-slate-500">
-                    {t.library.authorLabel} {book.data.author}
-                    {book.data.coAuthors && `, ${book.data.coAuthors}`}
-                  </p>
-                  <p class="mt-1 text-sm text-slate-500">
-                    {[book.data.publisher, book.data.year, book.data.pages && `${book.data.pages} ${t.library.pagesLabel}`]
-                      .filter(Boolean)
-                      .join(' · ')}
-                    {book.data.isbn && ` · ${t.library.isbnLabel} ${book.data.isbn}`}
-                    {book.data.acquiredIn && (
-                      <>
-                        {' · '}
-                        {t.library.acquiredLabel} <span aria-hidden="true">{countryFlag(book.data.acquiredIn)}</span> {countryName(book.data.acquiredIn)}
-                      </>
+
+                    {book.data.link && (
+                      <a
+                        href={book.data.link}
+                        target="_blank"
+                        rel="noopener"
+                        class="mt-2 inline-block text-sm font-medium text-mangrove-700 hover:underline"
+                      >
+                        {t.library.linkLabel} →
+                      </a>
                     )}
-                  </p>
-
-                  <p class="mt-2 flex flex-wrap items-center gap-2 text-xs">
-                    {book.data.formats.map((f) => (
-                      <span class="rounded bg-mangrove-50 px-1.5 py-0.5 text-slate-600 ring-1 ring-inset ring-mangrove-200">
-                        {formatLabels[f] ?? f}
-                      </span>
-                    ))}
-                    {book.data.rating && (
-                      <span class="text-amber-500" aria-label={`${t.library.ratingLabel}: ${book.data.rating}/5`}>
-                        {'★'.repeat(book.data.rating)}
-                        <span class="text-slate-300">{'★'.repeat(5 - book.data.rating)}</span>
-                      </span>
-                    )}
-                  </p>
-
-                  {book.data.categories.length > 0 && (
-                    <ul class="mt-2 flex flex-wrap gap-1">
-                      {book.data.categories.map((c) => (
-                        <li class="rounded bg-mangrove-100 px-1.5 py-0.5 text-xs text-slate-700">{c}</li>
-                      ))}
-                    </ul>
-                  )}
-
-                  <div class="prose prose-sm prose-neutral mt-3 max-w-none">
-                    <Content />
-                  </div>
-
-                  {book.data.link && (
-                    <a
-                      href={book.data.link}
-                      target="_blank"
-                      rel="noopener"
-                      class="mt-2 inline-block text-sm font-medium text-mangrove-700 hover:underline"
-                    >
-                      {t.library.linkLabel} →
-                    </a>
-                  )}
-                    </div>
                   </div>
                 </li>
               );
@@ -216,6 +215,7 @@ const formatLabels: Record<string, string> = {
   const categorySelect = document.getElementById('filter-category') as HTMLSelectElement | null;
   const formatSelect = document.getElementById('filter-format') as HTMLSelectElement | null;
   const searchInput = document.getElementById('filter-search') as HTMLInputElement | null;
+  const countNote = document.getElementById('library-count');
   const emptyNote = document.getElementById('filter-empty-note');
   const items = Array.from(document.querySelectorAll<HTMLElement>('#library-list [data-book]'));
 
@@ -239,6 +239,11 @@ const formatLabels: Record<string, string> = {
       if (visible) visibleCount++;
     }
     if (emptyNote) emptyNote.hidden = visibleCount !== 0;
+    if (countNote) {
+      countNote.textContent = (countNote.dataset.template ?? '')
+        .replace('{n}', String(visibleCount))
+        .replace('{total}', countNote.dataset.total ?? '');
+    }
   }
 
   categorySelect?.addEventListener('change', applyFilters);

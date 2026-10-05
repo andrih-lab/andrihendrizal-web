@@ -261,6 +261,7 @@ export const id = {
     empty: 'Koleksi bacaan akan ditambahkan segera.',
     searchLabel: 'Cari',
     searchPlaceholder: 'Cari judul, pengarang, penerbit, ISBN…',
+    countShowing: 'Menampilkan {n} dari {total} buku',
     filterCategory: 'Subjek',
     filterFormat: 'Format',
     filterAll: 'Semua',
