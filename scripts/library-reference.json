@@ -204,5 +204,79 @@
     "Kesusastraan Indonesia": "899.221",
     "Sejarah & geografi": "900",
     "Geografi, pemetaan, perjalanan": "910"
-  }
+  },
+  "negara": [
+    {
+      "id": "Indonesia",
+      "en": "Indonesia"
+    },
+    {
+      "id": "Singapura",
+      "en": "Singapore"
+    },
+    {
+      "id": "Malaysia",
+      "en": "Malaysia"
+    },
+    {
+      "id": "Thailand",
+      "en": "Thailand"
+    },
+    {
+      "id": "Jepang",
+      "en": "Japan"
+    },
+    {
+      "id": "Korea Selatan",
+      "en": "South Korea"
+    },
+    {
+      "id": "Tiongkok",
+      "en": "China"
+    },
+    {
+      "id": "India",
+      "en": "India"
+    },
+    {
+      "id": "Australia",
+      "en": "Australia"
+    },
+    {
+      "id": "Inggris",
+      "en": "United Kingdom"
+    },
+    {
+      "id": "Belanda",
+      "en": "Netherlands"
+    },
+    {
+      "id": "Jerman",
+      "en": "Germany"
+    },
+    {
+      "id": "Prancis",
+      "en": "France"
+    },
+    {
+      "id": "Amerika Serikat",
+      "en": "United States"
+    },
+    {
+      "id": "Arab Saudi",
+      "en": "Saudi Arabia"
+    },
+    {
+      "id": "Uni Emirat Arab",
+      "en": "United Arab Emirates"
+    },
+    {
+      "id": "Turki",
+      "en": "Turkey"
+    },
+    {
+      "id": "Lainnya",
+      "en": "Other"
+    }
+  ]
 }

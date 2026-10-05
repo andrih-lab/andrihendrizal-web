@@ -267,6 +267,7 @@ export const en = {
     publisherLabel: 'Publisher',
     isbnLabel: 'ISBN',
     pagesLabel: 'pages',
+    acquiredLabel: 'Acquired in',
     catalogLabel: 'Catalog No.',
     callNumberLabel: 'Call No.',
     ratingLabel: 'Rating',

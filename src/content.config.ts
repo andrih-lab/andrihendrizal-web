@@ -81,6 +81,8 @@ const library = defineCollection({
     isbn: z.string().optional(),
     language: z.string().optional(),
     pages: z.number().optional(),
+    // Negara tempat buku diperoleh (nilai = nama Indonesia dari library-reference.json).
+    acquiredIn: z.string().optional(),
     // Subjek/topik bebas teks, dipakai untuk badge & filter di halaman
     // Koleksi Bacaan (pola sama seperti `categories` di Herbarium).
     categories: z.array(z.string()).default([]),

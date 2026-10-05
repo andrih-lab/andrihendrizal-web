@@ -1,9 +1,11 @@
 ---
+import libraryRef from '../../../../scripts/library-reference.json';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { useTranslations } from '../../../i18n/utils';
 import { getCollection, render } from 'astro:content';
 
 const lang = 'en';
+const countryName = (id: string) => libraryRef.negara.find((n) => n.id === id)?.[lang] ?? id;
 const t = useTranslations(lang);
 
 const books = (await getCollection('library', (entry) => !entry.data.draft)).sort((a, b) =>
@@ -111,6 +113,7 @@ const statusLabels: Record<string, string> = {
                       .filter(Boolean)
                       .join(' · ')}
                     {book.data.isbn && ` · ${t.library.isbnLabel} ${book.data.isbn}`}
+                    {book.data.acquiredIn && ` · ${t.library.acquiredLabel} ${countryName(book.data.acquiredIn)}`}
                   </p>
 
                   <p class="mt-2 flex flex-wrap items-center gap-2 text-xs">

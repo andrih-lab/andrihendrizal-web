@@ -182,6 +182,7 @@ collections:
       - { name: "isbn", label: "ISBN", widget: "string", required: false }
       - { name: "language", label: "Bahasa Buku / Book Language", widget: "select", options: ["Indonesia", "Inggris", "Arab", "Melayu", "Jepang", "Lainnya"], required: false }
       - { name: "pages", label: "Jml Halaman / Pages", widget: "number", value_type: "int", required: false }
+      - { name: "acquiredIn", label: "Diperoleh di (negara) / Acquired in", widget: "select", options: ["Indonesia", "Singapura", "Malaysia", "Thailand", "Jepang", "Korea Selatan", "Tiongkok", "India", "Australia", "Inggris", "Belanda", "Jerman", "Prancis", "Amerika Serikat", "Arab Saudi", "Uni Emirat Arab", "Turki", "Lainnya"], required: false }
       - name: "categories"
         label: "Subjek/Topik / Subject (Kategori)"
         widget: "select"

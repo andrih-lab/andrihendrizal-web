@@ -267,6 +267,7 @@ export const id = {
     publisherLabel: 'Penerbit',
     isbnLabel: 'ISBN',
     pagesLabel: 'halaman',
+    acquiredLabel: 'Diperoleh di',
     catalogLabel: 'No. Induk',
     callNumberLabel: 'Nomor Panggil',
     ratingLabel: 'Rating',

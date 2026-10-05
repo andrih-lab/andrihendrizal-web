@@ -80,6 +80,7 @@ const isbn = await ask('ISBN (opsional)');
 const pages = await ask('Jml halaman (opsional)');
 
 const ddc = await pick('Kelas DDC:', ref.ddc.map((d) => ({ ...d, text: `${d.kode.padEnd(8)} ${d.deskripsi}` })));
+const negara = await pick('Diperoleh di (negara):', ref.negara.map((n) => n.id), { allowEmpty: true });
 const subjek = await pick('Subjek/topik:', ref.subjek, { multi: true });
 const bahasa = await pick('Bahasa buku:', ref.bahasa, { allowEmpty: true });
 const formats = await pick('Format:', ref.format, { multi: true });
@@ -102,6 +103,7 @@ const lines = [
   isbn && `isbn: ${q(isbn)}`,
   bahasa && `language: ${q(bahasa)}`,
   /^\d+$/.test(pages) && `pages: ${pages}`,
+  negara && `acquiredIn: ${q(negara)}`,
   `categories: [${subjek.map(q).join(', ')}]`,
   `formats: [${formats.map(q).join(', ')}]`,
   link && `link: ${q(link)}`,
