@@ -5,6 +5,12 @@ import { useTranslations } from '../../../i18n/utils';
 import { getCollection, render } from 'astro:content';
 
 const lang = 'en';
+// Warna label punggung menurut kelas utama DDC (digit pertama kode).
+const spineColors = ['#475569', '#6d5a9c', '#8b5e3c', '#a16207', '#9f4a5a', '#035297', '#b45309', '#7c3f98', '#be5a38', '#3f6b4f'];
+const spineParts = (call?: string) => {
+  const [ddc, author, title] = (call ?? '').split(' ');
+  return ddc && author && title ? { ddc, author, title, color: spineColors[Number(ddc[0])] ?? spineColors[0] } : null;
+};
 const countryName = (id: string) => libraryRef.negara.find((n) => n.id === id)?.[lang] ?? id;
 // Emoji bendera dari kode negara ISO (dua huruf → regional indicator); kosong = tanpa bendera.
 const countryFlag = (id: string) => {
@@ -85,6 +91,7 @@ const statusLabels: Record<string, string> = {
           <ul id="library-list" class="mt-6 grid gap-8 sm:grid-cols-2">
             {books.map((book, i) => {
               const { Content } = rendered[i];
+              const spine = spineParts(book.data.callNumber);
               return (
                 <li
                   data-book
@@ -92,15 +99,19 @@ const statusLabels: Record<string, string> = {
                   data-formats={book.data.formats.join('|')}
                   class="border-l-2 border-mangrove-300 pl-4 py-1"
                 >
-                  {book.data.cover && (
-                    <img
-                      src={book.data.cover}
-                      alt={book.data.title}
-                      loading="lazy"
-                      decoding="async"
-                      class="mb-4 h-48 w-full rounded object-cover"
-                    />
-                  )}
+                  <div class="flex gap-4">
+                    {spine && (
+                      <div
+                        aria-hidden="true"
+                        class="flex h-24 w-16 shrink-0 flex-col items-center justify-center rounded font-mono text-white shadow-sm"
+                        style={`background-color:${spine.color}`}
+                      >
+                        <span class="text-xs font-semibold leading-tight">{spine.ddc}</span>
+                        <span class="mt-1 text-sm font-bold leading-tight">{spine.author}</span>
+                        <span class="mt-1 text-sm leading-tight">{spine.title}</span>
+                      </div>
+                    )}
+                    <div class="min-w-0 flex-1">
                   <p class="font-mono text-xs text-slate-400">
                     {book.data.catalogNumber}
                     {book.data.callNumber && ` · ${book.data.callNumber}`}
@@ -165,6 +176,8 @@ const statusLabels: Record<string, string> = {
                       {t.library.linkLabel} →
                     </a>
                   )}
+                    </div>
+                  </div>
                 </li>
               );
             })}

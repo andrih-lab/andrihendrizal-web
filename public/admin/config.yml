@@ -230,7 +230,6 @@ collections:
         options: ["cetak", "pdf", "epub", "google-play"]
         default: []
       - { name: "link", label: "Link (Google Play Books, dsb.)", widget: "string", required: false }
-      - { name: "cover", label: "Sampul / Cover Image", widget: "image", required: false }
       - name: "status"
         label: "Sudah Dibaca? / Reading Status"
         widget: "select"

@@ -17,7 +17,6 @@ categories:
 formats:
   - cetak
 link: ''
-cover: /images/uploads/R All in One Book Cover.jpeg
 status: sudah
 rating: 5
 draft: false
