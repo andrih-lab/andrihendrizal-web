@@ -56,7 +56,11 @@ const books = defineCollection({
 // supaya tetap sinkron dengan label fisik di punggung buku.
 const library = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/library' }),
-  schema: z.object({
+  // Sveltia CMS menyimpan kolom opsional yang dikosongkan sebagai '' — ubah
+  // jadi undefined supaya `link: ''` tidak menggagalkan build.
+  schema: z.preprocess(
+    (d) => (d && typeof d === 'object' ? Object.fromEntries(Object.entries(d).filter(([, v]) => v !== '')) : d),
+    z.object({
     catalogNumber: z.string(),
     callNumber: z.string().optional(),
     title: z.string(),
@@ -80,7 +84,7 @@ const library = defineCollection({
     status: z.enum(['belum', 'sedang', 'sudah']).default('belum'),
     rating: z.number().min(1).max(5).optional(),
     draft: z.boolean().default(true),
-  }),
+  })),
 });
 
 // Kursus/mini e-course. Situs ini statis tanpa backend (Prinsip #1), jadi
