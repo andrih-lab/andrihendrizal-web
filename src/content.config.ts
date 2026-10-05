@@ -1,5 +1,14 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import libraryRef from '../scripts/library-reference.json';
+
+// Sama dengan rumus di scripts/tambah-buku.mjs dan spreadsheet Database_Buku_Koleksi.xlsx.
+const autoCallNumber = (subject: string | undefined, author: string, title: string) => {
+  const ddc = subject && (libraryRef.subjekDdc as Record<string, string>)[subject];
+  if (!ddc) return undefined;
+  const letters = (s: string) => s.normalize('NFD').replace(/[^A-Za-z]/g, '');
+  return `${ddc} ${letters(author).slice(0, 3).toUpperCase()} ${letters(title).slice(0, 1).toLowerCase()}`;
+};
 
 // Frontmatter tulisan (Bagian 7 dokumen rancang bangun). Tulisan tidak
 // wajib dua bahasa — tiap berkas punya satu `lang`, dan `translationOf`
@@ -84,7 +93,11 @@ const library = defineCollection({
     status: z.enum(['belum', 'sedang', 'sudah']).default('belum'),
     rating: z.number().min(1).max(5).optional(),
     draft: z.boolean().default(true),
-  })),
+  }).transform((d) => ({
+      ...d,
+      // Nomor Panggil otomatis bila kosong: [DDC subjek pertama] [3 huruf pengarang] [1 huruf judul]
+      callNumber: d.callNumber ?? autoCallNumber(d.categories[0], d.author, d.title),
+    }))),
 });
 
 // Kursus/mini e-course. Situs ini statis tanpa backend (Prinsip #1), jadi
