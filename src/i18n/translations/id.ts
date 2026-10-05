@@ -259,6 +259,8 @@ export const id = {
     intro:
       'Katalog pribadi buku cetak, PDF, dan ebook — bukan resensi formal, hanya kesan singkat setelah membaca. Nomor katalog mengikuti sistem penomoran rak buku fisik di rumah.',
     empty: 'Koleksi bacaan akan ditambahkan segera.',
+    searchLabel: 'Cari',
+    searchPlaceholder: 'Cari judul, pengarang, penerbit, ISBN…',
     filterCategory: 'Subjek',
     filterFormat: 'Format',
     filterAll: 'Semua',

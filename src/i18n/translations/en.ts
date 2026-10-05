@@ -259,6 +259,8 @@ export const en = {
     intro:
       'A personal catalog of print, PDF, and ebook titles — not formal reviews, just brief impressions after reading. Catalog numbers follow the physical shelf numbering system at home.',
     empty: 'The reading collection will be added soon.',
+    searchLabel: 'Search',
+    searchPlaceholder: 'Search title, author, publisher, ISBN…',
     filterCategory: 'Subject',
     filterFormat: 'Format',
     filterAll: 'All',
