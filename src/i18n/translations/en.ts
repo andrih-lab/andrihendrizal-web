@@ -78,7 +78,7 @@ export const en = {
     // Latar belakang masa studi sarjana (arsip staff.unri.ac.id, halaman
     // "Profil") — ditulis faktual/netral, tanpa superlatif (Bagian 12).
     backgroundNote:
-      'During his undergraduate studies, he served as student body president at Universitas Riau (2011–2012) and received the university’s model-student recognition for the same academic year. In 2013 he was one of seven Indonesian delegates selected for the Study of the U.S. Institute program on global environmental issues, hosted by the East-West Center in Hawaii.',
+      'During his undergraduate studies, he chaired the Biology Education Student Association (Himpunan Mahasiswa Program Studi Pendidikan Biologi) at Universitas Riau (2011/2012) and received the university’s model-student recognition for the same academic year. In 2013 he was one of seven Indonesian delegates selected for the Study of the U.S. Institute program on global environmental issues, hosted by the East-West Center in Hawaii.',
     publicationsHeading: 'Recent Publications',
     publicationsEmpty: 'Publications will appear here once available.',
     writingHeading: 'Recent Writing',

@@ -76,7 +76,7 @@ export const id = {
     // Latar belakang masa studi sarjana (arsip staff.unri.ac.id, halaman
     // "Profil") — ditulis faktual/netral, tanpa superlatif (Bagian 12).
     backgroundNote:
-      'Selama masa studi sarjana, ia pernah menjabat sebagai Bupati Mahasiswa di Universitas Riau (2011/2012) dan menerima predikat mahasiswa teladan pada tahun ajaran yang sama. Pada tahun 2013, ia terpilih sebagai satu dari tujuh delegasi Indonesia untuk program Study of the U.S. Institute mengenai isu lingkungan global, yang diselenggarakan oleh East-West Center di Hawaii.',
+      'Selama masa studi sarjana, ia pernah menjabat sebagai Ketua Himpunan Mahasiswa Program Studi Pendidikan Biologi, Universitas Riau (2011/2012), dan menerima predikat mahasiswa teladan pada tahun ajaran yang sama. Pada tahun 2013, ia terpilih sebagai satu dari tujuh delegasi Indonesia untuk program Study of the U.S. Institute mengenai isu lingkungan global, yang diselenggarakan oleh East-West Center di Hawaii.',
     publicationsHeading: 'Publikasi Terbaru',
     publicationsEmpty: 'Publikasi akan tampil di sini begitu tersedia.',
     writingHeading: 'Tulisan Terbaru',
