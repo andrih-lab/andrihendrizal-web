@@ -83,6 +83,19 @@ export interface CvTraining {
 
 export const training: CvTraining[] = [
   {
+    name: {
+      en: 'International Summer Course on Tropical Biodiversity and Sustainable Development (From Ecosystem to Repositories: Data-Driven Insight into Tropical Biodiversity)',
+      id: 'International Summer Course on Tropical Biodiversity and Sustainable Development (From Ecosystem to Repositories: Data-Driven Insight into Tropical Biodiversity)',
+    },
+    provider: {
+      en: 'Faculty of Biology, Universitas Gadjah Mada',
+      id: 'Fakultas Biologi, Universitas Gadjah Mada',
+    },
+    location: { en: 'Yogyakarta, Indonesia', id: 'Yogyakarta, Indonesia' },
+    year: '2026',
+    international: true,
+  },
+  {
     name: { en: 'Small UAS Remote Pilot Training', id: 'Small UAS Remote Pilot Training' },
     provider: { en: 'Drone Edutech', id: 'Drone Edutech' },
     location: { en: 'Indonesia', id: 'Indonesia' },
